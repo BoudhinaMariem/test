@@ -1,0 +1,130 @@
+<div class="flex flex-col flex-auto min-w-0">
+  <!-- Header -->
+  <div class="bg-card">
+    <div class="flex flex-col w-full max-w-screen-xl mx-auto px-6 sm:px-8">
+      <div
+        class="flex flex-col sm:flex-row flex-auto sm:items-center min-w-0 my-8 sm:my-12">
+        <!-- Avatar and name -->
+        <div class="flex flex-auto items-center min-w-0">
+          <div class="flex-0 w-16 h-16 rounded-full overflow-hidden">
+            <img
+              class="w-full h-full object-cover"
+              src="assets/images/avatars/brian-hughes.jpg" />
+          </div>
+          <div class="flex flex-col min-w-0 ml-4">
+            <ng-container *transloco="let t">
+              <div
+                class="text-2xl md:text-5xl font-semibold tracking-tight leading-7 md:leading-snug truncate">
+                {{ t("welcome-back") }}, Brian!
+              </div>
+            </ng-container>
+            <div class="flex items-center">
+              <mat-icon
+                class="icon-size-5"
+                [svgIcon]="'heroicons_solid:bell'"></mat-icon>
+              <div class="ml-1.5 leading-6 truncate text-secondary">
+                You have 2 new messages and 15 new tasks
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="flex items-center mt-6 sm:mt-0 sm:ml-2 space-x-3">
+          <button
+            class="fuse-mat-button-rounded bg-accent-700"
+            mat-flat-button
+            [color]="'accent'">
+            <mat-icon
+              class="icon-size-5"
+              [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+            <span class="ml-2">Messages</span>
+          </button>
+          <button
+            class="fuse-mat-button-rounded"
+            mat-flat-button
+            [color]="'primary'">
+            <mat-icon
+              class="icon-size-5"
+              [svgIcon]="'heroicons_solid:cog'"></mat-icon>
+            <span class="ml-2">Settings</span>
+          </button>
+        </div>
+      </div>
+      <!-- Project selector -->
+      <div
+        class="relative flex self-start pt-2 pb-1 pl-5 pr-4 cursor-pointer overflow-hidden rounded-t-xl border border-b-0 bg-default"
+        matRipple
+        [matMenuTriggerFor]="projectsMenu">
+        <div class="flex items-center">
+          <div class="overflow-hidden">
+            <div class="font-medium leading-6 truncate"></div>
+          </div>
+          <div class="flex items-center justify-center pl-2">
+            <mat-icon
+              class="icon-size-5"
+              [svgIcon]="'heroicons_solid:chevron-down'"></mat-icon>
+          </div>
+        </div>
+        <mat-menu
+          #projectsMenu="matMenu"
+          [xPosition]="'before'">
+          <button mat-menu-item>ACME Corp. Backend App</button>
+          <button mat-menu-item>ACME Corp. Frontend App</button>
+          <button mat-menu-item>Creapond</button>
+          <button mat-menu-item>Withinpixels</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+  <div id="grid">
+    <dx-data-grid
+      id="grid-container"
+      [dataSource]="sales"
+      keyExpr="orderId"
+      [showBorders]="true">
+      <dxo-selection
+        [selectAllMode]="allMode"
+        [showCheckBoxesMode]="checkBoxesMode"
+        mode="multiple"></dxo-selection>
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxi-column
+        dataField="orderId"
+        caption="Order ID"
+        [width]="90"></dxi-column>
+      <dxi-column dataField="city"></dxi-column>
+      <dxi-column
+        dataField="country"
+        [width]="180"></dxi-column>
+      <dxi-column dataField="region"></dxi-column>
+      <dxi-column
+        dataField="date"
+        dataType="date"></dxi-column>
+      <dxi-column
+        dataField="amount"
+        format="currency"
+        [width]="90"></dxi-column>
+    </dx-data-grid>
+    <div class="options">
+      <div class="caption">Options</div>
+      <div class="option">
+        <span>Select All Mode</span>
+        <dx-select-box
+          id="select-all-mode"
+          [dataSource]="['allPages', 'page']"
+          [inputAttr]="{ 'aria-label': 'Select All Mode' }"
+          [(value)]="allMode"
+          [disabled]="checkBoxesMode === 'none'"></dx-select-box>
+      </div>
+      <div class="option checkboxes-mode">
+        <span>Show Checkboxes Mode</span>
+        <dx-select-box
+          id="show-checkboxes-mode"
+          [inputAttr]="{ 'aria-label': 'Show Checkboxes Mode' }"
+          [dataSource]="['none', 'onClick', 'onLongTap', 'always']"
+          [(value)]="checkBoxesMode"></dx-select-box>
+      </div>
+    </div>
+  </div>
+</div>

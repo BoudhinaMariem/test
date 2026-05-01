@@ -1,0 +1,112 @@
+<router-outlet></router-outlet>
+
+<div
+    *ngIf="showChatbot"
+    class="triweb-chatbot print:hidden">
+
+    <!-- Panel chatbot -->
+    <div
+        *ngIf="chatbotOpened"
+        class="triweb-chatbot-panel">
+
+        <div class="triweb-chatbot-header">
+            <div class="flex items-center gap-3">
+                <div class="triweb-chatbot-header-icon">
+                    <svg
+                        class="w-5 h-5"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M7 8h10M7 12h6M5 20l3.5-3H18a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h.5L5 20z">
+                        </path>
+                    </svg>
+                </div>
+
+                <div>
+                    <div class="font-semibold">Assistant Triweb</div>
+                    <div class="text-xs opacity-80">Dashboard & planification</div>
+                </div>
+            </div>
+
+            <button
+                type="button"
+                class="triweb-chatbot-close"
+                (click)="toggleChatbot()">
+                <svg
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 6l12 12M18 6L6 18">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="triweb-chatbot-body">
+            <div
+                *ngFor="let message of chatbotMessages"
+                class="triweb-chatbot-message"
+                [class.triweb-chatbot-message-user]="message.from === 'user'">
+                {{ message.text }}
+            </div>
+        </div>
+
+        <div class="triweb-chatbot-footer">
+            <input
+                type="text"
+                [(ngModel)]="chatbotMessage"
+                (keyup.enter)="sendChatbotMessage()"
+                placeholder="Poser une question...">
+
+            <button
+                type="button"
+                (click)="sendChatbotMessage()">
+                Envoyer
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating button -->
+    <button
+        type="button"
+        class="triweb-chatbot-button"
+        (click)="toggleChatbot()">
+
+        <svg
+            *ngIf="!chatbotOpened"
+            class="w-7 h-7"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8">
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M7 8h10M7 12h6M5 20l3.5-3H18a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H6a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3h.5L5 20z">
+            </path>
+        </svg>
+
+        <svg
+            *ngIf="chatbotOpened"
+            class="w-7 h-7"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8">
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 6l12 12M18 6L6 18">
+            </path>
+        </svg>
+    </button>
+</div>

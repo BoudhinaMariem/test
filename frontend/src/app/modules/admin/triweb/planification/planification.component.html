@@ -1,0 +1,64 @@
+<div class="flex flex-col flex-auto min-w-0 p-6 sm:p-10 bg-gray-50 dark:bg-transparent">
+    <div class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
+        <div>
+            <div class="flex items-center gap-3"><div class="flex items-center justify-center w-12 h-12 rounded-2xl text-white shadow" style="background:#9C0F48"><mat-icon [svgIcon]="'heroicons_outline:calendar'"></mat-icon></div><div><div class="text-3xl font-extrabold tracking-tight">{{ title }}</div><div class="text-secondary mt-1">{{ subtitle }}</div></div></div>
+            <div class="mt-3 text-sm text-secondary">Source : <span class="font-medium" [ngClass]="{'text-green-600': apiLoaded, 'text-amber-600': !apiLoaded}">{{ apiLoaded ? 'API .NET connectée' : 'données locales de secours' }}</span></div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3"><mat-form-field class="fuse-mat-dense w-72"><mat-label>Recherche planification</mat-label><input matInput [(ngModel)]="search" (ngModelChange)="applyFilters()" placeholder="Client, code, équipe, statut"><mat-icon matSuffix [svgIcon]="'heroicons_outline:search'"></mat-icon></mat-form-field><button mat-stroked-button color="primary" (click)="refreshPlanification()"><mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_outline:refresh'"></mat-icon>Actualiser</button><button mat-flat-button color="primary" (click)="resetFilters()">Réinitialiser</button></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-7 gap-4 mt-8">
+        <mat-form-field class="fuse-mat-dense"><mat-label>Date début</mat-label><input matInput type="date" [(ngModel)]="dateFrom" (ngModelChange)="applyFilters()"></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Date fin</mat-label><input matInput type="date" [(ngModel)]="dateTo" (ngModelChange)="applyFilters()"></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Statut</mat-label><select matNativeControl [(ngModel)]="selectedStatut" (ngModelChange)="applyFilters()"><option *ngFor="let statut of statutOptions" [value]="statut">{{ statut }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Position</mat-label><select matNativeControl [(ngModel)]="selectedPosition" (ngModelChange)="applyFilters()"><option *ngFor="let position of positionOptions" [value]="position">{{ position }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Loi Hamon</mat-label><select matNativeControl [(ngModel)]="selectedLoiHamon" (ngModelChange)="applyFilters()"><option *ngFor="let loi of loiHamonOptions" [value]="loi">{{ loi }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Nature</mat-label><select matNativeControl [(ngModel)]="selectedNature" (ngModelChange)="applyFilters()"><option *ngFor="let nature of natureOptions" [value]="nature">{{ nature }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Équipe</mat-label><select matNativeControl [(ngModel)]="selectedTeam" (ngModelChange)="applyFilters()"><option *ngFor="let team of teamOptions" [value]="team">{{ team }}</option></select></mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-6">
+        <div *ngFor="let kpi of delayKpis" class="bg-card rounded-2xl shadow p-6 border-l-4" [ngClass]="{'border-green-500': kpi.status === 'green', 'border-orange-500': kpi.status === 'orange', 'border-red-500': kpi.status === 'red'}"><div class="text-secondary text-sm">{{ kpi.title }}</div><div class="mt-2 text-3xl font-bold">{{ kpi.value }}</div><div class="mt-2 text-sm text-secondary">{{ kpi.detail }}</div></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-6 gap-6 mt-6">
+        <div *ngFor="let card of summaryCards; let i = index" class="bg-card rounded-2xl shadow p-6 border-l-4" [style.border-left-color]="triwebPalette[i % triwebPalette.length]"><div class="text-secondary text-sm">{{ card.title }}</div><div class="mt-2 text-3xl font-bold">{{ card.value }}</div><div class="mt-3 text-sm text-secondary">{{ card.detail }}</div></div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Réceptions par date</div><div class="text-sm text-secondary mb-4">Entrées de dossiers côté planification avec charge estimée</div><dx-chart [dataSource]="receptionPlanningData" [palette]="triwebPalette"><dxi-series argumentField="label" valueField="charge" name="Charge" type="bar"></dxi-series><dxi-series argumentField="label" valueField="pages" name="Pages" type="line"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend></dx-chart></div>
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Livraisons prévues client par pages</div><div class="text-sm text-secondary mb-4">Dernière échéance fixée par le client, suivie par volume de pages uniquement</div><dx-chart [dataSource]="deliveryPlanningData" [palette]="triwebPalette"><dxi-series argumentField="label" valueField="pages" name="Pages" type="bar"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend></dx-chart></div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Charge planifiée par semaine</div><div class="text-sm text-secondary mb-4">Barres empilées : rédaction, graphisme, CQ interne et CQ client</div><dx-chart [dataSource]="planningLoad" [palette]="triwebPalette"><dxi-series argumentField="semaine" valueField="redaction" name="Rédaction" type="stackedBar"></dxi-series><dxi-series argumentField="semaine" valueField="graphisme" name="Graphisme" type="stackedBar"></dxi-series><dxi-series argumentField="semaine" valueField="cqi" name="CQ interne" type="stackedBar"></dxi-series><dxi-series argumentField="semaine" valueField="cqc" name="CQ client" type="stackedBar"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend></dx-chart></div>
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Occupation par équipe métier</div><div class="text-sm text-secondary mb-4">Rédacteur, graphiste, CQ interne et CQ client uniquement</div><dx-chart [dataSource]="occupationEquipes" [palette]="triwebPalette" rotated="true"><dxi-series argumentField="equipe" valueField="charge" name="Charge" type="bar"></dxi-series><dxi-series argumentField="equipe" valueField="dossiers" name="Dossiers" type="bar"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend></dx-chart></div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Charge par acteur</div><div class="text-sm text-secondary mb-4">Rédaction, graphisme, CQ interne et CQ client</div>
+        <dx-data-grid [dataSource]="chargeByActorData" [showBorders]="false" [rowAlternationEnabled]="true" [columnAutoWidth]="true"><dxo-paging [pageSize]="10"></dxo-paging><dxi-column dataField="role" caption="Rôle"></dxi-column><dxi-column dataField="actor" caption="Acteur"></dxi-column><dxi-column dataField="dossiers" caption="Dossiers"></dxi-column><dxi-column dataField="hours" caption="Heures"></dxi-column><dxi-column dataField="retours" caption="Retours CQ"></dxi-column></dx-data-grid></div>
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Dossiers en retard</div><div class="text-sm text-secondary mb-4">Retards calculés par rapport à l’état de chaque équipe et à la date de livraison</div><dx-data-grid [dataSource]="lateItems" [showBorders]="false" [rowAlternationEnabled]="true" [columnAutoWidth]="true"><dxo-paging [pageSize]="10"></dxo-paging><dxi-column dataField="codeClient" caption="Code"></dxi-column><dxi-column dataField="client" caption="Client"></dxi-column><dxi-column dataField="position" caption="Position"></dxi-column><dxi-column dataField="statut" caption="Statut"></dxi-column><dxi-column dataField="etatR" caption="État R"></dxi-column><dxi-column dataField="etatG" caption="État G"></dxi-column><dxi-column dataField="dateLivraisonPrevue" caption="Date prévue"></dxi-column><dxi-column dataField="alertReason" caption="Cause retard"></dxi-column></dx-data-grid></div>
+    </div>
+
+    <div class="bg-card rounded-2xl shadow p-6 mt-8">
+        <div class="flex items-center justify-between mb-4"><div><div class="text-lg font-semibold">Planning détaillé</div><div class="text-sm text-secondary">Tableau filtrable pour piloter les affectations et les échéances</div></div><div class="text-sm font-medium" style="color:#9C0F48">{{ projects.length }} dossiers</div></div>
+
+        <dx-data-grid
+            [dataSource]="projects"
+            [columns]="apiColumns"
+            [showBorders]="false"
+            [rowAlternationEnabled]="true"
+            [columnAutoWidth]="true">
+            <dxo-search-panel [visible]="true" [text]="search"></dxo-search-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-paging [pageSize]="25"></dxo-paging>
+            <dxo-pager
+                [showPageSizeSelector]="true"
+                [allowedPageSizes]="[25, 50, 100, 200]"
+                [showInfo]="true">
+            </dxo-pager>
+        </dx-data-grid>
+    </div>
+</div>

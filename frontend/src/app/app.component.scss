@@ -1,0 +1,160 @@
+.triweb-chatbot {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 9999;
+}
+
+.triweb-chatbot-button {
+    width: 3.5rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 9999px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: linear-gradient(
+        135deg,
+        rgba(220, 38, 38, 0.90)
+    );
+    box-shadow: 0 18px 45px rgba(156, 15, 72, 0.35);
+    transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.triweb-chatbot-button:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 24px 60px rgba(156, 15, 72, 0.42);
+}
+
+.triweb-chatbot-panel {
+    position: absolute;
+    right: 0;
+    bottom: 4.75rem;
+    width: 24rem;
+    max-width: calc(100vw - 4rem);
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.26);
+}
+
+.dark .triweb-chatbot-panel {
+    background: rgba(17, 24, 39, 0.94);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.triweb-chatbot-header {
+    padding: 1rem 1.25rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(
+        135deg,
+        rgba(234, 120, 98, 0.98),
+        rgba(156, 15, 72, 0.94)
+    );
+}
+
+.triweb-chatbot-header-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.triweb-chatbot-close {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 9999px;
+    color: #ffffff;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.16);
+    transition: background 160ms ease;
+}
+
+.triweb-chatbot-close:hover {
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.triweb-chatbot-body {
+    padding: 1rem;
+    height: 16rem;
+    overflow-y: auto;
+}
+
+.triweb-chatbot-message {
+    max-width: 85%;
+    margin-bottom: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 1rem 1rem 1rem 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    color: #1f2937;
+    background: #f3f4f6;
+}
+
+.dark .triweb-chatbot-message {
+    color: #e5e7eb;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.triweb-chatbot-message-user {
+    margin-left: auto;
+    color: #ffffff;
+    border-radius: 1rem 1rem 0.25rem 1rem;
+    background: linear-gradient(
+        135deg,
+        rgba(234, 120, 98, 0.96),
+        rgba(156, 15, 72, 0.92)
+    );
+}
+
+.triweb-chatbot-footer {
+    padding: 0.85rem;
+    gap: 0.5rem;
+    display: flex;
+    border-top: 1px solid rgba(148, 163, 184, 0.28);
+}
+
+.triweb-chatbot-footer input {
+    flex: 1;
+    height: 2.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    padding: 0 0.95rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.dark .triweb-chatbot-footer input {
+    color: #ffffff;
+    background: rgba(15, 23, 42, 0.75);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.triweb-chatbot-footer button {
+    height: 2.5rem;
+    border: none;
+    border-radius: 9999px;
+    padding: 0 1rem;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(
+        135deg,
+        rgba(234, 120, 98, 0.96),
+        rgba(156, 15, 72, 0.92)
+    );
+}

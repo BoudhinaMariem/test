@@ -1,0 +1,37 @@
+
+<div class="flex flex-col flex-auto min-w-0 p-6 sm:p-10 bg-gray-50">
+  <div>
+    <div class="text-3xl font-extrabold tracking-tight">{{ title }}</div>
+    <div class="text-secondary mt-1">{{ subtitle }}</div>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
+    <div *ngFor="let card of cards" class="bg-card rounded-2xl shadow p-6">
+      <div class="text-secondary text-sm">{{ card.label }}</div>
+      <div class="mt-2 text-3xl font-bold">{{ card.value }}</div>
+      <div class="mt-3 text-sm text-green-600">{{ card.note }}</div>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+    <div class="bg-card rounded-2xl shadow p-6">
+      <div class="text-lg font-semibold mb-4">Performance par équipe</div>
+      <dx-chart [dataSource]="teamMetrics">
+        <dxi-series argumentField="equipe" valueField="tauxRespect" name="Respect délais" type="bar"></dxi-series>
+      </dx-chart>
+    </div>
+    <div class="bg-card rounded-2xl shadow p-6">
+      <div class="text-lg font-semibold mb-4">Évolution mensuelle</div>
+      <dx-chart [dataSource]="monthlyEvolution">
+        <dxi-series argumentField="periode" valueField="performance" type="line"></dxi-series>
+      </dx-chart>
+    </div>
+  </div>
+  <div class="bg-card rounded-2xl shadow p-6 mt-8">
+    <div class="text-lg font-semibold mb-4">Classement équipes</div>
+    <dx-data-grid [dataSource]="teamMetrics" [showBorders]="false" [columnAutoWidth]="true">
+      <dxi-column dataField="equipe"></dxi-column>
+      <dxi-column dataField="charge" caption="Charge"></dxi-column>
+      <dxi-column dataField="capacite" caption="Capacité"></dxi-column>
+      <dxi-column dataField="tauxRespect" caption="Respect délais (%)"></dxi-column>
+    </dx-data-grid>
+  </div>
+</div>

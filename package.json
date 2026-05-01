@@ -1,0 +1,9 @@
+{
+  "name": "triweb-angular-dotnet",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:frontend": "npm --prefix frontend install",
+    "dev:frontend": "npm --prefix frontend run start"
+  }
+}

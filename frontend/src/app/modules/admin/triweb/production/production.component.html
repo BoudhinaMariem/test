@@ -1,0 +1,43 @@
+
+<div class="flex flex-col flex-auto min-w-0 p-6 sm:p-10 bg-gray-50">
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div>
+      <div class="text-3xl font-extrabold tracking-tight">{{ title }}</div>
+      <div class="text-secondary mt-1">{{ subtitle }}</div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full sm:w-auto">
+      <dx-select-box [dataSource]="equipes" [(value)]="selectedEquipe" placeholder="Équipe"></dx-select-box>
+      <dx-select-box [dataSource]="statuts" [(value)]="selectedStatut" placeholder="Statut"></dx-select-box>
+      <mat-form-field class="fuse-mat-dense">
+        <mat-label>Recherche</mat-label>
+        <input matInput [(ngModel)]="search" placeholder="Client ou dossier">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-8">
+    <div class="xl:col-span-2 bg-card rounded-2xl shadow p-6">
+      <div class="text-lg font-semibold mb-4">Portefeuille production</div>
+      <dx-data-grid [dataSource]="filteredItems" [showBorders]="false" [rowAlternationEnabled]="true" [columnAutoWidth]="true">
+        <dxo-search-panel [visible]="true" [text]="search"></dxo-search-panel>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-paging [pageSize]="8"></dxo-paging>
+        <dxi-column dataField="dossier"></dxi-column>
+        <dxi-column dataField="client"></dxi-column>
+        <dxi-column dataField="activite" caption="Activité"></dxi-column>
+        <dxi-column dataField="equipe" caption="Équipe"></dxi-column>
+        <dxi-column dataField="statut"></dxi-column>
+        <dxi-column dataField="dateCible" caption="Date cible"></dxi-column>
+        <dxi-column dataField="charge" caption="Charge (h)"></dxi-column>
+        <dxi-column dataField="retour" caption="Retours"></dxi-column>
+      </dx-data-grid>
+    </div>
+    <div class="bg-card rounded-2xl shadow p-6">
+      <div class="text-lg font-semibold mb-4">Répartition par équipe</div>
+      <dx-chart [dataSource]="teamChart">
+        <dxi-series argumentField="equipe" valueField="nb" type="bar"></dxi-series>
+      </dx-chart>
+    </div>
+  </div>
+</div>

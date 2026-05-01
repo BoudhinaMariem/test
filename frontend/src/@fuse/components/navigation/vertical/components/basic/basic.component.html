@@ -1,0 +1,216 @@
+<!-- Item wrapper -->
+<div
+    class="fuse-vertical-navigation-item-wrapper"
+    [class.fuse-vertical-navigation-item-has-subtitle]="!!item.subtitle"
+    [ngClass]="item.classes?.wrapper">
+
+    <!-- Item with an internal link -->
+    <ng-container *ngIf="item.link && !item.externalLink && !item.function && !item.disabled">
+        <a
+            class="fuse-vertical-navigation-item"
+            [ngClass]="{'fuse-vertical-navigation-item-active-forced': item.active}"
+            [routerLink]="[item.link]"
+            [routerLinkActive]="'fuse-vertical-navigation-item-active'"
+            [routerLinkActiveOptions]="isActiveMatchOptions"
+            [matTooltip]="item.tooltip || ''">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </a>
+    </ng-container>
+
+    <!-- Item with an external link -->
+    <ng-container *ngIf="item.link && item.externalLink && !item.function && !item.disabled">
+        <a
+            class="fuse-vertical-navigation-item"
+            [href]="item.link"
+            [target]="item.target || '_self'"
+            [matTooltip]="item.tooltip || ''">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </a>
+    </ng-container>
+
+    <!-- Item with a function -->
+    <ng-container *ngIf="!item.link && item.function && !item.disabled">
+        <div
+            class="fuse-vertical-navigation-item"
+            [ngClass]="{'fuse-vertical-navigation-item-active-forced': item.active}"
+            [matTooltip]="item.tooltip || ''"
+            (click)="item.function(item)">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </div>
+    </ng-container>
+
+    <!-- Item with an internal link and function -->
+    <ng-container *ngIf="item.link && !item.externalLink && item.function && !item.disabled">
+        <a
+            class="fuse-vertical-navigation-item"
+            [ngClass]="{'fuse-vertical-navigation-item-active-forced': item.active}"
+            [routerLink]="[item.link]"
+            [routerLinkActive]="'fuse-vertical-navigation-item-active'"
+            [routerLinkActiveOptions]="isActiveMatchOptions"
+            [matTooltip]="item.tooltip || ''"
+            (click)="item.function(item)">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </a>
+    </ng-container>
+
+    <!-- Item with an external link and function -->
+    <ng-container *ngIf="item.link && item.externalLink && item.function && !item.disabled">
+        <a
+            class="fuse-vertical-navigation-item"
+            [href]="item.link"
+            [target]="item.target || '_self'"
+            [matTooltip]="item.tooltip || ''"
+            (click)="item.function(item)">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </a>
+    </ng-container>
+
+    <!-- Item with a no link and no function -->
+    <ng-container *ngIf="!item.link && !item.function && !item.disabled">
+        <div
+            class="fuse-vertical-navigation-item"
+            [ngClass]="{'fuse-vertical-navigation-item-active-forced': item.active}"
+            [matTooltip]="item.tooltip || ''">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </div>
+    </ng-container>
+
+    <!-- Item is disabled -->
+    <ng-container *ngIf="item.disabled">
+        <div
+            class="fuse-vertical-navigation-item fuse-vertical-navigation-item-disabled"
+            [matTooltip]="item.tooltip || ''">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </div>
+    </ng-container>
+
+</div>
+
+<!-- Item template -->
+<ng-template #itemTemplate>
+
+    <!-- Icon -->
+<ng-container *ngIf="item.icon">
+
+    <!-- Dashboard général -->
+    <svg
+        *ngIf="item.id === 'triweb.dashboard'"
+        class="fuse-vertical-navigation-item-icon w-5 h-5 min-w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7">
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 13h6v7H4v-7zM14 4h6v16h-6V4zM4 4h6v5H4V4z">
+        </path>
+    </svg>
+
+    <!-- Planification -->
+    <svg
+        *ngIf="item.id === 'triweb.planification'"
+        class="fuse-vertical-navigation-item-icon w-5 h-5 min-w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7">
+        <rect
+            x="4"
+            y="5"
+            width="16"
+            height="15"
+            rx="2">
+        </rect>
+        <path
+            stroke-linecap="round"
+            d="M8 3v4M16 3v4M4 10h16">
+        </path>
+        <path
+            stroke-linecap="round"
+            d="M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01">
+        </path>
+    </svg>
+
+    <!-- Power BI -->
+    <svg
+        *ngIf="item.id === 'triweb.powerbi'"
+        class="fuse-vertical-navigation-item-icon w-5 h-5 min-w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7">
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 19V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14">
+        </path>
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7 16v-4M12 16V8M17 16v-6M3 20h18">
+        </path>
+    </svg>
+
+    <!-- Modèles IA -->
+    <svg
+        *ngIf="item.id === 'triweb.models'"
+        class="fuse-vertical-navigation-item-icon w-5 h-5 min-w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7">
+        <rect
+            x="7"
+            y="7"
+            width="10"
+            height="10"
+            rx="2">
+        </rect>
+        <path
+            stroke-linecap="round"
+            d="M9 3v4M12 3v4M15 3v4M9 17v4M12 17v4M15 17v4M3 9h4M3 12h4M3 15h4M17 9h4M17 12h4M17 15h4">
+        </path>
+    </svg>
+
+    <!-- Fallback pour les autres menus Fuse -->
+    <mat-icon
+        *ngIf="item.id !== 'triweb.dashboard'
+            && item.id !== 'triweb.planification'
+            && item.id !== 'triweb.powerbi'
+            && item.id !== 'triweb.models'"
+        class="fuse-vertical-navigation-item-icon"
+        [ngClass]="item.classes?.icon"
+        [svgIcon]="item.icon">
+    </mat-icon>
+
+</ng-container>
+
+    <!-- Title & Subtitle -->
+    <div class="fuse-vertical-navigation-item-title-wrapper">
+        <div class="fuse-vertical-navigation-item-title">
+            <span [ngClass]="item.classes?.title">
+                {{item.title}}
+            </span>
+        </div>
+        <ng-container *ngIf="item.subtitle">
+            <div class="fuse-vertical-navigation-item-subtitle">
+                <span [ngClass]="item.classes?.subtitle">
+                    {{item.subtitle}}
+                </span>
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- Badge -->
+    <ng-container *ngIf="item.badge">
+        <div class="fuse-vertical-navigation-item-badge">
+            <div
+                class="fuse-vertical-navigation-item-badge-content"
+                [ngClass]="item.badge.classes">
+                {{item.badge.title}}
+            </div>
+        </div>
+    </ng-container>
+
+</ng-template>

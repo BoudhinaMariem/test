@@ -1,0 +1,1 @@
+var AdsBlockHoverQueryTag;(function(n){function i(){for(var t=_d.querySelectorAll(".b_ad li"),n=0;n<t.length;n++)sj_be(t[n],"mouseenter",r)}function r(){t||(t=!0,Log&&Log.LogFilterFlare&&Log.LogFilterFlare(["AdsBlkHovTag"]))}var t=!1;n.init=i;i()})(AdsBlockHoverQueryTag||(AdsBlockHoverQueryTag={}))

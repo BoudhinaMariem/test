@@ -1,0 +1,87 @@
+<div class="flex flex-col flex-auto min-w-0 p-6 sm:p-10 bg-gray-50 dark:bg-transparent">
+    <div class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
+        <div>
+            <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center w-12 h-12 rounded-2xl text-white shadow" style="background:#EA7862"><mat-icon [svgIcon]="'heroicons_outline:chart-square-bar'"></mat-icon></div>
+                <div><div class="text-3xl font-extrabold tracking-tight">{{ title }}</div><div class="text-secondary mt-1">{{ subtitle }}</div></div>
+            </div>
+            <div class="mt-3 text-sm text-secondary">Source : <span class="font-medium" [ngClass]="{'text-green-600': apiLoaded, 'text-amber-600': !apiLoaded}">{{ apiLoaded ? 'API .NET connectée' : 'données locales de secours' }}</span> · Dernière actualisation : {{ lastUpdate | date:'dd/MM/yyyy HH:mm' }}</div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+            <mat-form-field class="fuse-mat-dense w-72"><mat-label>Recherche dashboard</mat-label><input matInput [(ngModel)]="search" (ngModelChange)="applyFilters()" placeholder="Client, code, statut, équipe"><mat-icon matSuffix [svgIcon]="'heroicons_outline:search'"></mat-icon></mat-form-field>
+            <button mat-stroked-button color="primary" (click)="refreshDashboard()"><mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_outline:refresh'"></mat-icon>Actualiser</button>
+            <button mat-flat-button color="primary" (click)="resetFilters()">Réinitialiser</button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-7 gap-4 mt-8">
+        <mat-form-field class="fuse-mat-dense"><mat-label>Date début</mat-label><input matInput type="date" [(ngModel)]="dateFrom" (ngModelChange)="applyFilters()"></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Date fin</mat-label><input matInput type="date" [(ngModel)]="dateTo" (ngModelChange)="applyFilters()"></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Statut</mat-label><select matNativeControl [(ngModel)]="selectedStatut" (ngModelChange)="applyFilters()"><option *ngFor="let statut of statutOptions" [value]="statut">{{ statut }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Position</mat-label><select matNativeControl [(ngModel)]="selectedPosition" (ngModelChange)="applyFilters()"><option *ngFor="let position of positionOptions" [value]="position">{{ position }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Loi Hamon</mat-label><select matNativeControl [(ngModel)]="selectedLoiHamon" (ngModelChange)="applyFilters()"><option *ngFor="let loi of loiHamonOptions" [value]="loi">{{ loi }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Nature</mat-label><select matNativeControl [(ngModel)]="selectedNature" (ngModelChange)="applyFilters()"><option *ngFor="let nature of natureOptions" [value]="nature">{{ nature }}</option></select></mat-form-field>
+        <mat-form-field class="fuse-mat-dense"><mat-label>Équipe</mat-label><select matNativeControl [(ngModel)]="selectedTeam" (ngModelChange)="applyFilters()"><option *ngFor="let team of teamOptions" [value]="team">{{ team }}</option></select></mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-6 gap-6 mt-6">
+        <div *ngFor="let kpi of kpis; let i = index" class="bg-card rounded-2xl shadow p-6 border-l-4" [style.border-left-color]="triwebPalette[i % triwebPalette.length]">
+            <div class="flex items-center justify-between"><div class="text-secondary text-sm">{{ kpi.title }}</div><mat-icon class="icon-size-5" [ngClass]="{'text-green-600': kpi.trend === 'up', 'text-red-600': kpi.trend === 'down', 'text-secondary': kpi.trend === 'neutral'}" [svgIcon]="kpi.trend === 'down' ? 'heroicons_outline:trending-down' : 'heroicons_outline:trending-up'"></mat-icon></div>
+            <div class="mt-2 text-3xl font-bold">{{ kpi.value }}</div><div class="mt-3 text-sm" [ngClass]="{'text-green-600': kpi.trend !== 'down', 'text-red-600': kpi.trend === 'down'}">{{ kpi.delta }}</div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">Top rédacteurs</div><div class="text-sm text-secondary mb-4">Classement par volume/pages, moins de retours CQ et sans retard de livraison</div>
+            <dx-data-grid [dataSource]="topRedacteurs" [showBorders]="false" [rowAlternationEnabled]="true" [columnAutoWidth]="true"><dxo-paging [pageSize]="10"></dxo-paging><dxi-column dataField="name" caption="Rédacteur"></dxi-column><dxi-column dataField="dossiers" caption="Dossiers"></dxi-column><dxi-column dataField="pages" caption="Pages"></dxi-column><dxi-column dataField="dureeMoyenne" caption="Durée moy."></dxi-column><dxi-column dataField="pagesParHeure" caption="Pages/h"></dxi-column><dxi-column dataField="tauxRetour" caption="% Retours"></dxi-column><dxi-column dataField="retards" caption="Retards"></dxi-column><dxi-column dataField="score" caption="Score"></dxi-column></dx-data-grid>
+        </div>
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">Top graphistes</div><div class="text-sm text-secondary mb-4">Classement par volume/pages, moins de retours CQ et sans retard de livraison</div>
+            <dx-data-grid [dataSource]="topGraphistes" [showBorders]="false" [rowAlternationEnabled]="true" [columnAutoWidth]="true"><dxo-paging [pageSize]="10"></dxo-paging><dxi-column dataField="name" caption="Graphiste"></dxi-column><dxi-column dataField="dossiers" caption="Dossiers"></dxi-column><dxi-column dataField="pages" caption="Pages"></dxi-column><dxi-column dataField="dureeMoyenne" caption="Durée moy."></dxi-column><dxi-column dataField="pagesParHeure" caption="Pages/h"></dxi-column><dxi-column dataField="tauxRetour" caption="% Retours"></dxi-column><dxi-column dataField="retards" caption="Retards"></dxi-column><dxi-column dataField="score" caption="Score"></dxi-column></dx-data-grid>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">Courbe production par jour</div><div class="text-sm text-secondary mb-4">Production, livraisons/validations et retours CQ sur les dates réelles du périmètre filtré</div>
+            <dx-chart [dataSource]="dailyProduction" [palette]="triwebPalette"><dxi-series argumentField="periode" valueField="production" name="Production" type="bar"></dxi-series><dxi-series argumentField="periode" valueField="livres" name="Livrés / validés" type="line"></dxi-series><dxi-series argumentField="periode" valueField="retours" name="Retours CQ" type="line"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend></dx-chart>
+        </div>
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">Alertes retards opérationnels</div><div class="text-sm text-secondary mb-4">Règles : rédaction J-1 si en cours/en pause, graphisme jour J si en cours/en pause</div>
+            <dx-data-grid [dataSource]="criticalItems" [showBorders]="false" [rowAlternationEnabled]="true" [columnAutoWidth]="true"><dxo-paging [pageSize]="8"></dxo-paging><dxi-column dataField="codeClient" caption="Code"></dxi-column><dxi-column dataField="client" caption="Client"></dxi-column><dxi-column dataField="position" caption="Position"></dxi-column><dxi-column dataField="statut" caption="Statut"></dxi-column><dxi-column dataField="dateLivraisonPrevue" caption="Livraison"></dxi-column><dxi-column dataField="alertReason" caption="Alerte"></dxi-column></dx-data-grid>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Charge par équipe</div><div class="text-sm text-secondary mb-4">Équipes métier : rédacteur, graphiste, CQ interne et CQ client</div><dx-chart [dataSource]="teamMetrics" [palette]="triwebPalette"><dxi-series argumentField="equipe" valueField="dossiers" name="Dossiers" type="bar"></dxi-series><dxi-series argumentField="equipe" valueField="retours" name="Retours CQ" type="bar"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend></dx-chart></div>
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Livraisons prévues par pages</div><div class="text-sm text-secondary mb-4">Volume de pages par date de livraison client, sans série par nombre de dossiers</div><dx-chart [dataSource]="deliveryData" [palette]="triwebPalette"><dxi-series argumentField="label" valueField="pages" name="Pages" type="bar"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend></dx-chart></div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Dossiers par position</div><div class="text-sm text-secondary mb-4">Toutes les positions API : Production, Client, CQ client, CQ interne et FTP</div><dx-chart [dataSource]="affectedPositionData" [palette]="triwebPalette" rotated="true"><dxi-series argumentField="label" valueField="value" name="Dossiers" type="bar"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend [visible]="false"></dxo-legend></dx-chart></div>
+        <div class="bg-card rounded-2xl shadow p-6"><div class="text-lg font-semibold mb-1">Retours CQ par étape</div><div class="text-sm text-secondary mb-4">Rédaction, graphisme, CQ interne et CQ client</div><dx-chart [dataSource]="retourByStepData" [palette]="triwebPalette"><dxi-series argumentField="step" valueField="value" name="Retours CQ" type="bar"></dxi-series><dxo-tooltip [enabled]="true"></dxo-tooltip><dxo-legend [visible]="false"></dxo-legend></dx-chart></div>
+    </div>
+
+    <div class="bg-card rounded-2xl shadow p-6 mt-8">
+        <div class="flex items-center justify-between mb-4"><div><div class="text-lg font-semibold">Dossiers filtrés</div><div class="text-sm text-secondary">Recherche et filtres synchronisés avec les cartes, tableaux et graphiques</div></div><div class="text-sm font-medium" style="color:#9C0F48">{{ filteredItems.length }} résultats</div></div>
+
+        <dx-data-grid
+            [dataSource]="filteredItems"
+            [columns]="apiColumns"
+            [showBorders]="false"
+            [rowAlternationEnabled]="true"
+            [columnAutoWidth]="true">
+            <dxo-search-panel [visible]="true" [text]="search"></dxo-search-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-paging [pageSize]="25"></dxo-paging>
+            <dxo-pager
+                [showPageSizeSelector]="true"
+                [allowedPageSizes]="[25, 50, 100, 200]"
+                [showInfo]="true">
+            </dxo-pager>
+        </dx-data-grid>
+
+    </div>
+</div>
