@@ -33,7 +33,16 @@ export class AuthUtils
         }
 
         // Get the expiration date
-        const date = this._getTokenExpirationDate(token);
+        let date: Date | null;
+
+        try
+        {
+            date = this._getTokenExpirationDate(token);
+        }
+        catch
+        {
+            return true;
+        }
 
         offsetSeconds = offsetSeconds || 0;
 
@@ -164,18 +173,25 @@ export class AuthUtils
 
         if ( parts.length !== 3 )
         {
-            throw new Error('The inspected token doesn\'t appear to be a JWT. Check to make sure it has three parts and see https://jwt.io for more.');
+            return null;
         }
 
-        // Decode the token using the Base64 decoder
-        const decoded = this._urlBase64Decode(parts[1]);
-
-        if ( !decoded )
+        try
         {
-            throw new Error('Cannot decode the token.');
-        }
+            // Decode the token using the Base64 decoder
+            const decoded = this._urlBase64Decode(parts[1]);
 
-        return JSON.parse(decoded);
+            if ( !decoded )
+            {
+                return null;
+            }
+
+            return JSON.parse(decoded);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     /**
@@ -190,7 +206,7 @@ export class AuthUtils
         const decodedToken = this._decodeToken(token);
 
         // Return if the decodedToken doesn't have an 'exp' field
-        if ( !decodedToken.hasOwnProperty('exp') )
+        if ( !decodedToken || !Object.prototype.hasOwnProperty.call(decodedToken, 'exp') )
         {
             return null;
         }

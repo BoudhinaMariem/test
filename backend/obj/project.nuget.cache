@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yAp0ALiZQIw=",
+  "dgSpecHash": "8CE0bxw1Z0g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\marie\\Downloads\\triweb\\triweb\\backend\\Triweb.Api.csproj",
+  "projectFilePath": "C:\\Users\\marie\\Downloads\\triweb1\\triweb\\backend\\Triweb.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marie\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\marie\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

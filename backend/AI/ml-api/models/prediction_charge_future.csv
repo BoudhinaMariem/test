@@ -1,0 +1,535 @@
+﻿id_dossier;code_client;client;position;statut;loi_type;etatR;etatG;page;jours_restants;pred_charge_minutes
+135455;363744;FRANCE FOTO;Production;En instance;production_standard;En instance ;En instance ;10;8.0;28.244537037037038
+135453;624039;M.T.P.A;Production;En instance;production_standard;En instance ;En instance ;10;8.0;28.24227777777778
+135459;630616;METAL ART & DESIGN;Production;En instance;production_standard;En instance ;En instance ;10;8.0;28.24227777777778
+135484;630564;EURL AXEL DAHLEM;Production;En instance;production_standard;En instance ;En instance ;10;8.0;28.24227777777778
+135291;617576;CLIM ENTRETIEN SERVICE;Production;En cours;production_standard;En cours;En instance ;10;6.0;28.130719444444477
+135571;626711;ERIC JARDINAGE;Production;En instance;production_standard;En instance ;En instance ;9;9.0;27.52
+135465;630163;JCP SERVICES;Production;En instance;production_standard;En instance ;En instance ;9;8.0;27.52
+135488;629959;AJH CLEAN;Production;En instance;production_standard;En instance ;En instance ;9;8.0;27.52
+135257;627367;LA FONTAINE AUX FLEURS;Production;En instance;production_standard;En instance ;En instance ;9;6.0;27.50748148148148
+135360;626771;DJ FRANCKY MUSIC;Production;En instance;production_standard;En instance ;En instance ;9;7.0;27.5025
+135259;627490;DURAND & FILS COUVERTURE;Production;En cours;production_standard;Affecté;En instance ;9;6.0;27.50249074074074
+135290;615973;MICKEL SANCHEZ;Production;En cours;production_standard;Affecté;En instance ;9;6.0;27.50249074074074
+135365;627578;F C ELEC;Production;En instance;production_standard;En instance ;En instance ;9;7.0;27.5
+135295;627001;ECURIES DE LA COLOMBE;Production;En cours;production_standard;Affecté;En instance ;9;6.0;27.5
+135359;367931;TEAM SERVICES;Production;En instance;production_standard;En instance ;En instance ;9;7.0;27.5
+135310;558698;O ECLAT;Production;En cours;production_standard;En pause;En instance ;9;6.0;27.233027777777767
+135511;452273;100% MOI;Production;En cours;refonte_avec_redaction;En pause;Affecté;15;9.0;27.102403703703743
+135573;618674;DES SOURIRES PAR MILLIERS;Production;En cours;refonte_avec_redaction;Affecté;Affecté;9;9.0;26.97871388888889
+135529;629233;DIAMED-NETTOYAGE;Production;En instance;production_standard;En instance ;En instance ;8;9.0;26.75
+135627;614349;FFAMD;Production;En instance;production_standard;En instance ;En instance ;8;12.0;26.75
+135469;618705;SENNO CUISINE ET AGENCEMENT;Production;En instance;production_standard;En instance ;En instance ;8;8.0;26.75
+135561;628810;FINALE BTP;Production;En instance;production_standard;En instance ;En instance ;8;9.0;26.75
+135565;629817;LA2M;Production;En instance;production_standard;En instance ;En instance ;8;9.0;26.75
+135566;629739;LUMIÈRE TRANSPORT 85;Production;En instance;production_standard;En instance ;En instance ;8;9.0;26.75
+135452;625630;ENTREPRISE CHRISTOPHE PONCET;Production;En instance;production_standard;En instance ;En instance ;8;8.0;26.75
+135584;628214;BD HOMME TOUTE MAIN;Production;En instance;production_standard;En instance ;En instance ;8;9.0;26.75
+135567;628988;CHICELEGANCE;Production;En instance;production_standard;En instance ;En instance ;8;9.0;26.748791666666666
+135430;630891;IDEAL NUTRITION 65;Production;En instance;production_standard;En instance ;En instance ;8;8.0;26.748791666666666
+135483;629688;LA MAN'S AUX TRESORS;Production;En instance;production_standard;En instance ;En instance ;8;8.0;26.748791666666666
+135419;399849;HONORE CHARLÈNE;Production;En cours;refonte_avec_redaction;Affecté;Affecté;9;8.0;26.748740740740736
+135361;629114;LEBRE ATELIER DE SELLERIE;Production;En instance;production_standard;En instance ;En instance ;8;7.0;26.73549999999999
+135292;628829;BLDBEAUTY;Production;En cours;production_standard;Affecté;En instance ;8;6.0;26.71133333333332
+135327;484501;SAM BOULANGERIE;Production;En cours;production_standard;En cours;En instance ;8;7.0;26.425889814814738
+135602;334003;LAMIRÉ ARMAND MICHEL PIERRE;Production;En cours;refonte_avec_redaction;Affecté;Affecté;8;12.0;26.419879629629623
+135367;603627;NOUVELESPACE;Production;En instance;production_standard;En instance ;En instance ;7;7.0;26.0
+135362;625035;GINKGO ET PAYSAGE;Production;En instance;production_standard;En instance ;En instance ;7;7.0;26.0
+135535;627653;COGEFROID;Production;En instance;production_standard;En instance ;En instance ;7;9.0;26.0
+135461;629724;CLEANING PARIS;Production;En instance;production_standard;En instance ;En instance ;7;8.0;26.0
+135534;628557;TACOTAXI;Production;En instance;production_standard;En instance ;En instance ;7;9.0;26.0
+135364;628409;RESISOLS27;Production;En instance;production_standard;En instance ;En instance ;7;7.0;26.0
+135432;625603;RPMOTORSPORT62;Production;En instance;production_standard;En instance ;En instance ;7;8.0;26.0
+135583;626845;QM PEINTURE;Production;En instance;production_standard;En instance ;En instance ;7;9.0;26.0
+135635;629702;DOUSSON CONSTRUCTION;Production;En instance;production_standard;En instance ;En instance ;7;12.0;26.0
+135424;504569;BOQUET ENERGIES;Production;En instance;production_standard;En instance ;En instance ;7;8.0;26.0
+135396;629476;JDS DECO;Production;En instance;production_standard;En instance ;En instance ;7;7.0;26.0
+135631;594609;BCS PROTECTION;Production;En instance;production_standard;En instance ;En instance ;7;12.0;26.0
+135390;629080;ELIXIR CBD;Production;En instance;production_standard;En instance ;En instance ;7;7.0;26.0
+135486;626200;SBBE CONCEPT;Production;En instance;production_standard;En instance ;En instance ;7;8.0;26.0
+135570;627978;SERVICES CONFORT 77;Production;En instance;production_standard;En instance ;En instance ;7;9.0;26.0
+135395;628657;GREENBAT RENOV;Production;En cours;production_standard;Affecté;En instance ;7;7.0;25.995
+135391;628625;AG BATI RÉNOV;Production;En cours;production_standard;Affecté;En instance ;7;7.0;25.995
+135389;619330;HARAS D'OXLEY;Production;En cours;production_standard;Affecté;En instance ;7;7.0;25.995
+135426;629906;TNG AUTOMOTIVE;Autre;En instance;production_standard;En instance ;En instance ;7;8.0;25.85235185185185
+135287;619055;PURE CLEAN SERVICE;Production;En cours;production_standard;En cours;En instance ;8;6.0;25.751731481481457
+135537;630166;CARROSSERIE PENEL    ANCIEN SAGE 145036;Production;En cours;refonte_avec_redaction;Affecté;Affecté;7;9.0;25.735517592592593
+135289;618658;INSTANT PRECIEUX;Production;En cours;production_standard;Validé;En pause;10;6.0;25.36351481481495
+135457;627964;KINGS COOK;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135458;629404;LA SOURCE;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135485;626900;CREAZINE;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135528;625596;EAU SERVICE;Production;En instance;production_standard;En instance ;En instance ;6;9.0;25.25
+135482;628563;K-DOUX MADA;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135531;630509;BLACK STORM;Production;En instance;production_standard;En instance ;En instance ;6;9.0;25.25
+135480;624960;JLPL;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135532;630141;L'ATELIER DU CONFLENT;Production;En instance;production_standard;En instance ;En instance ;6;9.0;25.25
+135425;624955;LÉA DE MILLEVILLE;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135463;628499;SOLENA DECORATION EVENT'S;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135568;627561;MORICE MOTOCULTURE;Production;En instance;production_standard;En instance ;En instance ;6;9.0;25.25
+135585;617310;MUCHO DRIVE PRESTIGE;Production;En instance;production_standard;En instance ;En instance ;6;9.0;25.25
+135575;624220;WARNER WASH;Production;En instance;production_standard;En instance ;En instance ;6;9.0;25.25
+135431;629685;POMPES FUNEBRES LES DEUX SOLEILS;Production;En instance;production_standard;En instance ;En instance ;6;8.0;25.25
+135526;628469;BENHUR CONVOYAGE;Production;En instance;production_standard;En instance ;En instance ;6;9.0;25.25
+135368;623329;LA CASA DU LAC;Production;En instance;production_standard;En instance ;En instance ;6;7.0;25.24621111111111
+135363;628536;LE SPOT NARBONNE;Production;En instance;production_standard;En instance ;En instance ;6;7.0;25.24621111111111
+135397;627915;LW SONORISATION;Production;En instance;production_standard;En instance ;En instance ;6;7.0;25.24621111111111
+135394;628142;MARINE COCHOIS;Production;En instance;production_standard;En instance ;En instance ;6;7.0;25.24621111111111
+135317;626324;DRIV'HER VTC;Production;En cours;production_standard;Affecté;En instance ;6;6.0;25.17201203703704
+135095;604441;ELEGANCIA;Production;En cours;refonte_avec_redaction;Validé;Affecté;10;2.0;24.915917592592674
+135124;377600;PLOMBELEC AQUITAINE;Production;En cours;production_standard;En pause;Affecté;10;2.0;24.802381481481518
+135301;629046;MAZA MULTISERVICE MMS;Production;En cours;production_standard;En pause;En instance ;11;6.0;24.584212037036984
+135632;629958;LE MAS DU TADORNE;Production;En instance;production_standard;En instance ;En instance ;5;12.0;24.5
+135634;622660;LE PELICAN;Production;En instance;production_standard;En instance ;En instance ;5;12.0;24.5
+135633;629198;GIB SERVICES;Production;En instance;production_standard;En instance ;En instance ;5;12.0;24.5
+135429;626483;L'ENVOL;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135366;630346;CARRELEUR ALILOU;Production;En cours;production_standard;Affecté;En instance ;5;7.0;24.5
+135464;629980;GLAPITY-PET;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135467;630321;LA CARAPOPOTE;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135427;628978;TK.POLYSERVICE;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135428;629247;TRAITEUR MOUILLEY;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135392;628327;ATHÉRIAN EQUI'SERVICE;Production;En cours;production_standard;Affecté;En instance ;5;7.0;24.5
+135451;629113;VALO-IMMO;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135454;627061;LA TAVERNE DES SORCIERES;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135456;354703;LA CONCIERGERIE;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135460;629842;LES CLEFS DE LA CITE;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135462;626870;VICTORIA REYNAUD;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135530;629802;BUD TRAITEUR;Production;En instance;production_standard;En instance ;En instance ;5;9.0;24.5
+135466;629480;APC;Production;En instance;production_standard;En instance ;En instance ;5;8.0;24.5
+135569;629868;PNEUS 64;Production;En instance;production_standard;En instance ;En instance ;5;9.0;24.5
+135533;629519;KORSAIRE;Production;En instance;production_standard;En instance ;En instance ;5;9.0;24.5
+135527;630214;DBRGO;Production;En instance;production_standard;En instance ;En instance ;4;9.0;24.492329629629626
+135481;619040;VIBES CLUB;Production;En instance;production_standard;En instance ;En instance ;4;8.0;24.492329629629626
+135487;630465;MNCRÉASTAMP;Production;En instance;production_standard;En instance ;En instance ;4;8.0;24.492329629629626
+135401;623828;GO SERVICES 57;Production;En instance;production_standard;En instance ;En instance ;4;7.0;24.492329629629626
+135393;628187;MAISON G&A;Production;En cours;production_standard;Affecté;En instance ;4;7.0;24.492329629629626
+135203;615531;AUX DELICES DE NADEGE;Production;En cours;refonte_avec_redaction;En cours;Affecté;9;2.0;24.485266666666636
+135311;615574;MERICOURSE;Production;En cours;production_standard;Affecté;En instance ;5;6.0;24.482799074074077
+134690;624750;PROUX JOHNNY;Production;En cours;production_standard;Validé;Affecté;7;6.0;24.351650925926
+135326;620381;MARIAN GUILLEMOT CHIROPRACTEURE;Production;En cours;production_standard;Validé;En instance ;7;7.0;24.253744444444415
+134724;626121;ROJ CAFE RESTAURANT;Production;En cours;production_standard;En cours;En instance ;5;7.0;24.206800000000054
+135260;627144;MOBILITY AUTO 08;Production;En cours;production_standard;En pause;En instance ;9;6.0;24.204860185185105
+135299;630074;SRE SERVICE;Production;En cours;production_standard;En pause;En instance ;9;6.0;24.196949074073963
+135479;628491;MENUISERIE VERNET;Client;En instance;production_standard;;;8;8.0;24.141806481481485
+135358;626279;ROYAUX MULTI-SERVICES;Production;En cours;production_standard;En pause;En instance ;6;7.0;24.09737592592599
+135398;611549;FC PEINTURES;Production;En cours;production_standard;En cours;En instance ;6;7.0;23.9643120370371
+135330;628420;AQUALYS SERVICES;Production;En cours;production_standard;Validé;En instance ;6;7.0;23.712923148148093
+135328;628309;BOVINS BRETAGNE;Production;En cours;production_standard;En cours;En instance ;4;7.0;23.562449074074014
+135213;622585;PHENIX ADAM;Client;En instance;production_standard;En instance ;En instance ;5;2.0;23.447389814814816
+135319;621727;LE RESTAURANT DE L'ÉCLUSE;Production;En cours;production_standard;En pause;Affecté;5;6.0;23.384339814814908
+135423;333861;SYLVIE K BY CHOGAN;Production;En cours;production_standard;En pause;En instance ;6;9.0;23.268054629629656
+135262;553773;LES CRÉAS ET BEAUTÉS DE NATH;Production;En cours;refonte_avec_redaction;Validé;Affecté;6;6.0;23.215708333333353
+134725;608729;AU SALON ENCHAN'THE;Client;En instance;production_standard;En instance ;En instance ;5;-2.0;23.170275000000004
+135261;594634;ENTROTERRIA PAYSAGES;Production;En cours;production_standard;Validé;Affecté;9;6.0;23.09368518518513
+135122;625525;GALLIUM METALLERIE;Production;En cours;production_standard;Validé;Affecté;5;2.0;23.079912037037058
+135329;628757;ETGR ENTREPRISE DE TRAVAUX GENERAL ET RENOVATION;Production;En cours;production_standard;Retour CQ;En cours;6;7.0;22.995115740740804
+135126;627695;KS-SUD;Production;En cours;production_standard;Validé;Affecté;6;2.0;22.972617592592524
+135207;626541;LE GRAND ECART;Production;En cours;production_standard;Validé;Affecté;6;2.0;22.922381481481484
+135296;626038;GREEN CHARPENTE;Production;En cours;production_standard;En pause;Affecté;9;6.0;22.791313888888908
+135258;620259;BATI-ETANCHE;Production;En cours;production_standard;Retour CQ;Affecté;8;6.0;22.73205370370366
+135127;626598;PIMA PRO CONSTRUCTION;Production;En cours;production_standard;Validé;Affecté;10;2.0;22.715294444444346
+135190;276975;EXTERN'AIN PAIE;Production;En cours;refonte_avec_redaction;Validé;Affecté;4;2.0;22.700359259259304
+135196;625792;LW PAYSAGE;Production;En cours;production_standard;Validé;Affecté;10;2.0;22.65130833333334
+135029;624663;ATN MÉTALLERIE;Production;En cours;production_standard;Validé;En cours;5;1.0;22.63857222222218
+135408;623538;TOUS SUPPORTS;Production;En cours;refonte_avec_redaction;En cours;Affecté;7;7.0;22.540952777777715
+135288;625903;S ET R PAYSAGISTE;Production;En cours;production_standard;Validé;Affecté;7;6.0;22.540279629629556
+135294;626093;SARL TAXIS BACCARRÈRE;Production;En cours;production_standard;Validé;Affecté;7;6.0;22.539450925925856
+135335;430766;HERVE DELAVEAU CONSEIL;Client;En instance;refonte_avec_redaction;;;0;7.0;22.460667592592607
+135320;627422;DRIVER KA;Client;En instance;production_standard;Validé;En instance ;4;6.0;22.40417129629636
+129029;598407;AUTOUR DE VOUS;Client;En instance;production_standard;Finalisé;Affecté;3;-85.0;22.34413333333342
+134978;313022;AB MENUISERIE;Production;En cours;production_standard;Validé;En cours;10;1.0;22.223310185185134
+135178;276682;ROAD TO CLEAN 34;Production;En cours;refonte_avec_redaction;En cours;Affecté;6;2.0;22.164737037037057
+135181;628735;C.L.E.S;Production;En cours;production_standard;Retour CQ;En cours;4;2.0;22.08167962962972
+135293;626494;LAKINA;Production;En cours;production_standard;Validé;Affecté;6;6.0;21.81574351851843
+135199;357540;SG CARROSSERIE;Production;En cours;refonte_avec_redaction;Validé;Affecté;7;2.0;21.743971296296294
+135197;350055;NB PEINTURE;Production;En cours;refonte_avec_redaction;Validé;Affecté;5;2.0;21.69418796296293
+135086;563981;PRO NETTOYAGE;Production;En cours;production_standard;Validé;En cours;10;1.0;21.638698148148183
+135084;626929;JC RÉNOVATIONS;Production;En cours;production_standard;Validé;Affecté;10;1.0;21.627658333333283
+135297;628248;L'ATELIER MIMOSA;Production;En cours;production_standard;Validé;Affecté;6;6.0;21.593197222222148
+135318;623607;ATLAS SERVICES;Production;En cours;production_standard;Validé;Affecté;6;6.0;21.571137962962855
+134987;619282;STORES SOLUTIONS LEMAN;Production;En cours;refonte_avec_redaction;Validé;En cours;8;1.0;21.50945092592596
+135128;625692;CLUB HABITAT;Production;En cours;production_standard;Validé;En pause;10;2.0;21.36881296296299
+135256;622153;STEPHANE TIGLI;Production;En cours;production_standard;Validé;Affecté;5;6.0;21.31543703703709
+135300;625319;X-PERT ELEC;Production;En cours;production_standard;Validé;Affecté;5;6.0;21.12959722222229
+135069;623400;K'ARRELAGE CONCEPT;Production;En cours;production_standard;Validé;En cours;9;1.0;21.073149074074028
+135085;629130;MULTISERVICE RASOL;Production;En cours;production_standard;Validé;En cours;10;1.0;21.069953703703735
+134998;577351;MY CLEAN AUTO;Production;En cours;refonte_avec_redaction;Validé;Affecté;7;2.0;21.069487962963
+133481;434714;RE BEL & VOUS;Production;En cours;refonte_avec_redaction;Validé;Affecté;8;1.0;20.99567777777786
+135063;623790;SOLUCELEC42;Production;En cours;production_standard;Validé;En cours;10;1.0;20.86048888888886
+135123;627715;LES CHEVAUX DU LOC'H;Production;En cours;production_standard;Validé;Affecté;5;2.0;20.82600185185178
+135062;624340;CHRISTELLE COIFF'ÀDOMICILE;Production;En cours;production_standard;Validé;En cours;10;1.0;20.73030092592593
+135023;626726;LA BOITE DE NIGHT;Production;En cours;production_standard;Validé;En cours;8;1.0;20.125726851851823
+135216;573058;ILIES VASILE;Production;En cours;production_standard;Validé;En cours;7;2.0;20.118064814814833
+135180;626353;EUROEVELYN;Production;En cours;production_standard;Validé;En cours;9;2.0;19.986184259259293
+135083;625954;AUX DELICES DES ARCADES;Production;En cours;production_standard;Validé;En pause;10;1.0;19.94521851851846
+135026;622131;MH SELLERIE;Production;En cours;production_standard;Validé;En pause;4;1.0;19.768713888888886
+134981;625102;MG SOLAR;Production;En cours;production_standard;Validé;En cours;6;1.0;19.536995370370335
+135028;627456;STEPHANE BRIALLART;Production;En cours;production_standard;Validé;En pause;9;1.0;19.369514814814828
+135006;345367;HOTEL RESTAURANT LE BEAU SEJOUR PORTO;Production;En cours;refonte_avec_redaction;Validé;En cours;6;1.0;18.970194444444363
+135075;627898;KABUL CHICKEN;CQ Interne;En instance;production_standard;Validé;Validé;5;1.0;18.905341666666647
+135076;625212;HYPNOSE ET MIEUX-ETRE;Production;En cours;production_standard;Validé;En cours;4;1.0;18.586074999999973
+134888;284565;MATHILDE POULANGES;Production;En cours;refonte_avec_redaction;Validé;En cours;5;0.0;18.153381481481453
+135091;625391;L'EMBOUTEILLEE DE LA NATIONALE 7;Production;En cours;production_standard;Validé;En cours;5;1.0;17.827892592592583
+134952;620156;CP SECURITE;CQ Client;Non Conforme;production_standard;Validé;Retour CQ;6;0.0;17.82704722222221
+135090;625857;VAL'RENOV;CQ Client;Non Conforme;production_standard;Validé;Validé;6;1.0;17.422548148148174
+134883;622777;ESPRIT CREATIF;Production;En cours;production_standard;Validé;En pause;8;0.0;17.0798324074074
+134949;623690;REFUGE DE L'OLIVIER;CQ Client;Non Conforme;production_standard;Validé;Validé;8;0.0;16.57897129629623
+135020;621744;RJF CLIMATISATION;Production;En cours;production_standard;Validé;En pause;9;1.0;16.554637962963014
+135022;627706;GÎTE DE LA RESSOURCE AVESNOISE;Production;En cours;production_standard;Validé;Finalisé;6;1.0;16.22098796296299
+135208;621899;LIEVY SERVICES;CQ Interne;En instance;production_standard;Validé;Validé;5;2.0;16.03330925925933
+134801;624450;LES ATELIERS BOUTIN;CQ Client;Non Conforme;production_standard;Validé;Retour CQ traité;8;-1.0;15.960806481481429
+134930;627904;MY FAMILY SERVICES;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;7;0.0;15.936243518518474
+134905;517616;LEJEDUMOUVEMENT;CQ Interne;Non Conforme;refonte_avec_redaction;Retour CQ traité;En cours;9;0.0;15.543688888888846
+134948;623667;PERFECT FACADE;CQ Interne;Non Conforme;production_standard;En cours;Validé;6;0.0;15.3250111111111
+134804;601016;CT MENUISERIE;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;8;-1.0;15.313462037036965
+135610;611277;LES 2 MAINS DU BÂTIMENT;Production;En instance;refonte_sans_redaction;;Affecté;8;8.0;15.293810185185185
+134751;621253;ZIO PIZZA;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;6;-2.0;15.062304629629576
+134951;624781;DB PEINTURE;CQ Client;Non Conforme;production_standard;Validé;Validé;6;0.0;15.031010185185174
+134956;623450;LES ECRITS DURENT;CQ Interne;Non Conforme;production_standard;Retour CQ traité;Retour CQ;5;0.0;14.974466666666657
+135061;625251;SOLNRGY;Production;En cours;production_standard;Validé;En cours;6;1.0;14.94780462962957
+134799;624765;A LA CONCIERGERIE;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;5;-1.0;14.878041666666626
+135572;406237;LF PLOMBERIE CHAUFFAGE;Production;En instance;refonte_sans_redaction;;Affecté;6;7.0;14.86930648148148
+134928;615757;TOM'S ELEC;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;5;0.0;14.771937037037048
+134696;625363;QUENTIN MULTISERVICES AVEYRON PRO;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;9;-2.0;14.567752777777724
+135021;622024;MEER;CQ Interne;En instance;production_standard;Validé;Validé;5;1.0;14.240369444444399
+134959;627366;DAVID STEPHAN DEBARRAS;CQ Client;Non Conforme;production_standard;Validé;Validé;6;0.0;14.025132407407439
+135057;437293;MEAT MARKET;CQ Interne;En instance;production_standard;Validé;Validé;5;1.0;13.970897222222147
+134934;626066;SR INCENDIE;CQ Client;Non Conforme;production_standard;Retour CQ;Retour CQ;7;0.0;13.947012962962974
+135079;625633;KEFAKAP;Production;En cours;production_standard;Validé;Finalisé;8;1.0;13.918562037036988
+135033;294770;CAMADE;CQ Interne;En cours;refonte_avec_redaction;Validé;Validé;7;1.0;13.854332407407401
+134931;623360;DOMINGOS DEMOLITION;CQ Interne;Non Conforme;production_standard;Retour CQ traité;Retour CQ;6;0.0;13.502647222222192
+135125;624119;SAS URBIVERT / URBIN ESPACES VERTS;CQ Interne;En instance;production_standard;Validé;Validé;9;2.0;13.439829629629605
+135188;572900;CS TRONIC FRANCE;CQ Client;Non Conforme;refonte_avec_redaction;Retour CQ;Retour CQ;5;2.0;13.243276851851842
+135059;626694;KYDIA A DOMICILE;Production;En cours;production_standard;Validé;Retour CQ;5;1.0;13.22632592592594
+134797;620120;PETIT PAYSAGE;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;5;-1.0;13.002812962962961
+134961;341586;VAP' O TAQUET;CQ Interne;Non Conforme;refonte_avec_redaction;Retour CQ;Retour CQ;7;0.0;12.986606481481518
+135064;628101;YM AUTO;CQ Interne;En instance;production_standard;Validé;Validé;5;1.0;12.685192592592557
+134850;627531;JG MACONNERIE;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;5;-1.0;12.653275925925897
+135067;628616;KÉVIN JARDINAGE;Production;En cours;production_standard;Validé;En cours;5;1.0;12.636048148148083
+135191;351957;PENSOTTI PEINTURE;CQ Interne;En cours;refonte_sans_redaction;;Validé;8;0.0;12.63072407407407
+134795;626326;LE BRUNCH CARDEY;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;7;-1.0;12.527558333333271
+135273;600037;ROYAL BODY GLOW;Production;En instance;refonte_sans_redaction;;Affecté;9;1.0;12.465074074074083
+135046;354485;MUSIC AND SHOW ORGANISATION;CQ Interne;En cours;refonte_avec_redaction;Validé;Validé;5;1.0;12.446694444444475
+135027;626950;JULIEN JARDIN & PAYSAGE;Archive;Validé client;production_standard;Validé;Validé;6;1.0;12.222508333333327
+135060;623912;PEGGY DIEUMEGARD - RÉFLEXOLOGIE PLANTAIRE, PALMAIRE ET FACIO-CRÂNIENNE, KINÉSIOLOGIE;CQ Client;Non Conforme;production_standard;Validé;Validé;8;1.0;12.209602777777736
+134694;624772;JFC RENOV;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;8;-2.0;12.193694444444397
+134852;627248;MONTEIRO MULTI SERVICES;CQ Client;Non Conforme;production_standard;Retour CQ;Validé;5;-1.0;12.186244444444437
+134691;622117;BODY LUMIÉRE;CQ Client;Non Conforme;production_standard;Retour CQ traité;En pause;5;-2.0;12.160824074074052
+135073;483754;TRISKELL;Production;En instance;refonte_avec_redaction;Validé;En cours;5;0.0;12.079724074074111
+134847;618613;LE RELAIS DE LISSAC;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;7;-1.0;12.076355555555534
+134955;626421;MACRÉATIF EVENTS;CQ Interne;Non Conforme;production_standard;Retour CQ traité;Retour CQ;6;0.0;12.054992592592578
+135065;627741;LE CHAS D'OR;CQ Interne;En instance;production_standard;Validé;Validé;6;1.0;11.905230555555544
+134803;625801;AUGUSTELEC;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;8;-1.0;11.859000925925896
+135321;537128;FORCE & SENS;Production;En cours;refonte_sans_redaction;;En pause;8;1.0;11.75743611111114
+134946;624448;LE MAILHAC & CO;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;5;0.0;11.580263888888917
+134796;622782;THE PLATINIUM BARBER SHOP;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;7;-1.0;11.373687962962938
+134530;358574;LA DECOUPE CHARENTAISE;CQ Client;Retour CQ traité;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;7;-7.0;11.359192592592608
+134932;626629;BALAGNE PAYSAGE;CQ Client;Non Conforme;production_standard;Retour CQ traité;En pause;7;0.0;11.296191666666674
+134914;330254;MAXX DINERS & EVENTS;CQ Interne;En cours;refonte_avec_redaction;Validé;Validé;8;0.0;11.050859259259294
+134547;622910;RESTO OPALE PIZZA;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;6;-7.0;10.959198148148166
+135642;529059;ALSA-LYS;Production;En cours;ticket_modification;Affecté;Affecté;18;6.0;10.805212962962973
+134745;620952;LA FORGE;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;7;-2.0;10.73958796296298
+134545;622363;PATRICIA ROLAND;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;7;-7.0;10.65202870370365
+132517;51024;COLIN CHLOE;CQ Client;Retour CQ traité;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;8;-26.0;10.471509259259223
+134259;337597;W2G;CQ Client;Retour CQ traité;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;6;-13.0;10.423522222222182
+134848;628865;EJB CLEAN'PRO CONCIERGERIE;CQ Client;Non Conforme;production_standard;Retour CQ traité;En pause;9;-1.0;10.409950925925882
+134635;625084;NETTOYAGE SIGNATURE;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;9;-5.0;10.342051851851814
+134851;626085;BOTANI X BROTHERS'S;CQ Client;Non Conforme;production_standard;Retour CQ;Validé;8;-1.0;9.779447222222204
+134698;626388;RADIO TAXIS VALENCE;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ traité;5;-2.0;9.536818518518503
+134585;624598;AU COEUR DES SAVEURS DU PAIN;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;6;-5.0;8.569851851851835
+135066;626301;BEN CARRELAGE;Production;En cours;production_standard;Validé;En pause;8;1.0;7.905706481481459
+135603;504537;MAMY BEAUTE AFRO;FTP;En instance;ticket_modification;En pause;Affecté;10;6.0;6.821643518518503
+129208;600377;HR DEMENAGEMENT;CQ Client;Validé;production_standard;Retour CQ traité;Retour CQ traité;5;-96.0;6.291345370370371
+135209;362045;2GEANTS SECURITE;CQ Interne;Non Conforme;refonte_sans_redaction;;En pause;9;0.0;6.1177888888888585
+135574;613454;TOOPROP';Production;En cours;ticket_modification;Affecté;Affecté;10;2.0;5.746146296296295
+135607;504537;MAMY BEAUTE AFRO;Production;En cours;ticket_modification;;Affecté;10;1.0;5.712995370370369
+135601;617386;1001 CROQUETTES;Production;En instance;ticket_modification;;Affecté;10;1.0;5.670349074074072
+135622;57836;VERON COUVERTURE;Autre;En instance;ticket_modification;;;10;1.0;5.501106481481474
+135648;413383;ATELIER CREA SHOP;FTP;En instance;ticket_modification;;;10;2.0;5.489920370370364
+134755;621505;Y'A DU GOUT;CQ Client;Non Conforme;production_standard;En pause;Retour CQ;5;-2.0;5.332311111111105
+135558;608953;AS AUTO 22;Production;En cours;ticket_modification;Validé;En pause;10;0.0;5.229562962962953
+135637;607574;LE SO A OUTILS;Production;En instance;ticket_modification;Affecté;Affecté;9;2.0;5.077183333333332
+135619;585388;SLG PLOMBERIE;FTP;En instance;ticket_modification;;;9;2.0;5.001590740740738
+135596;444401;BULLE DE DOUCEUR;Production;En cours;ticket_modification;;Affecté;9;1.0;4.9948833333333305
+135600;58514;3 VALLEES LOISIRS-BADABULLE;Production;En instance;ticket_modification;;Affecté;9;1.0;4.993906481481479
+135623;624167;LN TERASSEMENT;Production;En cours;ticket_modification;Affecté;Affecté;9;1.0;4.981583333333331
+135620;586487;SONO EVENT PRODUCTION;Production;En cours;ticket_modification;Affecté;Affecté;9;2.0;4.953586111111108
+135580;607701;CLAUDIA MARIA CREATRICE DE SOUVENIRS;Production;En cours;ticket_modification;Validé;En cours;9;0.0;4.944051851851847
+135599;518464;L'HAIR NATUREL;Production;En cours;ticket_modification;Validé;Affecté;9;2.0;4.683801851851838
+135506;620934;VIP STAR CLASS;CQ Interne;En cours;ticket_modification;Validé;Validé;9;0.0;4.5761833333333275
+135597;352136;L'UNIVERS D'EMILIE;Production;En cours;ticket_modification;Affecté;Affecté;5;6.0;4.532267592592593
+135507;595962;AD SERVICES;FTP;En instance;ticket_modification;;;8;1.0;4.232217592592593
+135647;617603;ROYAL AUTO 25;FTP;En instance;ticket_modification;;;8;1.0;4.231231481481481
+135559;557408;IMBERT DESSINATEUR;Client;En instance;ticket_modification;;;8;0.0;4.227661111111111
+135420;615233;INSTANT D'ECLAT;Client;En instance;ticket_modification;;;8;-1.0;4.227133333333333
+135379;553826;FUTUR BATIMENT;Production;En instance;ticket_modification;Affecté;;5;7.0;4.225712037037037
+135630;486661;INTERIA STUDIO;FTP;En instance;ticket_modification;;;8;2.0;4.2172175925925925
+135524;614979;SVP LA SOLUTION MULTISERVICES;Production;En instance;ticket_modification;;Affecté;8;2.0;4.194325925925924
+135577;614979;SVP LA SOLUTION MULTISERVICES;FTP;En instance;ticket_modification;;;8;6.0;4.161030555555554
+135500;607830;ARTISAN CHEVALIER 27;Production;En cours;ticket_modification;;En cours;8;1.0;4.120300925925924
+134722;623781;PROVENCE AUTOS CLEAN;CQ Client;Non Conforme;production_standard;Retour CQ;Retour CQ;4;-2.0;4.062830555555555
+135625;606295;INTEMPOREL STUDIO;Production;En cours;ticket_modification;Affecté;Affecté;8;2.0;4.0342138888888845
+135475;624338;FAB DEV 3D;Production;En cours;ticket_modification;En pause;Affecté;8;1.0;3.9408240740740665
+135591;617603;ROYAL AUTO 25;Production;En cours;ticket_modification;Validé;En pause;8;0.0;3.709068518518524
+135508;601040;OCCITANIE PEINTURE FINITION;Production;En cours;ticket_modification;Validé;Retour CQ;8;1.0;3.6884277777777705
+135554;390230;EQUIVITA;CQ Interne;En cours;ticket_modification;Validé;Validé;8;0.0;3.564986111111112
+135643;612219;LA BONNE BAGUETTE;FTP;En instance;ticket_modification;;;7;1.0;3.5064962962962962
+135641;411163;L'ARCHE DES ANIMAUX;FTP;En instance;ticket_modification;;;7;2.0;3.505542592592593
+135621;527773;M'SEHLA SOLUTIONS RH ET RECRUTEMENT;FTP;En instance;ticket_modification;;;7;2.0;3.5030425925925925
+135598;610278;J.D COUVERTURES;FTP;En instance;ticket_modification;;;7;2.0;3.501467592592593
+135614;473084;RESPLENDIS'SENS COACHING;FTP;En instance;ticket_modification;;;7;2.0;3.5005425925925926
+135646;580739;TAXI BAUD 30;FTP;En instance;ticket_modification;;;7;1.0;3.495437037037037
+135519;595473;ISE - IMAGERIE SUD ESSONNE;FTP;En instance;ticket_modification;;;7;-1.0;3.478344444444445
+135509;622651;BELL'HABITAT;CQ Interne;Non Conforme;ticket_modification;;Retour CQ;8;0.0;3.430209259259272
+135613;608579;LEA SERVICES;Production;En instance;ticket_modification;;Affecté;7;1.0;3.375623148148152
+135521;135870;CAMPING LES 4 SAISONS;Production;En cours;ticket_modification;Validé;Affecté;7;0.0;3.2886074074074187
+135549;550368;DOMAINE DE LA CLAIRIÈRE;Production;En cours;ticket_modification;;Affecté;7;1.0;3.2723768518518597
+135536;623843;NUBE FURIANI;Production;En cours;ticket_modification;Validé;Affecté;7;0.0;3.1770694444444545
+135645;401353;FUITES & EAU;FTP;En instance;ticket_modification;;;6;7.0;3.0786398148148137
+135592;355989;HTRADE SUD;FTP;En instance;ticket_modification;;;6;6.0;3.0786398148148137
+135470;447193;LA PERLE SECRÈTE;Production;En cours;ticket_modification;En cours;;7;0.0;3.0503092592592673
+135279;317262;SOLAR CAR 37;Client;En instance;ticket_modification;Validé;En pause;9;0.0;3.0329851851851797
+135491;619874;SHEILINHA ARTS;Client;En instance;ticket_modification;Validé;Affecté;7;0.0;2.990593518518522
+135593;328562;BELLISSEMOI;Production;En cours;ticket_modification;Validé;Affecté;7;1.0;2.9892166666666786
+135576;444017;LE BON MACHÉ;Production;En cours;ticket_modification;;En pause;7;0.0;2.9629518518518663
+135547;616350;VAGNERRE ANNE-CHARLOTTE;Production;En cours;ticket_modification;Validé;Retour CQ;9;0.0;2.9496768518518492
+134723;620537;SMA TOITURE;CQ Client;Validé client;production_standard;Validé;Retour CQ traité;8;-2.0;2.7572064814814823
+135523;505795;INOV ENERGIE;FTP;En instance;ticket_modification;;;6;1.0;2.7337444444444445
+135556;623772;YC ELAGAGE;FTP;En instance;ticket_modification;;;6;1.0;2.7337444444444445
+135513;382343;VERDIER JULIEN;FTP;En instance;ticket_modification;;;6;1.0;2.7337444444444445
+135595;337597;W2G;Production;En cours;ticket_modification;Validé;En cours;6;0.0;2.7252898148148277
+135618;618002;ROLSKAFEE;FTP;En instance;ticket_modification;;;6;1.0;2.723301851851852
+135605;618479;CAT'CHAPA;Production;En instance;ticket_modification;;Affecté;6;1.0;2.7220638888888886
+135617;549318;LA TABLE DE JEAN;Production;En instance;ticket_modification;;Affecté;6;1.0;2.714589814814815
+135639;140051;AGEP SECURITE;FTP;En instance;ticket_modification;;;6;2.0;2.693067592592593
+135409;482779;PERCHER COUVERTURE;Production;En cours;ticket_modification;Affecté;;6;0.0;2.6320814814814857
+135520;478106;ETANGS DE PECHE ET RESTAURANT DU SAUT DU LOUP;Production;En cours;ticket_modification;Validé;Affecté;6;0.0;2.6297148148148235
+135543;598535;DERMALYS;CQ Interne;En cours;ticket_modification;Validé;Validé;6;0.0;2.566505555555553
+135438;428091;RENOVBATI;FTP;En instance;ticket_modification;;;0;8.0;2.3067592592592585
+135441;612232;SOLRCLEAN;FTP;En instance;ticket_modification;;;0;8.0;2.3067592592592585
+135447;628829;BLDBEAUTY;FTP;En instance;ticket_modification;;;0;8.0;2.3067592592592585
+135517;622912;GROUPE EURAFRIQUE (GROUPE IRYO );FTP;En instance;ticket_modification;;;0;9.0;2.3067592592592585
+135341;601587;LES TERRASSES DE KERORGAN;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;8;-2.0;2.28039166666666
+131154;598641;SAS PRODUCTEURS D'ORAISON;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;7;-72.0;2.2369574074074072
+135058;595338;TPG EXPRESS;CQ Client;Livré;production_standard;Validé;Validé;6;1.0;2.19787037037037
+135629;380325;CYNTHIA FAVREL;Production;En cours;ticket_modification;Validé;Affecté;6;1.0;2.188533333333336
+135512;621518;LA COUTELLERIE DE LA VALLEE;Production;En cours;ticket_modification;Validé;Affecté;6;0.0;2.1464037037037014
+135434;615233;INSTANT D'ECLAT;Production;En cours;ticket_modification;Validé;En pause;8;0.0;2.095235185185184
+135624;620595;L'AME D'ETRE BIEN;Production;En cours;ticket_modification;En cours;Affecté;6;2.0;2.0797277777777805
+135499;619872;AGPEINTURE;CQ Client;Non Conforme;ticket_modification;;Retour CQ;7;-1.0;2.060173148148147
+135540;203066;DES ALTEN DE LA BURGERIE;FTP;En instance;ticket_modification;;;5;1.0;2.0142870370370374
+135157;595172;NOV'AUTO;Production;En instance;ticket_modification;Affecté;;5;2.0;2.0030425925925925
+135141;624101;ADDITEK;Production;En instance;ticket_modification;Affecté;;5;2.0;2.0030425925925925
+135140;624772;JFC RENOV;Production;En instance;ticket_modification;Affecté;;5;2.0;2.0030425925925925
+135139;624645;CARROSSERIE MAURICE;Production;En instance;ticket_modification;Affecté;;5;2.0;2.0030425925925925
+135611;369159;JOOS THIERRY;FTP;En instance;ticket_modification;;;4;2.0;2.0025
+135640;620745;CDS;Production;En instance;ticket_modification;;Affecté;5;1.0;2.0025
+135636;366582;HR SERVICES;FTP;En instance;ticket_modification;;;0;2.0;2.0025
+135402;630346;CARRELEUR ALILOU;Client;En instance;ticket_modification;;;5;-2.0;2.0
+135034;623877;LMG COURTAGE;Client;En instance;ticket_modification;;;0;1.0;2.0
+134895;621918;DRIVER VTC MARSEILLE;Client;En instance;ticket_modification;;;0;0.0;2.0
+133439;612029;CHATELARD RENOVATION;Client;En instance;ticket_modification;;;0;-27.0;2.0
+133206;614218;CD TOIT;Client;En instance;ticket_modification;;;0;-30.0;2.0
+132606;607895;LES TRESORS DU YEMEN;Client;En instance;ticket_modification;;;0;-40.0;2.0
+133478;374257;COUVREUR À CABRIÈS;Client;En instance;ticket_modification;;;0;-27.0;2.0
+135604;347229;NATYV'ZEN;Client;En instance;ticket_modification;;;5;1.0;2.0
+135522;482547;PIERROT MULTISERVICES;Production;En instance;ticket_modification;Affecté;Affecté;4;1.0;2.0
+135514;531922;MENUSIER ELIPSE;Production;En instance;ticket_modification;Affecté;Affecté;5;1.0;2.0
+135579;184985;CONCIERGERIE MANOUCHKA DATCHA;Production;En cours;ticket_modification;Affecté;Affecté;2;1.0;2.0
+134989;618938;LEREAU LOCATION TP;Production;En cours;ticket_modification;Affecté;;5;1.0;2.0
+135563;611356;CJRAUTO;Production;En instance;ticket_modification;Affecté;Affecté;3;1.0;2.0
+135545;577379;SOCI'NET;Production;En instance;ticket_modification;Affecté;Affecté;2;1.0;2.0
+135436;294671;CREA'BAT;Production;En cours;ticket_modification;Affecté;;5;0.0;2.0
+135544;596013;PASSION AUTO 67;Production;En cours;ticket_modification;Affecté;Affecté;2;1.0;2.0
+135612;521633;MA PAUSE CHAMPÊTRE;FTP;En instance;ticket_modification;;;5;0.0;1.9992870370370373
+135644;519524;GERMANN HABITAT;FTP;En instance;ticket_modification;;;0;1.0;1.9992870370370373
+135615;393155;LBG DEMENAGEMENTS;FTP;En instance;ticket_modification;;;0;1.0;1.9992870370370373
+135518;539938;LE MARCHE AFRICAIN;FTP;En instance;ticket_modification;;;0;1.0;1.9992870370370373
+135638;621945;GRAND OUEST LAVAGE;FTP;En instance;ticket_modification;;;5;2.0;1.998600925925926
+128126;588275;SARL KEVIN DEPOND;Client;En instance;ticket_modification;;;0;-112.0;1.9949777777777775
+135628;474798;CARIA STEAKHOUSE;FTP;En instance;ticket_modification;;;4;1.0;1.9943574074074077
+135103;626578;MC PAYSAGE;Client;En instance;ticket_modification;;;0;2.0;1.9885259259259256
+135609;604724;NAILS BY TAISS;FTP;En instance;ticket_modification;;;4;2.0;1.986814814814815
+135616;370893;LA CHOUETTE D'OR;Production;En instance;ticket_modification;Affecté;Affecté;4;2.0;1.9752592592592593
+133828;620057;NAUTIC LOCATION SUD;Client;En instance;ticket_modification;En pause;;5;-21.0;1.9684444444444444
+134001;547122;SODDECOM FRANCE;Client;En instance;ticket_modification;En pause;;4;-16.0;1.9523490740740745
+135581;483798;JIDEC;Production;En cours;ticket_modification;;En pause;7;0.0;1.9254953703703703
+134652;612675;ALTEA CONSTRUCTEURS;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;12;-2.0;1.9233222222222248
+134697;624101;ADDITEK;CQ Client;Validé client;production_standard;Validé;Validé;11;-2.0;1.9148796296296298
+135241;353865;POUGET STEPHANE;FTP;En instance;ticket_modification;Validé;En cours;9;0.0;1.884200925925921
+135472;378074;CONFORT THERMIQUE AZUREEN;FTP;En instance;ticket_modification;;En pause;5;0.0;1.8585166666666635
+135548;615564;DU TEMPS POUR VOUS;CQ Interne;En cours;ticket_modification;Validé;Validé;7;0.0;1.789030555555555
+135560;618941;EDEN'S SQUARE;Production;En cours;ticket_modification;Validé;Retour CQ;7;0.0;1.7745953703703707
+135582;587321;RAPIDE-FERMETURES;CQ Interne;En cours;ticket_modification;Validé;Validé;9;1.0;1.7721324074074065
+135503;509529;L ART DU JARDIN;CQ Interne;Non Conforme;ticket_modification;;Retour CQ;6;0.0;1.7371037037037005
+134870;520871;BAR ET RESTAURANT DE L ABBAYE;Production;En instance;ticket_modification;;Validé;6;-9.0;1.7348972222222183
+129831;599872;TAXI MEHDI;Client;En instance;ticket_modification;En pause;;5;-85.0;1.699117592592589
+135551;620145;MÈCHE ET DÉLICE;Production;En cours;ticket_modification;Validé;Affecté;6;1.0;1.676982407407412
+135468;552684;COMME UNE EVIDENCE 2;Production;En cours;ticket_modification;;En pause;8;0.0;1.6349490740740706
+134320;500212;PETIT ATELIER FLORAL;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;11;-16.0;1.6343324074074088
+135606;410061;DUMONT MARJORIE;Production;En cours;ticket_modification;Validé;Affecté;3;1.0;1.630743518518525
+135557;559095;FORTOUL PLOMBERIE;Production;En cours;ticket_modification;Validé;Affecté;2;1.0;1.6174361111111115
+135539;256820;LANGUEDOC FILETS DE SECURITE;Production;En cours;ticket_modification;Validé;Affecté;6;2.0;1.5605907407407356
+134637;451483;LA CHAPE;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;5;-5.0;1.5056370370370373
+135555;148413;MYSTER PEDGE;Production;En cours;ticket_modification;Validé;Affecté;5;1.0;1.3957388888888944
+135422;487975;CLEANERZ;CQ Interne;Non Conforme;ticket_modification;Retour CQ traité;En pause;8;0.0;1.374492592592588
+135590;346085;ATOUT BEAUD;Production;En cours;ticket_modification;Validé;En pause;6;0.0;1.3142944444444418
+135588;629958;LE MAS DU TADORNE;CQ Interne;En instance;ticket_modification;Validé;Validé;5;0.0;1.3008092592592604
+135594;572887;MARTINE A LA MONTAGNE;Production;En cours;ticket_modification;Validé;En pause;5;0.0;1.2963111111111145
+135505;607664;RESTAURANT LE BASTIDON;CQ Interne;En cours;ticket_modification;Validé;Validé;7;0.0;1.2851500000000038
+135538;619704;DTECH ENERGIES;Production;En cours;ticket_modification;Validé;En pause;6;0.0;1.2248953703703738
+135369;608537;DEVORBAITS;Client;En instance;ticket_modification;En pause;NU-Suspendu;3;-1.0;1.2176768518518468
+134629;624055;RM SERVICE+;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;9;-5.0;1.1514351851851852
+135443;613494;LES FLOCONS DE SNOW;Production;En instance;ticket_modification;Validé;En cours;6;0.0;1.1496583333333381
+135564;615301;ELEGANCE COVERING;Production;En cours;ticket_modification;Validé;En pause;2;1.0;1.10153240740741
+131292;593353;BIBELOC VIDE-GRENIER DURABLE;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;5;-70.0;1.0763666666666698
+135552;622247;BEN'S BURGER;Production;En instance;ticket_modification;Validé;En cours;5;0.0;1.0738416666666686
+135562;115592;MOULIN DYLAN;CQ Interne;En cours;ticket_modification;;Validé;6;1.0;1.0582518518518522
+134862;581733;CAREDRIVERS;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;7;-7.0;1.0329898148148116
+135501;507992;CQFPAIE;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;7;-1.0;0.9927000000000009
+135195;499859;BISTROT LA FORGE;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;9;-7.0;0.9427583333333338
+135550;609431;KARMADOR TEXIER;Archive;Validé client;ticket_modification;;Validé;9;1.0;0.9259240740740741
+135107;617737;DOUCEUR CORALINE;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;8;-5.0;0.9165185185185195
+135444;545518;HAMMAM LE PACHA;CQ Client;Non Conforme;ticket_modification;Retour CQ traité;Retour CQ;4;-1.0;0.8872407407407419
+134688;624315;CD BRILLANCE;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;6;-2.0;0.875759259259259
+135502;502574;BORREL PAYSAGE;Production;En cours;ticket_modification;Validé;En pause;6;0.0;0.8547796296296347
+135378;450286;C&C HEXACRAFT;Client;En instance;ticket_modification;Validé;Affecté;4;2.0;0.8523129629629667
+135410;391746;JT CHARPENTE;CQ Client;Non Conforme;ticket_modification;;Retour CQ;7;-1.0;0.8420407407407421
+131052;456461;BABOUILLARD CLAIRE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;3;-75.0;0.7894962962962981
+135348;386031;BRING IT BACK;Client;En instance;ticket_modification;Validé;En pause;4;-1.0;0.7723203703703714
+134754;626830;LE REPIT DES MAUX;Archive;Validé client;production_standard;Validé;Retour CQ traité;7;-2.0;0.7120481481481481
+135489;618680;MAISON CANITROT;Production;En cours;ticket_modification;Validé;En pause;5;0.0;0.6634185185185172
+134748;515721;PEARL PADEL GERARDMER;CQ Client;Non Conforme;ticket_modification;;Retour CQ;7;-9.0;0.6161944444444446
+135038;469737;SULFURE;CQ Interne;En cours;ticket_modification;Retour CQ traité;Retour CQ traité;5;-5.0;0.5039379629629629
+128942;584254;L'ORCHIDEE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;4;-107.0;0.500448148148149
+135404;621297;AX ELAGAGE;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;15;-2.0;0.4891138888888891
+131779;600142;TRAITEUR CHEZ VOUS;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;5;-62.0;0.48138518518518536
+135473;406537;GERMAIN TAXI ALPIN;Archive;Validé client;ticket_modification;;Validé;3;-1.0;0.4634222222222221
+134863;60548;CHANAT CHRISTOPHE RENE FRANCOIS SIOUL VÉGÉTAL;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;7;-7.0;0.44556018518518525
+135589;629739;LUMIÈRE TRANSPORT 85;CQ Client;Livré;ticket_modification;Validé;Validé;8;0.0;0.4440629629629629
+135373;570234;ETNIK VIBES;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;8;-1.0;0.44029444444444465
+134621;303752;MSP DESIGN;Archive;Validé client;production_standard;Validé;Retour CQ traité;8;-5.0;0.43724814814814816
+135587;630214;DBRGO;CQ Client;Livré;ticket_modification;Validé;Validé;4;0.0;0.43461481481481473
+134199;609540;ELCB;CQ Client;Non Conforme;ticket_modification;Retour CQ;Validé;10;-22.0;0.43430462962963107
+135274;616473;LUKA SEGOUIN;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;6;-2.0;0.43020925925925885
+134912;336457;DY'VERT PAYSAGE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;5;-8.0;0.41781574074074085
+135323;622287;YOHANN TESSARI;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;5;-5.0;0.4133333333333336
+129034;481638;MD PLOMBERIE CHAUFFAGE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;5;-105.0;0.4130620370370371
+134630;626296;MALIEL;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;10;-5.0;0.4069842592592593
+135510;619557;CARDS INPERTOR;Archive;Validé client;ticket_modification;;Validé;5;0.0;0.39526018518518524
+132304;552274;ASTUCE FORMATION;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;4;-51.0;0.395224074074075
+135553;341196;TERRE HAPPY REBORN;Archive;Validé client;ticket_modification;;Validé;6;0.0;0.3830703703703703
+135024;628655;CORVANGEL EVENTS;CQ Client;Livré;production_standard;Validé;Validé;5;1.0;0.3797953703703704
+135578;512103;MIMI POUR TOI;Archive;Validé client;ticket_modification;;Retour CQ traité;5;0.0;0.37259814814814807
+134950;626960;CESAC CHAUDRONNERIE;Archive;Validé client;production_standard;Validé;Validé;8;0.0;0.37121851851851856
+135405;612454;LA VANNE MAREL;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;5;-1.0;0.3684777777777777
+134856;346817;DES FLORS ET DES IDÉES;CQ Client;Non Conforme;ticket_modification;Retour CQ traité;En pause;8;-9.0;0.35693888888888914
+135229;485357;ELIOTT CHERIAUX;CQ Client;Non Conforme;ticket_modification;Retour CQ;Validé;2;-2.0;0.28755555555555573
+134968;621480;IBK EURO AFRIQUE;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;5;-5.0;0.2554657407407408
+135626;349861;HEITZMANN FRANCK;Archive;Validé client;ticket_modification;;Validé;10;1.0;0.22556203703703706
+134903;617593;HUDOCLEAN;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;3;-7.0;0.2250222222222221
+134818;239843;EVELYNE NOUGÉ;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;8;-1.0;0.2011462962962963
+130751;88238;BERTHET TESSA BOAT;CQ Client;Livré;ticket_modification;;Validé;5;-78.0;0.20005555555555557
+132253;456461;BABOUILLARD CLAIRE;CQ Client;Livré;ticket_modification;;Retour CQ traité;3;-54.0;0.1769638888888889
+135150;358752;NC CONSTRUCTION ET RENOVATION;CQ Client;Livré;ticket_modification;Validé;Validé;7;-1.0;0.17457222222222213
+134836;624777;AUVERG'NATURE;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;9;-1.0;0.17022592592592592
+134137;381431;MAISON MARCEL;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;5;-13.0;0.1665601851851852
+128462;393122;INSTANTS PRECIEUX;CQ Client;Livré;ticket_modification;;Validé;7;-113.0;0.1645398148148148
+134471;318013;TB MENUISERIE;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;5;-8.0;0.1591
+135449;225899;BRIVAL AUTO;CQ Client;Livré;ticket_modification;;Validé;6;-1.0;0.15252592592592595
+130916;524327;IMPEC’HOME;CQ Client;Livré;ticket_modification;Retour CQ traité;Retour CQ traité;11;-76.0;0.13329722222222218
+135170;618562;SARL LEVEQUE;Archive;Validé client;ticket_modification;;Retour CQ traité;8;-7.0;0.1312287037037037
+129803;464891;J.V SERVICE;CQ Client;Livré;ticket_modification;Validé;;8;-92.0;0.1258277777777778
+135376;477748;2N CLEANING SERVICES;Archive;Validé client;ticket_modification;;Retour CQ traité;11;-2.0;0.12283425925925921
+135608;620880;CINDY FRADET;Archive;Validé client;ticket_modification;;Validé;7;1.0;0.10938888888888892
+135516;474627;LE LIEU;Archive;Validé client;ticket_modification;;Validé;9;0.0;0.10266574074074074
+135078;624787;SERRURIE ZEN;CQ Client;Livré;production_standard;Validé;Validé;6;1.0;0.10135648148148148
+135068;627787;L'ENTREPRISE HEUREUSE;CQ Client;Livré;production_standard;Validé;Validé;5;1.0;0.10083888888888888
+134929;617220;VICHY VTC;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;6;0.0;0.10083888888888888
+135080;616755;DELPECH NATURE ET SERVICE;CQ Client;Livré;production_standard;Validé;Validé;6;1.0;0.09705092592592592
+134884;627746;M'ELEC;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;8;0.0;0.08480833333333332
+135515;439410;MAS DES GRES;Archive;Validé client;ticket_modification;;Validé;7;0.0;0.08244444444444445
+135081;622017;LAUNAY JESSY;CQ Client;Livré;production_standard;Validé;Validé;5;1.0;0.08197870370370369
+134609;552048;GUY BAC;Archive;Validé client;refonte_avec_redaction;Validé;Retour CQ traité;9;-5.0;0.07135092592592591
+135493;603268;FRANCK DESIGN;CQ Client;Livré;ticket_modification;Validé;Validé;7;-1.0;0.06988148148148146
+134800;625024;BESS NETTOYAGE;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;10;-1.0;0.06431018518518519
+135586;628214;BD HOMME TOUTE MAIN;CQ Client;Livré;ticket_modification;Validé;Validé;8;0.0;0.06183333333333334
+134980;620886;JARDIN DES GONES;CQ Client;Livré;production_standard;Validé;Validé;4;1.0;0.06124166666666666
+135056;559059;47 NETTOYAGE;CQ Client;Livré;production_standard;Validé;Validé;4;1.0;0.06124166666666666
+135082;625053;TRUST & NEEDS;CQ Client;Livré;production_standard;Validé;Validé;7;1.0;0.060583333333333336
+134979;625188;TAXI DRIVER 94;CQ Client;Livré;production_standard;Validé;Validé;4;1.0;0.060583333333333336
+135435;577386;FAMILY SPA;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;6;-1.0;0.055481481481481486
+135421;348276;L'AMBATA PORTICCIO;Archive;Validé client;ticket_modification;Validé;Validé;4;-1.0;0.05342129629629629
+133757;605375;THE SPECIALIST HOUSE - YUSSGLAM;CQ Client;Livré;ticket_modification;Validé;Validé;7;-29.0;0.05155277777777778
+135476;629480;APC;CQ Client;Livré;ticket_modification;Validé;Validé;5;-1.0;0.051527777777777777
+134781;218814;PROVOC;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;6;-5.0;0.04763981481481481
+135336;585407;PACK ENR;Archive;Validé client;ticket_modification;;Validé;7;-1.0;0.042057407407407384
+135357;619171;MENUISERIE HUGO BOIS;CQ Client;Livré;ticket_modification;;Retour CQ traité;9;-2.0;0.04011388888888887
+135495;603623;BRASSERIE LE COMMERCE;CQ Client;Livré;ticket_modification;Validé;Validé;7;0.0;0.030574999999999998
+135372;598675;EMS;CQ Client;Livré;ticket_modification;Validé;Validé;8;-1.0;0.02910555555555555
+135439;548765;VOTRE SERRURE;CQ Client;Livré;ticket_modification;Validé;Validé;2;0.0;0.025605555555555555
+132663;522004;DR-LE DESSIN PREND RACINES;CQ Client;Livré;ticket_modification;Validé;;8;-47.0;0.01979351851851852
+135346;58514;3 VALLEES LOISIRS-BADABULLE;Archive;Validé client;ticket_modification;Validé;;9;-1.0;0.018983333333333335
+134519;616350;VAGNERRE ANNE-CHARLOTTE;CQ Client;Livré;ticket_modification;Validé;Retour CQ traité;9;-15.0;0.014885185185185182
+135442;332125;UNE HISTOIRE D'AME;Archive;Validé client;ticket_modification;;Validé;4;-1.0;0.01411111111111111
+135322;389245;LES PIS D' ANICIA;Archive;Validé client;ticket_modification;;Retour CQ traité;5;-1.0;0.013405555555555554
+135433;606751;FORV'OCCAS;Archive;Validé client;ticket_modification;Validé;Validé;5;-1.0;0.010887962962962962
+135498;613574;LES SENTEURS DE JADE;Archive;Validé client;ticket_modification;Validé;Validé;5;-1.0;0.010887962962962962
+135471;498175;CAFE OKAMI;Archive;Validé client;ticket_modification;Validé;Validé;5;-1.0;0.010487962962962963
+135440;538728;LA BRAISE DE MER;Archive;Validé client;ticket_modification;Validé;Validé;7;-1.0;0.009705555555555552
+135131;617914;DOMAINE JEAN WAMBERGUE;Archive;Validé client;ticket_modification;;Retour CQ traité;5;-7.0;0.00970185185185185
+135250;483076;FDB SERVICES;Archive;Validé client;ticket_modification;;Validé;8;-1.0;0.00970185185185185
+135437;558434;X-ADMIN;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;5;-1.0;0.00846111111111111
+135339;600075;SASU WEISS;Archive;Validé client;ticket_modification;Validé;Validé;5;-1.0;0.007661111111111111
+134308;620701;CANTINA DORIA;CQ Client;Livré;ticket_modification;Validé;;5;-9.0;0.005434259259259259
+134176;622794;ATP PROPRETE;CQ Client;Livré;ticket_modification;Validé;;5;-14.0;0.005434259259259259
+134875;621518;LA COUTELLERIE DE LA VALLEE;CQ Client;Livré;ticket_modification;Validé;;5;0.0;0.004471296296296296
+135490;623482;SONIMAGE;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;9;0.0;0.0036305555555555553
+135418;55928;ARIEGE EDUCATION CANINE DENIS RACAGEL;CQ Client;Livré;ticket_modification;Validé;;5;0.0;0.0
+135446;532029;ASCO TRAVAUX SPECIAUX;Archive;Validé client;ticket_modification;;Retour CQ traité;8;-1.0;0.0
+135504;347229;NATYV'ZEN;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;5;1.0;0.0
+134947;626679;DJ FRED ANIMATION;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;4;0.0;0.0
+135403;378089;SANTÉ KINÉSIO;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;8;-1.0;0.0
+135248;619666;SAS BROGGI;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;5;-2.0;0.0
+135055;618883;STUDIO MADERO ROSE BY BEAUTY;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;7;-5.0;0.0
+135492;577187;RD RENOVATIONS;Archive;Validé client;ticket_modification;Validé;Validé;3;0.0;0.0
+135417;415844;DIAGTIP IMMOBILIER;CQ Client;Livré;ticket_modification;Validé;Validé;1;0.0;0.0
+134957;618938;LEREAU LOCATION TP;CQ Client;Livré;production_standard;Validé;Validé;14;0.0;0.0
+135094;615324;JULIA LACROIX ARCHITECTE;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;5;-2.0;0.0
+135230;611515;RELAIS DES PIERRES DOREES;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;7;-5.0;0.0
+135331;622114;SONOTMAGIK;Archive;Validé client;ticket_modification;;Retour CQ traité;8;-1.0;0.0
+134958;627082;PHENIX GARAGE;CQ Client;Livré;production_standard;Validé;Validé;6;0.0;0.0
+134954;623352;LE VELO SMOOTHIE;CQ Client;Livré;production_standard;Validé;Validé;5;0.0;0.0
+132919;604254;CHILL AND HEAL;CQ Client;Livré;ticket_modification;Validé;;5;-34.0;0.0
+135386;170051;DOXAT SOPHIE;Archive;Validé client;ticket_modification;Retour CQ traité;;6;-1.0;0.0
+135352;326815;DVG - DÉMÉNAGEMENT & DEBARRAS;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;7;-2.0;0.0
+134339;616532;VISION UNIQUE;CQ Client;Livré;ticket_modification;Validé;Validé;5;-20.0;0.0
+134829;613032;TWIGGY BOUTIQUE;CQ Client;Livré;ticket_modification;Validé;Validé;6;-9.0;0.0
+135333;620576;JULIE PUPIER - THANADOULA;Archive;Validé client;ticket_modification;Validé;Validé;7;-1.0;0.0
+135344;624488;SL ELEC;Archive;Validé client;ticket_modification;Validé;Validé;6;-1.0;0.0
+134744;588625;JB COUVERTURE;CQ Client;Livré;production_standard;Validé;Validé;6;-2.0;0.0
+134832;622128;WILCLIM;CQ Client;Livré;production_standard;Retour CQ traité;Validé;7;-1.0;0.0
+135388;624269;KARS SELECT;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;5;0.0;0.0
+134806;536922;2007;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;7;-1.0;0.0
+134798;618781;HRB PLOMBERIE & PISCINE;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;8;-1.0;0.0
+134693;622429;SERRURERIE HARDY EURL;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;6;-2.0;0.0
+134586;623725;MABISOL;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;8;-5.0;0.0
+134568;574012;BENSSON;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;10;-7.0;0.0
+133376;617347;LES TOITURES OCCITANES;CQ Client;Livré;ticket_modification;Validé;;5;-28.0;0.0
+133830;620486;GESCO-SERVICE;CQ Client;Livré;ticket_modification;Validé;;5;-21.0;0.0
+134175;450065;SARL BOHUON NICOLAS;CQ Client;Livré;ticket_modification;Validé;;4;-14.0;0.0
+135334;577752;MM MENUISERIES;Archive;Validé client;ticket_modification;Validé;Validé;4;-1.0;0.0
+134927;623143;ECHOS DES PAYSAGES;CQ Client;Livré;production_standard;Validé;Validé;9;0.0;0.0
+135400;601876;ETS RODERO;CQ Client;Livré;ticket_modification;Validé;Validé;3;-1.0;0.0
+135375;438611;CHANVRE ET NATURE;Archive;Validé client;ticket_modification;Validé;Validé;3;-1.0;0.0
+135374;56586;LEMOINE ROMAIN;Archive;Validé client;ticket_modification;Validé;Validé;1;-1.0;0.0
+135350;595908;DEODIAG;Archive;Validé client;ticket_modification;Validé;Validé;7;-1.0;0.0
+135349;521633;MA PAUSE CHAMPÊTRE;Archive;Validé client;ticket_modification;Validé;Validé;1;-1.0;0.0
+135267;522004;DR-LE DESSIN PREND RACINES;CQ Client;Livré;ticket_modification;Validé;Validé;4;-2.0;0.0
+134184;555241;TSCHUDI RENOVATION;CQ Client;Livré;ticket_modification;Validé;;5;-14.0;0.0
+135266;58667;SOC B LABORDE ET FILS;CQ Client;Livré;ticket_modification;Validé;Validé;5;-2.0;0.0
+135407;393155;LBG DEMENAGEMENTS;Archive;Validé client;ticket_modification;Validé;;5;-2.0;0.0
+135385;581111;Ô ÉTOILES DE PTI-CHON;CQ Client;Livré;ticket_modification;Validé;;2;-1.0;0.0
+134820;619439;SGP RENOVATION;CQ Client;Livré;ticket_modification;Validé;;5;-1.0;0.0
+134661;622833;GROUPE SG;CQ Client;Livré;ticket_modification;Validé;;5;-2.0;0.0
+134571;526659;M ELEC;CQ Client;Livré;ticket_modification;Validé;;7;-5.0;0.0
+134802;622787;STYLE B;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;7;-1.0;0.0

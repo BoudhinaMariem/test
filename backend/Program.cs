@@ -19,6 +19,15 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
+builder.Services.AddHttpClient<MlApiService>(client =>
+{
+    client.BaseAddress = new Uri(
+        builder.Configuration["MlApi:BaseUrl"] ?? "http://127.0.0.1:8000"
+    );
+
+    client.Timeout = TimeSpan.FromSeconds(120);
+});
+
 var app = builder.Build();
 app.UseCors("frontend");
 
@@ -28,7 +37,7 @@ app.MapGet("/api/menu", () => Results.Ok(new[] {
     new { id = "dashboard", title = "Dashboard général", icon = "heroicons_outline:chart-square-bar", link = "/triweb/dashboard" },
     new { id = "planification", title = "Planification", icon = "heroicons_outline:calendar", link = "/triweb/planification" },
     new { id = "powerbi", title = "Power BI", icon = "heroicons_outline:presentation-chart-bar", link = "/triweb/powerbi" },
-    new { id = "models", title = "Modèles IA", icon = "heroicons_outline:chip", link = "/triweb/models" }
+    new { id = "triweb.models", title = "Modèles IA", icon = "heroicons_outline:chip", link = "/triweb/models" }
 }));
 app.MapGet("/api/dashboard/meta", async (DashboardService service) => Results.Ok(await service.GetMetaAsync()));
 app.MapGet("/api/dashboard/overview", async (DashboardService service) => Results.Ok(await service.GetOverviewAsync()));

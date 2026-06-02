@@ -1,0 +1,535 @@
+﻿id_dossier;code_client;client;position;statut;loi_type;etatR;etatG;date_livraison_prevue;jours_restants;pred_retard_proba;niveau_risque_retard
+135468;552684;COMME UNE EVIDENCE 2;Production;En cours;ticket_modification;;En pause;2026-05-20;0.0;0.988514477296504;Élevé
+135489;618680;MAISON CANITROT;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9828900707159526;Élevé
+135590;346085;ATOUT BEAUD;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9820588606682455;Élevé
+135538;619704;DTECH ENERGIES;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9813065553637772;Élevé
+135594;572887;MARTINE A LA MONTAGNE;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9782932086793266;Élevé
+135066;626301;BEN CARRELAGE;Production;En cours;production_standard;Validé;En pause;2026-05-21;1.0;0.9762799966168924;Élevé
+135502;502574;BORREL PAYSAGE;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9748062704165658;Élevé
+135026;622131;MH SELLERIE;Production;En cours;production_standard;Validé;En pause;2026-05-21;1.0;0.9744174526253984;Élevé
+135564;615301;ELEGANCE COVERING;Production;En cours;ticket_modification;Validé;En pause;2026-05-21;1.0;0.9723537469165874;Élevé
+135581;483798;JIDEC;Production;En cours;ticket_modification;;En pause;2026-05-20;0.0;0.9721707954147882;Élevé
+135434;615233;INSTANT D'ECLAT;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9716284581493781;Élevé
+135028;627456;STEPHANE BRIALLART;Production;En cours;production_standard;Validé;En pause;2026-05-21;1.0;0.9710818378240104;Élevé
+135020;621744;RJF CLIMATISATION;Production;En cours;production_standard;Validé;En pause;2026-05-21;1.0;0.9704047582430932;Élevé
+135576;444017;LE BON MACHÉ;Production;En cours;ticket_modification;;En pause;2026-05-20;0.0;0.9686778310191979;Élevé
+135321;537128;FORCE & SENS;Production;En cours;refonte_sans_redaction;;En pause;2026-05-21;1.0;0.9660624256904328;Élevé
+135591;617603;ROYAL AUTO 25;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9623384159171231;Élevé
+135558;608953;AS AUTO 22;Production;En cours;ticket_modification;Validé;En pause;2026-05-20;0.0;0.9615715516256997;Élevé
+134883;622777;ESPRIT CREATIF;Production;En cours;production_standard;Validé;En pause;2026-05-20;0.0;0.9279332690174856;Élevé
+135083;625954;AUX DELICES DES ARCADES;Production;En cours;production_standard;Validé;En pause;2026-05-21;1.0;0.9196332422413989;Élevé
+135128;625692;CLUB HABITAT;Production;En cours;production_standard;Validé;En pause;2026-05-22;2.0;0.9187519060455736;Élevé
+135475;624338;FAB DEV 3D;Production;En cours;ticket_modification;En pause;Affecté;2026-05-21;1.0;0.8843135350540312;Élevé
+135289;618658;INSTANT PRECIEUX;Production;En cours;production_standard;Validé;En pause;2026-05-26;6.0;0.8114483230940687;Élevé
+135551;620145;MÈCHE ET DÉLICE;Production;En cours;ticket_modification;Validé;Affecté;2026-05-21;1.0;0.42114417628927464;Faible
+135560;618941;EDEN'S SQUARE;Production;En cours;ticket_modification;Validé;Retour CQ;2026-05-20;0.0;0.39126554094384003;Faible
+135209;362045;2GEANTS SECURITE;CQ Interne;Non Conforme;refonte_sans_redaction;;En pause;2026-05-20;0.0;0.38814511169259297;Faible
+134932;626629;BALAGNE PAYSAGE;CQ Client;Non Conforme;production_standard;Retour CQ traité;En pause;2026-05-20;0.0;0.3264538811702494;Faible
+135557;559095;FORTOUL PLOMBERIE;Production;En cours;ticket_modification;Validé;Affecté;2026-05-21;1.0;0.3239749614336049;Faible
+135067;628616;KÉVIN JARDINAGE;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.3233331192048091;Faible
+135606;410061;DUMONT MARJORIE;Production;En cours;ticket_modification;Validé;Affecté;2026-05-21;1.0;0.27700602668296387;Faible
+135022;627706;GÎTE DE LA RESSOURCE AVESNOISE;Production;En cours;production_standard;Validé;Finalisé;2026-05-21;1.0;0.2645555306146318;Faible
+135629;380325;CYNTHIA FAVREL;Production;En cours;ticket_modification;Validé;Affecté;2026-05-21;1.0;0.25929212007981445;Faible
+135508;601040;OCCITANIE PEINTURE FINITION;Production;En cours;ticket_modification;Validé;Retour CQ;2026-05-21;1.0;0.2533080079527226;Faible
+135079;625633;KEFAKAP;Production;En cours;production_standard;Validé;Finalisé;2026-05-21;1.0;0.2531111130808132;Faible
+135472;378074;CONFORT THERMIQUE AZUREEN;FTP;En instance;ticket_modification;;En pause;2026-05-20;0.0;0.24955688717050895;Faible
+135348;386031;BRING IT BACK;Client;En instance;ticket_modification;Validé;En pause;2026-05-19;-1.0;0.24453458037310066;Faible
+134856;346817;DES FLORS ET DES IDÉES;CQ Client;Non Conforme;ticket_modification;Retour CQ traité;En pause;2026-05-11;-9.0;0.234336247258119;Faible
+135500;607830;ARTISAN CHEVALIER 27;Production;En cours;ticket_modification;;En cours;2026-05-21;1.0;0.23185945974875027;Faible
+135555;148413;MYSTER PEDGE;Production;En cours;ticket_modification;Validé;Affecté;2026-05-21;1.0;0.20271745951478637;Faible
+135059;626694;KYDIA A DOMICILE;Production;En cours;production_standard;Validé;Retour CQ;2026-05-21;1.0;0.2013999935662421;Faible
+135279;317262;SOLAR CAR 37;Client;En instance;ticket_modification;Validé;En pause;2026-05-20;0.0;0.2011047905282061;Faible
+135180;626353;EUROEVELYN;Production;En cours;production_standard;Validé;En cours;2026-05-22;2.0;0.2008982270869341;Faible
+135539;256820;LANGUEDOC FILETS DE SECURITE;Production;En cours;ticket_modification;Validé;Affecté;2026-05-22;2.0;0.19533606458113212;Faible
+135593;328562;BELLISSEMOI;Production;En cours;ticket_modification;Validé;Affecté;2026-05-21;1.0;0.1926403077001226;Faible
+135422;487975;CLEANERZ;CQ Interne;Non Conforme;ticket_modification;Retour CQ traité;En pause;2026-05-20;0.0;0.1884751855633315;Faible
+135596;444401;BULLE DE DOUCEUR;Production;En cours;ticket_modification;;Affecté;2026-05-21;1.0;0.1814047316000121;Faible
+135599;518464;L'HAIR NATUREL;Production;En cours;ticket_modification;Validé;Affecté;2026-05-22;2.0;0.18071349586140023;Faible
+135038;469737;SULFURE;CQ Interne;En cours;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.17559000534422867;Faible
+135607;504537;MAMY BEAUTE AFRO;Production;En cours;ticket_modification;;Affecté;2026-05-21;1.0;0.1713922163216948;Faible
+135595;337597;W2G;Production;En cours;ticket_modification;Validé;En cours;2026-05-20;0.0;0.15822117749441394;Faible
+135061;625251;SOLNRGY;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.14986697016210643;Faible
+135623;624167;LN TERASSEMENT;Production;En cours;ticket_modification;Affecté;Affecté;2026-05-21;1.0;0.14898508596266327;Faible
+135582;587321;RAPIDE-FERMETURES;CQ Interne;En cours;ticket_modification;Validé;Validé;2026-05-21;1.0;0.14643887994980478;Faible
+134998;577351;MY CLEAN AUTO;Production;En cours;refonte_avec_redaction;Validé;Affecté;2026-05-22;2.0;0.146351951465325;Faible
+135549;550368;DOMAINE DE LA CLAIRIÈRE;Production;En cours;ticket_modification;;Affecté;2026-05-21;1.0;0.1414027200895778;Faible
+135260;627144;MOBILITY AUTO 08;Production;En cours;production_standard;En pause;En instance ;2026-05-26;6.0;0.1392232803328466;Faible
+135624;620595;L'AME D'ETRE BIEN;Production;En cours;ticket_modification;En cours;Affecté;2026-05-22;2.0;0.13756480979768032;Faible
+135536;623843;NUBE FURIANI;Production;En cours;ticket_modification;Validé;Affecté;2026-05-20;0.0;0.1292094592073702;Faible
+135579;184985;CONCIERGERIE MANOUCHKA DATCHA;Production;En cours;ticket_modification;Affecté;Affecté;2026-05-21;1.0;0.12790678448760978;Faible
+135597;352136;L'UNIVERS D'EMILIE;Production;En cours;ticket_modification;Affecté;Affecté;2026-05-26;6.0;0.12621040713634873;Faible
+135625;606295;INTEMPOREL STUDIO;Production;En cours;ticket_modification;Affecté;Affecté;2026-05-22;2.0;0.12476192497194061;Faible
+135261;594634;ENTROTERRIA PAYSAGES;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.12370522784395217;Faible
+135470;447193;LA PERLE SECRÈTE;Production;En cours;ticket_modification;En cours;;2026-05-20;0.0;0.12239326002927693;Faible
+135574;613454;TOOPROP';Production;En cours;ticket_modification;Affecté;Affecté;2026-05-22;2.0;0.11832695692847484;Faible
+135547;616350;VAGNERRE ANNE-CHARLOTTE;Production;En cours;ticket_modification;Validé;Retour CQ;2026-05-20;0.0;0.1127747664089536;Faible
+135620;586487;SONO EVENT PRODUCTION;Production;En cours;ticket_modification;Affecté;Affecté;2026-05-22;2.0;0.10796904488891358;Faible
+135520;478106;ETANGS DE PECHE ET RESTAURANT DU SAUT DU LOUP;Production;En cours;ticket_modification;Validé;Affecté;2026-05-20;0.0;0.10565149736093976;Faible
+135319;621727;LE RESTAURANT DE L'ÉCLUSE;Production;En cours;production_standard;En pause;Affecté;2026-05-26;6.0;0.10509973761512921;Faible
+135511;452273;100% MOI;Production;En cours;refonte_avec_redaction;En pause;Affecté;2026-05-29;9.0;0.10427117541406412;Faible
+135580;607701;CLAUDIA MARIA CREATRICE DE SOUVENIRS;Production;En cours;ticket_modification;Validé;En cours;2026-05-20;0.0;0.10410269773885664;Faible
+135562;115592;MOULIN DYLAN;CQ Interne;En cours;ticket_modification;;Validé;2026-05-21;1.0;0.10300342094523812;Faible
+135521;135870;CAMPING LES 4 SAISONS;Production;En cours;ticket_modification;Validé;Affecté;2026-05-20;0.0;0.10292619389024814;Faible
+135436;294671;CREA'BAT;Production;En cours;ticket_modification;Affecté;;2026-05-20;0.0;0.09947547484528751;Faible
+135006;345367;HOTEL RESTAURANT LE BEAU SEJOUR PORTO;Production;En cours;refonte_avec_redaction;Validé;En cours;2026-05-21;1.0;0.09918695690771352;Faible
+135548;615564;DU TEMPS POUR VOUS;CQ Interne;En cours;ticket_modification;Validé;Validé;2026-05-20;0.0;0.09909682113275571;Faible
+135300;625319;X-PERT ELEC;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.09878525373777307;Faible
+135256;622153;STEPHANE TIGLI;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.09803133379175533;Faible
+134989;618938;LEREAU LOCATION TP;Production;En cours;ticket_modification;Affecté;;2026-05-21;1.0;0.09735661171914517;Faible
+135409;482779;PERCHER COUVERTURE;Production;En cours;ticket_modification;Affecté;;2026-05-20;0.0;0.09676363774993121;Faible
+135126;627695;KS-SUD;Production;En cours;production_standard;Validé;Affecté;2026-05-22;2.0;0.09603210818238221;Faible
+135127;626598;PIMA PRO CONSTRUCTION;Production;En cours;production_standard;Validé;Affecté;2026-05-22;2.0;0.0933507477300129;Faible
+134888;284565;MATHILDE POULANGES;Production;En cours;refonte_avec_redaction;Validé;En cours;2026-05-20;0.0;0.09085731419083815;Faible
+135296;626038;GREEN CHARPENTE;Production;En cours;production_standard;En pause;Affecté;2026-05-26;6.0;0.089273204471047;Faible
+135216;573058;ILIES VASILE;Production;En cours;production_standard;Validé;En cours;2026-05-22;2.0;0.08439295850271378;Faible
+134987;619282;STORES SOLUTIONS LEMAN;Production;En cours;refonte_avec_redaction;Validé;En cours;2026-05-21;1.0;0.08302283307568976;Faible
+134978;313022;AB MENUISERIE;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.0811887229202249;Faible
+135241;353865;POUGET STEPHANE;FTP;En instance;ticket_modification;Validé;En cours;2026-05-20;0.0;0.07888076475012536;Faible
+135642;529059;ALSA-LYS;Production;En cours;ticket_modification;Affecté;Affecté;2026-05-26;6.0;0.07873376051753725;Faible
+135293;626494;LAKINA;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.07731502646533667;Faible
+135196;625792;LW PAYSAGE;Production;En cours;production_standard;Validé;Affecté;2026-05-22;2.0;0.07678841063279337;Faible
+135512;621518;LA COUTELLERIE DE LA VALLEE;Production;En cours;ticket_modification;Validé;Affecté;2026-05-20;0.0;0.07542354564238615;Faible
+135544;596013;PASSION AUTO 67;Production;En cours;ticket_modification;Affecté;Affecté;2026-05-21;1.0;0.07157502424663958;Faible
+135197;350055;NB PEINTURE;Production;En cours;refonte_avec_redaction;Validé;Affecté;2026-05-22;2.0;0.07120715357287828;Faible
+134981;625102;MG SOLAR;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.07011609939673163;Faible
+135190;276975;EXTERN'AIN PAIE;Production;En cours;refonte_avec_redaction;Validé;Affecté;2026-05-22;2.0;0.06911374163050941;Faible
+135181;628735;C.L.E.S;Production;En cours;production_standard;Retour CQ;En cours;2026-05-22;2.0;0.06826117313907673;Faible
+133481;434714;RE BEL & VOUS;Production;En cours;refonte_avec_redaction;Validé;Affecté;2026-05-21;1.0;0.0622182428866277;Faible
+135076;625212;HYPNOSE ET MIEUX-ETRE;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.06219948155650978;Faible
+135408;623538;TOUS SUPPORTS;Production;En cours;refonte_avec_redaction;En cours;Affecté;2026-05-27;7.0;0.06067447802933546;Faible
+135095;604441;ELEGANCIA;Production;En cours;refonte_avec_redaction;Validé;Affecté;2026-05-22;2.0;0.06047169667029322;Faible
+135199;357540;SG CARROSSERIE;Production;En cours;refonte_avec_redaction;Validé;Affecté;2026-05-22;2.0;0.06013900327545142;Faible
+135603;504537;MAMY BEAUTE AFRO;FTP;En instance;ticket_modification;En pause;Affecté;2026-05-26;6.0;0.05823292469244055;Faible
+135085;629130;MULTISERVICE RASOL;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.058046512676453776;Faible
+135123;627715;LES CHEVAUX DU LOC'H;Production;En cours;production_standard;Validé;Affecté;2026-05-22;2.0;0.05788865738703989;Faible
+135330;628420;AQUALYS SERVICES;Production;En cours;production_standard;Validé;En instance ;2026-05-27;7.0;0.056126431226480145;Faible
+135262;553773;LES CRÉAS ET BEAUTÉS DE NATH;Production;En cours;refonte_avec_redaction;Validé;Affecté;2026-05-26;6.0;0.055587355335022244;Faible
+135073;483754;TRISKELL;Production;En instance;refonte_avec_redaction;Validé;En cours;2026-05-20;0.0;0.05376492560504171;Faible
+135505;607664;RESTAURANT LE BASTIDON;CQ Interne;En cours;ticket_modification;Validé;Validé;2026-05-20;0.0;0.05319124651228387;Faible
+135326;620381;MARIAN GUILLEMOT CHIROPRACTEURE;Production;En cours;production_standard;Validé;En instance ;2026-05-27;7.0;0.052753522975700046;Faible
+134914;330254;MAXX DINERS & EVENTS;CQ Interne;En cours;refonte_avec_redaction;Validé;Validé;2026-05-20;0.0;0.049276107644258015;Faible
+135062;624340;CHRISTELLE COIFF'ÀDOMICILE;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.048995701830617425;Faible
+135299;630074;SRE SERVICE;Production;En cours;production_standard;En pause;En instance ;2026-05-26;6.0;0.04787397208449964;Faible
+135423;333861;SYLVIE K BY CHOGAN;Production;En cours;production_standard;En pause;En instance ;2026-05-29;9.0;0.04782339144272467;Faible
+135328;628309;BOVINS BRETAGNE;Production;En cours;production_standard;En cours;En instance ;2026-05-27;7.0;0.047764662576000025;Faible
+134870;520871;BAR ET RESTAURANT DE L ABBAYE;Production;En instance;ticket_modification;;Validé;2026-05-11;-9.0;0.04752824803714004;Faible
+135207;626541;LE GRAND ECART;Production;En cours;production_standard;Validé;Affecté;2026-05-22;2.0;0.046897616733475436;Faible
+135122;625525;GALLIUM METALLERIE;Production;En cours;production_standard;Validé;Affecté;2026-05-22;2.0;0.046527724808763285;Faible
+135069;623400;K'ARRELAGE CONCEPT;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.04648598607822313;Faible
+135124;377600;PLOMBELEC AQUITAINE;Production;En cours;production_standard;En pause;Affecté;2026-05-22;2.0;0.04545433850043964;Faible
+135178;276682;ROAD TO CLEAN 34;Production;En cours;refonte_avec_redaction;En cours;Affecté;2026-05-22;2.0;0.045384674470713204;Faible
+135297;628248;L'ATELIER MIMOSA;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.045152931110022866;Faible
+135301;629046;MAZA MULTISERVICE MMS;Production;En cours;production_standard;En pause;En instance ;2026-05-26;6.0;0.04482234110000319;Faible
+135287;619055;PURE CLEAN SERVICE;Production;En cours;production_standard;En cours;En instance ;2026-05-26;6.0;0.044061385267325275;Faible
+135288;625903;S ET R PAYSAGISTE;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.04311008861190145;Faible
+135310;558698;O ECLAT;Production;En cours;production_standard;En pause;En instance ;2026-05-26;6.0;0.04308583798125157;Faible
+135294;626093;SARL TAXIS BACCARRÈRE;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.04296668105374769;Faible
+135046;354485;MUSIC AND SHOW ORGANISATION;CQ Interne;En cours;refonte_avec_redaction;Validé;Validé;2026-05-21;1.0;0.04115795759217523;Faible
+135543;598535;DERMALYS;CQ Interne;En cours;ticket_modification;Validé;Validé;2026-05-20;0.0;0.04100988415078801;Faible
+135203;615531;AUX DELICES DE NADEGE;Production;En cours;refonte_avec_redaction;En cours;Affecté;2026-05-22;2.0;0.04098409601900421;Faible
+135091;625391;L'EMBOUTEILLEE DE LA NATIONALE 7;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.04075261089003336;Faible
+135191;351957;PENSOTTI PEINTURE;CQ Interne;En cours;refonte_sans_redaction;;Validé;2026-05-20;0.0;0.03897240270763561;Faible
+135358;626279;ROYAUX MULTI-SERVICES;Production;En cours;production_standard;En pause;En instance ;2026-05-27;7.0;0.03879983364568813;Faible
+134691;622117;BODY LUMIÉRE;CQ Client;Non Conforme;production_standard;Retour CQ traité;En pause;2026-05-18;-2.0;0.03785809578701637;Faible
+135554;390230;EQUIVITA;CQ Interne;En cours;ticket_modification;Validé;Validé;2026-05-20;0.0;0.0375445991405481;Faible
+135373;570234;ETNIK VIBES;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;2026-05-19;-1.0;0.037386160460599976;Faible
+135443;613494;LES FLOCONS DE SNOW;Production;En instance;ticket_modification;Validé;En cours;2026-05-20;0.0;0.03643471296336991;Faible
+135616;370893;LA CHOUETTE D'OR;Production;En instance;ticket_modification;Affecté;Affecté;2026-05-22;2.0;0.03526596314548263;Faible
+135393;628187;MAISON G&A;Production;En cours;production_standard;Affecté;En instance ;2026-05-27;7.0;0.03484928757593867;Faible
+135366;630346;CARRELEUR ALILOU;Production;En cours;production_standard;Affecté;En instance ;2026-05-27;7.0;0.03383305703733587;Faible
+135063;623790;SOLUCELEC42;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.0330591173852453;Faible
+135023;626726;LA BOITE DE NIGHT;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.032704788270573125;Faible
+135552;622247;BEN'S BURGER;Production;En instance;ticket_modification;Validé;En cours;2026-05-20;0.0;0.03253210918785827;Faible
+135392;628327;ATHÉRIAN EQUI'SERVICE;Production;En cours;production_standard;Affecté;En instance ;2026-05-27;7.0;0.032281901041698695;Faible
+135391;628625;AG BATI RÉNOV;Production;En cours;production_standard;Affecté;En instance ;2026-05-27;7.0;0.03188572432949075;Faible
+135389;619330;HARAS D'OXLEY;Production;En cours;production_standard;Affecté;En instance ;2026-05-27;7.0;0.03188572432949075;Faible
+135550;609431;KARMADOR TEXIER;Archive;Validé client;ticket_modification;;Validé;2026-05-21;1.0;0.03150925770311369;Faible
+135640;620745;CDS;Production;En instance;ticket_modification;;Affecté;2026-05-21;1.0;0.030457466476226734;Faible
+135637;607574;LE SO A OUTILS;Production;En instance;ticket_modification;Affecté;Affecté;2026-05-22;2.0;0.030408054675335337;Faible
+135295;627001;ECURIES DE LA COLOMBE;Production;En cours;production_standard;Affecté;En instance ;2026-05-26;6.0;0.030367780978436513;Faible
+135617;549318;LA TABLE DE JEAN;Production;En instance;ticket_modification;;Affecté;2026-05-21;1.0;0.02956538151327318;Faible
+135605;618479;CAT'CHAPA;Production;En instance;ticket_modification;;Affecté;2026-05-21;1.0;0.029120734879247715;Faible
+135055;618883;STUDIO MADERO ROSE BY BEAUTY;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;2026-05-15;-5.0;0.02882215594914406;Faible
+135033;294770;CAMADE;CQ Interne;En cours;refonte_avec_redaction;Validé;Validé;2026-05-21;1.0;0.02859859328663392;Faible
+135537;630166;CARROSSERIE PENEL    ANCIEN SAGE 145036;Production;En cours;refonte_avec_redaction;Affecté;Affecté;2026-05-29;9.0;0.027930307099267672;Faible
+135329;628757;ETGR ENTREPRISE DE TRAVAUX GENERAL ET RENOVATION;Production;En cours;production_standard;Retour CQ;En cours;2026-05-27;7.0;0.027518019206171983;Faible
+135600;58514;3 VALLEES LOISIRS-BADABULLE;Production;En instance;ticket_modification;;Affecté;2026-05-21;1.0;0.02703857037050436;Faible
+129831;599872;TAXI MEHDI;Client;En instance;ticket_modification;En pause;;2026-02-24;-85.0;0.026803938666056976;Faible
+135419;399849;HONORE CHARLÈNE;Production;En cours;refonte_avec_redaction;Affecté;Affecté;2026-05-28;8.0;0.02659549140694263;Faible
+135573;618674;DES SOURIRES PAR MILLIERS;Production;En cours;refonte_avec_redaction;Affecté;Affecté;2026-05-29;9.0;0.026313466642176892;Faible
+135602;334003;LAMIRÉ ARMAND MICHEL PIERRE;Production;En cours;refonte_avec_redaction;Affecté;Affecté;2026-06-01;12.0;0.026257033284761436;Faible
+134724;626121;ROJ CAFE RESTAURANT;Production;En cours;production_standard;En cours;En instance ;2026-05-27;7.0;0.02582174325628762;Faible
+135398;611549;FC PEINTURES;Production;En cours;production_standard;En cours;En instance ;2026-05-27;7.0;0.025816656112778575;Faible
+135395;628657;GREENBAT RENOV;Production;En cours;production_standard;Affecté;En instance ;2026-05-27;7.0;0.025692145183812614;Faible
+135318;623607;ATLAS SERVICES;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.02461313967266402;Faible
+135327;484501;SAM BOULANGERIE;Production;En cours;production_standard;En cours;En instance ;2026-05-27;7.0;0.022970955509697112;Faible
+135086;563981;PRO NETTOYAGE;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.0228442069097149;Faible
+135572;406237;LF PLOMBERIE CHAUFFAGE;Production;En instance;refonte_sans_redaction;;Affecté;2026-05-27;7.0;0.022183891026027004;Faible
+135084;626929;JC RÉNOVATIONS;Production;En cours;production_standard;Validé;Affecté;2026-05-21;1.0;0.02178347808601936;Faible
+135273;600037;ROYAL BODY GLOW;Production;En instance;refonte_sans_redaction;;Affecté;2026-05-21;1.0;0.021621844875200913;Faible
+134609;552048;GUY BAC;Archive;Validé client;refonte_avec_redaction;Validé;Retour CQ traité;2026-05-15;-5.0;0.021293979244036726;Faible
+135029;624663;ATN MÉTALLERIE;Production;En cours;production_standard;Validé;En cours;2026-05-21;1.0;0.02113614722196108;Faible
+135610;611277;LES 2 MAINS DU BÂTIMENT;Production;En instance;refonte_sans_redaction;;Affecté;2026-05-28;8.0;0.020669718089929297;Faible
+134690;624750;PROUX JOHNNY;Production;En cours;production_standard;Validé;Affecté;2026-05-26;6.0;0.0192526839426336;Faible
+135311;615574;MERICOURSE;Production;En cours;production_standard;Affecté;En instance ;2026-05-26;6.0;0.018462657150060107;Faible
+135291;617576;CLIM ENTRETIEN SERVICE;Production;En cours;production_standard;En cours;En instance ;2026-05-26;6.0;0.017828535912921058;Faible
+135613;608579;LEA SERVICES;Production;En instance;ticket_modification;;Affecté;2026-05-21;1.0;0.01761999945637972;Faible
+135601;617386;1001 CROQUETTES;Production;En instance;ticket_modification;;Affecté;2026-05-21;1.0;0.017411822853387732;Faible
+134848;628865;EJB CLEAN'PRO CONCIERGERIE;CQ Client;Non Conforme;production_standard;Retour CQ traité;En pause;2026-05-19;-1.0;0.01707677229266362;Faible
+135131;617914;DOMAINE JEAN WAMBERGUE;Archive;Validé client;ticket_modification;;Retour CQ traité;2026-05-13;-7.0;0.01706080664029496;Faible
+134722;623781;PROVENCE AUTOS CLEAN;CQ Client;Non Conforme;production_standard;Retour CQ;Retour CQ;2026-05-18;-2.0;0.01648774606861935;Faible
+129034;481638;MD PLOMBERIE CHAUFFAGE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;2026-02-04;-105.0;0.01634659470356224;Faible
+135545;577379;SOCI'NET;Production;En instance;ticket_modification;Affecté;Affecté;2026-05-21;1.0;0.015721956603253685;Faible
+128942;584254;L'ORCHIDEE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;2026-02-02;-107.0;0.015176937641440872;Faible
+135369;608537;DEVORBAITS;Client;En instance;ticket_modification;En pause;NU-Suspendu;2026-05-19;-1.0;0.015124947970906983;Faible
+135588;629958;LE MAS DU TADORNE;CQ Interne;En instance;ticket_modification;Validé;Validé;2026-05-20;0.0;0.015119144640889462;Faible
+135150;358752;NC CONSTRUCTION ET RENOVATION;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.014997032094130886;Faible
+135524;614979;SVP LA SOLUTION MULTISERVICES;Production;En instance;ticket_modification;;Affecté;2026-05-22;2.0;0.014987402555717216;Faible
+135258;620259;BATI-ETANCHE;Production;En cours;production_standard;Retour CQ;Affecté;2026-05-26;6.0;0.013985170150526614;Faible
+135405;612454;LA VANNE MAREL;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;2026-05-19;-1.0;0.013678345204229893;Faible
+134320;500212;PETIT ATELIER FLORAL;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;2026-05-04;-16.0;0.013649101697159641;Faible
+133828;620057;NAUTIC LOCATION SUD;Client;En instance;ticket_modification;En pause;;2026-04-29;-21.0;0.01338182309105519;Faible
+134001;547122;SODDECOM FRANCE;Client;En instance;ticket_modification;En pause;;2026-05-04;-16.0;0.01308973416013437;Faible
+134519;616350;VAGNERRE ANNE-CHARLOTTE;CQ Client;Livré;ticket_modification;Validé;Retour CQ traité;2026-05-05;-15.0;0.011938955446329119;Faible
+134829;613032;TWIGGY BOUTIQUE;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-11;-9.0;0.011876996744015426;Faible
+135563;611356;CJRAUTO;Production;En instance;ticket_modification;Affecté;Affecté;2026-05-21;1.0;0.011577500394113552;Faible
+135140;624772;JFC RENOV;Production;En instance;ticket_modification;Affecté;;2026-05-22;2.0;0.011485101186401142;Faible
+135139;624645;CARROSSERIE MAURICE;Production;En instance;ticket_modification;Affecté;;2026-05-22;2.0;0.011485101186401142;Faible
+135141;624101;ADDITEK;Production;En instance;ticket_modification;Affecté;;2026-05-22;2.0;0.011485101186401142;Faible
+135157;595172;NOV'AUTO;Production;En instance;ticket_modification;Affecté;;2026-05-22;2.0;0.011485101186401142;Faible
+135522;482547;PIERROT MULTISERVICES;Production;En instance;ticket_modification;Affecté;Affecté;2026-05-21;1.0;0.01124087978866418;Faible
+135440;538728;LA BRAISE DE MER;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.011141395578103864;Faible
+132517;51024;COLIN CHLOE;CQ Client;Retour CQ traité;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;2026-04-24;-26.0;0.011102296739276724;Faible
+135514;531922;MENUSIER ELIPSE;Production;En instance;ticket_modification;Affecté;Affecté;2026-05-21;1.0;0.010934088359797874;Faible
+135379;553826;FUTUR BATIMENT;Production;En instance;ticket_modification;Affecté;;2026-05-27;7.0;0.010879823718331166;Faible
+135317;626324;DRIV'HER VTC;Production;En cours;production_standard;Affecté;En instance ;2026-05-26;6.0;0.01054351480258991;Faible
+135495;603623;BRASSERIE LE COMMERCE;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-20;0.0;0.01053101228674039;Faible
+133757;605375;THE SPECIALIST HOUSE - YUSSGLAM;CQ Client;Livré;ticket_modification;Validé;Validé;2026-04-21;-29.0;0.010170615641936335;Faible
+134862;581733;CAREDRIVERS;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;2026-05-13;-7.0;0.010162665378540776;Faible
+135292;628829;BLDBEAUTY;Production;En cours;production_standard;Affecté;En instance ;2026-05-26;6.0;0.00943910272175977;Faible
+134339;616532;VISION UNIQUE;CQ Client;Livré;ticket_modification;Validé;Validé;2026-04-30;-20.0;0.009168489283932142;Faible
+135107;617737;DOUCEUR CORALINE;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;2026-05-15;-5.0;0.00911191488261142;Faible
+135290;615973;MICKEL SANCHEZ;Production;En cours;production_standard;Affecté;En instance ;2026-05-26;6.0;0.00909792084104562;Faible
+135259;627490;DURAND & FILS COUVERTURE;Production;En cours;production_standard;Affecté;En instance ;2026-05-26;6.0;0.00909792084104562;Faible
+134259;337597;W2G;CQ Client;Retour CQ traité;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;2026-05-07;-13.0;0.008607030366343816;Faible
+135274;616473;LUKA SEGOUIN;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;2026-05-18;-2.0;0.00855278540483446;Faible
+131779;600142;TRAITEUR CHEZ VOUS;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;2026-03-19;-62.0;0.008456841807362748;Faible
+135506;620934;VIP STAR CLASS;CQ Interne;En cours;ticket_modification;Validé;Validé;2026-05-20;0.0;0.00838463722626262;Faible
+134863;60548;CHANAT CHRISTOPHE RENE FRANCOIS SIOUL VÉGÉTAL;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;2026-05-13;-7.0;0.008139286557997822;Faible
+134903;617593;HUDOCLEAN;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-13;-7.0;0.00779720348779229;Faible
+128126;588275;SARL KEVIN DEPOND;Client;En instance;ticket_modification;;;2026-01-28;-112.0;0.007686708253802549;Faible
+131052;456461;BABOUILLARD CLAIRE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;2026-03-06;-75.0;0.007202839688172528;Faible
+128462;393122;INSTANTS PRECIEUX;CQ Client;Livré;ticket_modification;;Validé;2026-01-27;-113.0;0.006911932184163534;Faible
+135587;630214;DBRGO;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-20;0.0;0.006893674410694856;Faible
+135578;512103;MIMI POUR TOI;Archive;Validé client;ticket_modification;;Retour CQ traité;2026-05-20;0.0;0.006723094120030883;Faible
+134652;612675;ALTEA CONSTRUCTEURS;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;2026-05-18;-2.0;0.006534478118653969;Faible
+134968;621480;IBK EURO AFRIQUE;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.0063362180709220835;Faible
+135075;627898;KABUL CHICKEN;CQ Interne;En instance;production_standard;Validé;Validé;2026-05-21;1.0;0.0062771262169927225;Faible
+135344;624488;SL ELEC;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.0062425519355586686;Faible
+131292;593353;BIBELOC VIDE-GRENIER DURABLE;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;2026-03-11;-70.0;0.0062385845452839345;Faible
+134912;336457;DY'VERT PAYSAGE;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;2026-05-12;-8.0;0.006236245841304485;Faible
+135589;629739;LUMIÈRE TRANSPORT 85;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-20;0.0;0.006193141847775128;Faible
+130751;88238;BERTHET TESSA BOAT;CQ Client;Livré;ticket_modification;;Validé;2026-03-03;-78.0;0.006107008491367426;Faible
+135492;577187;RD RENOVATIONS;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-20;0.0;0.005972218883565414;Faible
+135490;623482;SONIMAGE;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-20;0.0;0.005921225971291948;Faible
+135334;577752;MM MENUISERIES;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.005864117059487774;Faible
+134948;623667;PERFECT FACADE;CQ Interne;Non Conforme;production_standard;En cours;Validé;2026-05-20;0.0;0.005853727532990987;Faible
+129803;464891;J.V SERVICE;CQ Client;Livré;ticket_modification;Validé;;2026-02-17;-92.0;0.005823848875085375;Faible
+135333;620576;JULIE PUPIER - THANADOULA;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.005735624638374053;Faible
+135471;498175;CAFE OKAMI;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.005595099921549881;Faible
+131154;598641;SAS PRODUCTEURS D'ORAISON;CQ Client;Retour CQ traité;ticket_modification;Validé;Retour CQ traité;2026-03-09;-72.0;0.005565658715217368;Faible
+135433;606751;FORV'OCCAS;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.005459544735196943;Faible
+135058;595338;TPG EXPRESS;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.0052875974514096265;Faible
+135498;613574;LES SENTEURS DE JADE;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.005230127660917047;Faible
+132253;456461;BABOUILLARD CLAIRE;CQ Client;Livré;ticket_modification;;Retour CQ traité;2026-03-27;-54.0;0.005155661308848597;Faible
+135094;615324;JULIA LACROIX ARCHITECTE;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;2026-05-18;-2.0;0.005064681515337271;Faible
+134199;609540;ELCB;CQ Client;Non Conforme;ticket_modification;Retour CQ;Validé;2026-04-28;-22.0;0.004889614170951461;Faible
+135230;611515;RELAIS DES PIERRES DOREES;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.004879536907993759;Faible
+135339;600075;SASU WEISS;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.004569616494516863;Faible
+135608;620880;CINDY FRADET;Archive;Validé client;ticket_modification;;Validé;2026-05-21;1.0;0.004416167263915392;Faible
+135553;341196;TERRE HAPPY REBORN;Archive;Validé client;ticket_modification;;Validé;2026-05-20;0.0;0.004352511599650444;Faible
+132304;552274;ASTUCE FORMATION;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;2026-03-30;-51.0;0.0043523773574938125;Faible
+135410;391746;JT CHARPENTE;CQ Client;Non Conforme;ticket_modification;;Retour CQ;2026-05-19;-1.0;0.004255917446605228;Faible
+135449;225899;BRIVAL AUTO;CQ Client;Livré;ticket_modification;;Validé;2026-05-19;-1.0;0.004186789745370522;Faible
+134954;623352;LE VELO SMOOTHIE;CQ Client;Livré;production_standard;Validé;Validé;2026-05-20;0.0;0.004115491509023813;Faible
+135195;499859;BISTROT LA FORGE;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-13;-7.0;0.004049408014101262;Faible
+135068;627787;L'ENTREPRISE HEUREUSE;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.004033345105744782;Faible
+135626;349861;HEITZMANN FRANCK;Archive;Validé client;ticket_modification;;Validé;2026-05-21;1.0;0.004014890306694081;Faible
+134781;218814;PROVOC;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.003999968396004025;Faible
+135481;619040;VIBES CLUB;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003997366790787066;Faible
+135060;623912;PEGGY DIEUMEGARD - RÉFLEXOLOGIE PLANTAIRE, PALMAIRE ET FACIO-CRÂNIENNE, KINÉSIOLOGIE;CQ Client;Non Conforme;production_standard;Validé;Validé;2026-05-21;1.0;0.0038332214855706583;Faible
+135350;595908;DEODIAG;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.0038031524175420163;Faible
+135585;617310;MUCHO DRIVE PRESTIGE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0037880616509098127;Faible
+132919;604254;CHILL AND HEAL;CQ Client;Livré;ticket_modification;Validé;;2026-04-16;-34.0;0.0037582151352217783;Faible
+135487;630465;MNCRÉASTAMP;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003748883020153345;Faible
+135456;354703;LA CONCIERGERIE;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135427;628978;TK.POLYSERVICE;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135428;629247;TRAITEUR MOUILLEY;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135451;629113;VALO-IMMO;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135454;627061;LA TAVERNE DES SORCIERES;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135460;629842;LES CLEFS DE LA CITE;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135464;629980;GLAPITY-PET;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135466;629480;APC;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135467;630321;LA CARAPOPOTE;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135462;626870;VICTORIA REYNAUD;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003730434603237974;Faible
+135632;629958;LE MAS DU TADORNE;Production;En instance;production_standard;En instance ;En instance ;2026-06-01;12.0;0.003711639784381032;Faible
+135634;622660;LE PELICAN;Production;En instance;production_standard;En instance ;En instance ;2026-06-01;12.0;0.003711639784381032;Faible
+135527;630214;DBRGO;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0037082060585887848;Faible
+135530;629802;BUD TRAITEUR;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.003689957073366497;Faible
+135533;629519;KORSAIRE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.003689957073366497;Faible
+135569;629868;PNEUS 64;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.003689957073366497;Faible
+135397;627915;LW SONORISATION;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.003657944312171921;Faible
+135394;628142;MARINE COCHOIS;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.003657944312171921;Faible
+135368;623329;LA CASA DU LAC;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.003657944312171921;Faible
+135363;628536;LE SPOT NARBONNE;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.003657944312171921;Faible
+135480;624960;JLPL;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0036418057614794855;Faible
+135458;629404;LA SOURCE;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0036182504902883533;Faible
+135425;624955;LÉA DE MILLEVILLE;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0036182504902883533;Faible
+135463;628499;SOLENA DECORATION EVENT'S;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0036182504902883533;Faible
+135575;624220;WARNER WASH;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.003602286432317125;Faible
+135528;625596;EAU SERVICE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0035789858547483656;Faible
+135526;628469;BENHUR CONVOYAGE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0035789858547483656;Faible
+135532;630141;L'ATELIER DU CONFLENT;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0035789858547483656;Faible
+135568;627561;MORICE MOTOCULTURE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0035789858547483656;Faible
+135633;629198;GIB SERVICES;Production;En instance;production_standard;En instance ;En instance ;2026-06-01;12.0;0.003571131332562233;Faible
+132663;522004;DR-LE DESSIN PREND RACINES;CQ Client;Livré;ticket_modification;Validé;;2026-04-03;-47.0;0.003562378265436684;Faible
+135429;626483;L'ENVOL;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003554326869660271;Faible
+135367;603627;NOUVELESPACE;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0035479324121468286;Faible
+135362;625035;GINKGO ET PAYSAGE;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0035479324121468286;Faible
+135364;628409;RESISOLS27;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0035479324121468286;Faible
+135396;629476;JDS DECO;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0035479324121468286;Faible
+133376;617347;LES TOITURES OCCITANES;CQ Client;Livré;ticket_modification;Validé;;2026-04-22;-28.0;0.003547797644409047;Faible
+135457;627964;KINGS COOK;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0035267874938406983;Faible
+135485;626900;CREAZINE;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0035267874938406983;Faible
+135482;628563;K-DOUX MADA;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0035267874938406983;Faible
+135499;619872;AGPEINTURE;CQ Client;Non Conforme;ticket_modification;;Retour CQ;2026-05-19;-1.0;0.003510396581587891;Faible
+135461;629724;CLEANING PARIS;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0035094281686669144;Faible
+135424;504569;BOQUET ENERGIES;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0035094281686669144;Faible
+135486;626200;SBBE CONCEPT;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0035094281686669144;Faible
+135170;618562;SARL LEVEQUE;Archive;Validé client;ticket_modification;;Retour CQ traité;2026-05-13;-7.0;0.0035063891398749714;Faible
+135583;626845;QM PEINTURE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0034713403400848204;Faible
+135534;628557;TACOTAXI;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0034713403400848204;Faible
+135570;627978;SERVICES CONFORT 77;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0034713403400848204;Faible
+135390;629080;ELIXIR CBD;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.003458240763398126;Faible
+135361;629114;LEBRE ATELIER DE SELLERIE;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0034412176693417473;Faible
+135404;621297;AX ELAGAGE;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-18;-2.0;0.003421986236266186;Faible
+135439;548765;VOTRE SERRURE;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-20;0.0;0.003418937956228943;Faible
+135452;625630;ENTREPRISE CHRISTOPHE PONCET;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0034038676006806754;Faible
+135469;618705;SENNO CUISINE ET AGENCEMENT;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0034038676006806754;Faible
+135584;628214;BD HOMME TOUTE MAIN;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0033669215501884483;Faible
+135529;629233;DIAMED-NETTOYAGE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0033669215501884483;Faible
+135565;629817;LA2M;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0033669215501884483;Faible
+135561;628810;FINALE BTP;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0033669215501884483;Faible
+135566;629739;LUMIÈRE TRANSPORT 85;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0033669215501884483;Faible
+135631;594609;BCS PROTECTION;Production;En instance;production_standard;En instance ;En instance ;2026-06-01;12.0;0.0033595308599100506;Faible
+135432;625603;RPMOTORSPORT62;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0033437187715940797;Faible
+135359;367931;TEAM SERVICES;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0033377019421338893;Faible
+135365;627578;F C ELEC;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0033377019421338893;Faible
+135503;509529;L ART DU JARDIN;CQ Interne;Non Conforme;ticket_modification;;Retour CQ;2026-05-20;0.0;0.003336654387017942;Faible
+135430;630891;IDEAL NUTRITION 65;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.00331780578068762;Faible
+135483;629688;LA MAN'S AUX TRESORS;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.00331780578068762;Faible
+135535;627653;COGEFROID;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.003307423418153638;Faible
+132606;607895;LES TRESORS DU YEMEN;Client;En instance;ticket_modification;;;2026-04-10;-40.0;0.0033038269290200503;Faible
+135465;630163;JCP SERVICES;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0033014716837456107;Faible
+135488;629959;AJH CLEAN;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0033014716837456107;Faible
+135257;627367;LA FONTAINE AUX FLEURS;Production;En instance;production_standard;En instance ;En instance ;2026-05-26;6.0;0.0032890110139498717;Faible
+135567;628988;CHICELEGANCE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0032817907810324914;Faible
+135571;626711;ERIC JARDINAGE;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.003265633410836163;Faible
+134796;622782;THE PLATINIUM BARBER SHOP;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;2026-05-19;-1.0;0.003262285693540608;Faible
+135627;614349;FFAMD;Production;En instance;production_standard;En instance ;En instance ;2026-06-01;12.0;0.0032584643300499288;Faible
+133830;620486;GESCO-SERVICE;CQ Client;Livré;ticket_modification;Validé;;2026-04-29;-21.0;0.003256393456903048;Faible
+135090;625857;VAL'RENOV;CQ Client;Non Conforme;production_standard;Validé;Validé;2026-05-21;1.0;0.003234410226642568;Faible
+135376;477748;2N CLEANING SERVICES;Archive;Validé client;ticket_modification;;Retour CQ traité;2026-05-18;-2.0;0.003221311574753886;Faible
+135437;558434;X-ADMIN;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.003218487381654104;Faible
+135267;522004;DR-LE DESSIN PREND RACINES;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-18;-2.0;0.003210695982923618;Faible
+134697;624101;ADDITEK;CQ Client;Validé client;production_standard;Validé;Validé;2026-05-18;-2.0;0.0032096884139734554;Faible
+135459;630616;METAL ART & DESIGN;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0032021461667496192;Faible
+135484;630564;EURL AXEL DAHLEM;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0032021461667496192;Faible
+135453;624039;M.T.P.A;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0032021461667496192;Faible
+135635;629702;DOUSSON CONSTRUCTION;Production;En instance;production_standard;En instance ;En instance ;2026-06-01;12.0;0.003200876630695281;Faible
+134803;625801;AUGUSTELEC;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.003197706287444908;Faible
+135349;521633;MA PAUSE CHAMPÊTRE;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.0031877502087225796;Faible
+135336;585407;PACK ENR;Archive;Validé client;ticket_modification;;Validé;2026-05-19;-1.0;0.0031859684892859494;Faible
+135360;626771;DJ FRANCKY MUSIC;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.0031800752967537683;Faible
+135401;623828;GO SERVICES 57;Production;En instance;production_standard;En instance ;En instance ;2026-05-27;7.0;0.003115497281372733;Faible
+134175;450065;SARL BOHUON NICOLAS;CQ Client;Livré;ticket_modification;Validé;;2026-05-06;-14.0;0.003111069141708737;Faible
+135078;624787;SERRURIE ZEN;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.0031100152511158866;Faible
+135248;619666;SAS BROGGI;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-18;-2.0;0.003106864661523056;Faible
+135455;363744;FRANCE FOTO;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.003050901695380515;Faible
+134184;555241;TSCHUDI RENOVATION;CQ Client;Livré;ticket_modification;Validé;;2026-05-06;-14.0;0.003032062330010716;Faible
+135021;622024;MEER;CQ Interne;En instance;production_standard;Validé;Validé;2026-05-21;1.0;0.003024676693091494;Faible
+134176;622794;ATP PROPRETE;CQ Client;Livré;ticket_modification;Validé;;2026-05-06;-14.0;0.0030168136136683576;Faible
+135341;601587;LES TERRASSES DE KERORGAN;CQ Client;Retour CQ traité;ticket_modification;;Retour CQ traité;2026-05-18;-2.0;0.0030145735628731613;Faible
+135250;483076;FDB SERVICES;Archive;Validé client;ticket_modification;;Validé;2026-05-19;-1.0;0.003006671415680531;Faible
+135374;56586;LEMOINE ROMAIN;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.002988235238758065;Faible
+133206;614218;CD TOIT;Client;En instance;ticket_modification;;;2026-04-20;-30.0;0.002962160061509368;Faible
+135501;507992;CQFPAIE;CQ Client;Non Conforme;ticket_modification;Validé;Retour CQ;2026-05-19;-1.0;0.0029422086769874283;Faible
+135431;629685;POMPES FUNEBRES LES DEUX SOLEILS;Production;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0028989887041528514;Faible
+135586;628214;BD HOMME TOUTE MAIN;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-20;0.0;0.002897910415367034;Faible
+135322;389245;LES PIS D' ANICIA;Archive;Validé client;ticket_modification;;Retour CQ traité;2026-05-19;-1.0;0.0028848881793116163;Faible
+135531;630509;BLACK STORM;Production;En instance;production_standard;En instance ;En instance ;2026-05-29;9.0;0.0028675069114648235;Faible
+133478;374257;COUVREUR À CABRIÈS;Client;En instance;ticket_modification;;;2026-04-23;-27.0;0.002866703748513463;Faible
+133439;612029;CHATELARD RENOVATION;Client;En instance;ticket_modification;;;2026-04-23;-27.0;0.002866703748513463;Faible
+135400;601876;ETS RODERO;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.002851913024666326;Faible
+134308;620701;CANTINA DORIA;CQ Client;Livré;ticket_modification;Validé;;2026-05-11;-9.0;0.0028487342303231957;Faible
+135407;393155;LBG DEMENAGEMENTS;Archive;Validé client;ticket_modification;Validé;;2026-05-18;-2.0;0.0028348643843951146;Faible
+135372;598675;EMS;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.002822547003546816;Faible
+135266;58667;SOC B LABORDE ET FILS;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-18;-2.0;0.002817285558576077;Faible
+135442;332125;UNE HISTOIRE D'AME;Archive;Validé client;ticket_modification;;Validé;2026-05-19;-1.0;0.002814476976616711;Faible
+134545;622363;PATRICIA ROLAND;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-13;-7.0;0.002770327316605635;Faible
+135229;485357;ELIOTT CHERIAUX;CQ Client;Non Conforme;ticket_modification;Retour CQ;Validé;2026-05-18;-2.0;0.0027380631867444066;Faible
+135208;621899;LIEVY SERVICES;CQ Interne;En instance;production_standard;Validé;Validé;2026-05-22;2.0;0.0027339611774707196;Faible
+134748;515721;PEARL PADEL GERARDMER;CQ Client;Non Conforme;ticket_modification;;Retour CQ;2026-05-11;-9.0;0.0027215595775927945;Faible
+134661;622833;GROUPE SG;CQ Client;Livré;ticket_modification;Validé;;2026-05-18;-2.0;0.002666866744971668;Faible
+134875;621518;LA COUTELLERIE DE LA VALLEE;CQ Client;Livré;ticket_modification;Validé;;2026-05-20;0.0;0.0026447166681162256;Faible
+134820;619439;SGP RENOVATION;CQ Client;Livré;ticket_modification;Validé;;2026-05-19;-1.0;0.002633909157282845;Faible
+135056;559059;47 NETTOYAGE;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.0026088384325800382;Faible
+135622;57836;VERON COUVERTURE;Autre;En instance;ticket_modification;;;2026-05-21;1.0;0.0025865877966018084;Faible
+134571;526659;M ELEC;CQ Client;Livré;ticket_modification;Validé;;2026-05-15;-5.0;0.0025708807616891;Faible
+135473;406537;GERMAIN TAXI ALPIN;Archive;Validé client;ticket_modification;;Validé;2026-05-19;-1.0;0.002558273149776495;Faible
+135082;625053;TRUST & NEEDS;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.0025551464511421;Faible
+134586;623725;MABISOL;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.002539606894483954;Faible
+135504;347229;NATYV'ZEN;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-21;1.0;0.0025314650694125327;Faible
+135644;519524;GERMANN HABITAT;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.002526909956665788;Faible
+135417;415844;DIAGTIP IMMOBILIER;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-20;0.0;0.002509151574801219;Faible
+135346;58514;3 VALLEES LOISIRS-BADABULLE;Archive;Validé client;ticket_modification;Validé;;2026-05-19;-1.0;0.0024794289222667886;Faible
+135385;581111;Ô ÉTOILES DE PTI-CHON;CQ Client;Livré;ticket_modification;Validé;;2026-05-19;-1.0;0.0024533179673671864;Faible
+134832;622128;WILCLIM;CQ Client;Livré;production_standard;Retour CQ traité;Validé;2026-05-19;-1.0;0.002443954947396251;Faible
+135510;619557;CARDS INPERTOR;Archive;Validé client;ticket_modification;;Validé;2026-05-20;0.0;0.0024349613064425547;Faible
+135604;347229;NATYV'ZEN;Client;En instance;ticket_modification;;;2026-05-21;1.0;0.002400769961939193;Faible
+135080;616755;DELPECH NATURE ET SERVICE;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.002394622561438652;Faible
+135435;577386;FAMILY SPA;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.002357731402340132;Faible
+135403;378089;SANTÉ KINÉSIO;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0023338135915149344;Faible
+135493;603268;FRANCK DESIGN;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.0023291605814864977;Faible
+135388;624269;KARS SELECT;Archive;Validé client;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-20;0.0;0.0023161729569862763;Faible
+134530;358574;LA DECOUPE CHARENTAISE;CQ Client;Retour CQ traité;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;2026-05-13;-7.0;0.0022762811523684085;Faible
+135418;55928;ARIEGE EDUCATION CANINE DENIS RACAGEL;CQ Client;Livré;ticket_modification;Validé;;2026-05-20;0.0;0.0022449590973032305;Faible
+135509;622651;BELL'HABITAT;CQ Interne;Non Conforme;ticket_modification;;Retour CQ;2026-05-20;0.0;0.002229690219811238;Faible
+135057;437293;MEAT MARKET;CQ Interne;En instance;production_standard;Validé;Validé;2026-05-21;1.0;0.0022156438378547675;Faible
+135378;450286;C&C HEXACRAFT;Client;En instance;ticket_modification;Validé;Affecté;2026-05-22;2.0;0.0021482905444339716;Faible
+135065;627741;LE CHAS D'OR;CQ Interne;En instance;production_standard;Validé;Validé;2026-05-21;1.0;0.0021458908271840766;Faible
+135491;619874;SHEILINHA ARTS;Client;En instance;ticket_modification;Validé;Affecté;2026-05-20;0.0;0.0021400058232722043;Faible
+134895;621918;DRIVER VTC MARSEILLE;Client;En instance;ticket_modification;;;2026-05-20;0.0;0.0021344994039362948;Faible
+135034;623877;LMG COURTAGE;Client;En instance;ticket_modification;;;2026-05-21;1.0;0.002111302063043969;Faible
+135125;624119;SAS URBIVERT / URBIN ESPACES VERTS;CQ Interne;En instance;production_standard;Validé;Validé;2026-05-22;2.0;0.0021031515870514068;Faible
+135103;626578;MC PAYSAGE;Client;En instance;ticket_modification;;;2026-05-22;2.0;0.0020883562989103;Faible
+134795;626326;LE BRUNCH CARDEY;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;2026-05-19;-1.0;0.0020786332356606016;Faible
+135636;366582;HR SERVICES;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.002011625770434514;Faible
+135647;617603;ROYAL AUTO 25;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0019785673174636765;Faible
+135402;630346;CARRELEUR ALILOU;Client;En instance;ticket_modification;;;2026-05-18;-2.0;0.001966985779065111;Faible
+134961;341586;VAP' O TAQUET;CQ Interne;Non Conforme;refonte_avec_redaction;Retour CQ;Retour CQ;2026-05-20;0.0;0.0019535670716355666;Faible
+134745;620952;LA FORGE;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-18;-2.0;0.0019458720202105548;Faible
+135420;615233;INSTANT D'ECLAT;Client;En instance;ticket_modification;;;2026-05-19;-1.0;0.0019448262762846269;Faible
+135628;474798;CARIA STEAKHOUSE;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0019424719132633199;Faible
+134621;303752;MSP DESIGN;Archive;Validé client;production_standard;Validé;Retour CQ traité;2026-05-15;-5.0;0.0019338413662194124;Faible
+135518;539938;LE MARCHE AFRICAIN;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0019319217328157244;Faible
+135446;532029;ASCO TRAVAUX SPECIAUX;Archive;Validé client;ticket_modification;;Retour CQ traité;2026-05-19;-1.0;0.0019290509043314002;Faible
+135559;557408;IMBERT DESSINATEUR;Client;En instance;ticket_modification;;;2026-05-20;0.0;0.0019236862936825878;Faible
+134818;239843;EVELYNE NOUGÉ;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0018773430658101063;Faible
+129208;600377;HR DEMENAGEMENT;CQ Client;Validé;production_standard;Retour CQ traité;Retour CQ traité;2026-02-13;-96.0;0.0018505295831628972;Faible
+135615;393155;LBG DEMENAGEMENTS;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0018368409909382197;Faible
+135081;622017;LAUNAY JESSY;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.001812654732087511;Faible
+135421;348276;L'AMBATA PORTICCIO;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.0018051764571850744;Faible
+135515;439410;MAS DES GRES;Archive;Validé client;ticket_modification;;Validé;2026-05-20;0.0;0.0017826722702499484;Faible
+135646;580739;TAXI BAUD 30;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0017721470287471272;Faible
+135441;612232;SOLRCLEAN;FTP;En instance;ticket_modification;;;2026-05-28;8.0;0.0017666707876557721;Faible
+135447;628829;BLDBEAUTY;FTP;En instance;ticket_modification;;;2026-05-28;8.0;0.0017666707876557721;Faible
+135438;428091;RENOVBATI;FTP;En instance;ticket_modification;;;2026-05-28;8.0;0.0017666707876557721;Faible
+135476;629480;APC;CQ Client;Livré;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.001764670642478727;Faible
+135611;369159;JOOS THIERRY;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0017625985774446808;Faible
+135612;521633;MA PAUSE CHAMPÊTRE;FTP;En instance;ticket_modification;;;2026-05-20;0.0;0.0017613449782395403;Faible
+135516;474627;LE LIEU;Archive;Validé client;ticket_modification;;Validé;2026-05-20;0.0;0.0017573085694665858;Faible
+134635;625084;NETTOYAGE SIGNATURE;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.0017529073357554204;Faible
+135375;438611;CHANVRE ET NATURE;Archive;Validé client;ticket_modification;Validé;Validé;2026-05-19;-1.0;0.0017507418552305063;Faible
+135517;622912;GROUPE EURAFRIQUE (GROUPE IRYO );FTP;En instance;ticket_modification;;;2026-05-29;9.0;0.0017474639390544018;Faible
+134851;626085;BOTANI X BROTHERS'S;CQ Client;Non Conforme;production_standard;Retour CQ;Validé;2026-05-19;-1.0;0.001733588493400332;Faible
+135024;628655;CORVANGEL EVENTS;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.0017320527535876038;Faible
+135540;203066;DES ALTEN DE LA BURGERIE;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0017239762041187734;Faible
+134979;625188;TAXI DRIVER 94;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.0017174198715560317;Faible
+135444;545518;HAMMAM LE PACHA;CQ Client;Non Conforme;ticket_modification;Retour CQ traité;Retour CQ;2026-05-19;-1.0;0.0017166869360794807;Faible
+135638;621945;GRAND OUEST LAVAGE;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0016841908499466427;Faible
+135519;595473;ISE - IMAGERIE SUD ESSONNE;FTP;En instance;ticket_modification;;;2026-05-19;-1.0;0.00167501361362605;Faible
+135523;505795;INOV ENERGIE;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.001672030376623813;Faible
+135556;623772;YC ELAGAGE;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.001672030376623813;Faible
+135513;382343;VERDIER JULIEN;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.001672030376623813;Faible
+135331;622114;SONOTMAGIK;Archive;Validé client;ticket_modification;;Retour CQ traité;2026-05-19;-1.0;0.0016550478674967973;Faible
+134927;623143;ECHOS DES PAYSAGES;CQ Client;Livré;production_standard;Validé;Validé;2026-05-20;0.0;0.001654496233689495;Faible
+135639;140051;AGEP SECURITE;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0016375511754240684;Faible
+134946;624448;LE MAILHAC & CO;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;2026-05-20;0.0;0.001618653738461219;Faible
+135641;411163;L'ARCHE DES ANIMAUX;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0016040144891491816;Faible
+135621;527773;M'SEHLA SOLUTIONS RH ET RECRUTEMENT;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.001588205312585011;Faible
+135507;595962;AD SERVICES;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0015727798387084318;Faible
+134847;618613;LE RELAIS DE LISSAC;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0015597137654470505;Faible
+135630;486661;INTERIA STUDIO;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0015556776439440126;Faible
+134980;620886;JARDIN DES GONES;CQ Client;Livré;production_standard;Validé;Validé;2026-05-21;1.0;0.0015479546203541056;Faible
+130916;524327;IMPEC’HOME;CQ Client;Livré;ticket_modification;Retour CQ traité;Retour CQ traité;2026-03-05;-76.0;0.0015459806285442875;Faible
+135619;585388;SLG PLOMBERIE;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0015274623541197219;Faible
+135598;610278;J.D COUVERTURES;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0015236987610643415;Faible
+135027;626950;JULIEN JARDIN & PAYSAGE;Archive;Validé client;production_standard;Validé;Validé;2026-05-21;1.0;0.0014942107177777725;Faible
+135643;612219;LA BONNE BAGUETTE;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0014827150629460174;Faible
+134930;627904;MY FAMILY SERVICES;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-20;0.0;0.0014625404085425462;Faible
+134950;626960;CESAC CHAUDRONNERIE;Archive;Validé client;production_standard;Validé;Validé;2026-05-20;0.0;0.0014607020603916714;Faible
+129029;598407;AUTOUR DE VOUS;Client;En instance;production_standard;Finalisé;Affecté;2026-02-24;-85.0;0.0014332451474139472;Faible
+135618;618002;ROLSKAFEE;FTP;En instance;ticket_modification;;;2026-05-21;1.0;0.0014291010956731583;Faible
+135592;355989;HTRADE SUD;FTP;En instance;ticket_modification;;;2026-05-26;6.0;0.001428614530012693;Faible
+135357;619171;MENUISERIE HUGO BOIS;CQ Client;Livré;ticket_modification;;Retour CQ traité;2026-05-18;-2.0;0.0014271600755351626;Faible
+135645;401353;FUITES & EAU;FTP;En instance;ticket_modification;;;2026-05-27;7.0;0.0014130777505941266;Faible
+134723;620537;SMA TOITURE;CQ Client;Validé client;production_standard;Validé;Retour CQ traité;2026-05-18;-2.0;0.0013615742200390754;Faible
+134629;624055;RM SERVICE+;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.001358227568076535;Faible
+135577;614979;SVP LA SOLUTION MULTISERVICES;FTP;En instance;ticket_modification;;;2026-05-26;6.0;0.00134379353522211;Faible
+135609;604724;NAILS BY TAISS;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.001343782227365227;Faible
+134471;318013;TB MENUISERIE;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;2026-05-12;-8.0;0.001258840046335623;Faible
+135614;473084;RESPLENDIS'SENS COACHING;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0012258887327711103;Faible
+134958;627082;PHENIX GARAGE;CQ Client;Livré;production_standard;Validé;Validé;2026-05-20;0.0;0.0012101666509760915;Faible
+134630;626296;MALIEL;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.0011955643821061994;Faible
+134949;623690;REFUGE DE L'OLIVIER;CQ Client;Non Conforme;production_standard;Validé;Validé;2026-05-20;0.0;0.0011952247350686227;Faible
+134884;627746;M'ELEC;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-20;0.0;0.0011678165104162062;Faible
+134754;626830;LE REPIT DES MAUX;Archive;Validé client;production_standard;Validé;Retour CQ traité;2026-05-18;-2.0;0.0011312896804514616;Faible
+135648;413383;ATELIER CREA SHOP;FTP;En instance;ticket_modification;;;2026-05-22;2.0;0.0011183267572168513;Faible
+135352;326815;DVG - DÉMÉNAGEMENT & DEBARRAS;Archive;Validé client;ticket_modification;Validé;Retour CQ traité;2026-05-18;-2.0;0.0010978895921323754;Faible
+134957;618938;LEREAU LOCATION TP;CQ Client;Livré;production_standard;Validé;Validé;2026-05-20;0.0;0.0010878163263963925;Faible
+134744;588625;JB COUVERTURE;CQ Client;Livré;production_standard;Validé;Validé;2026-05-18;-2.0;0.0010849058777230958;Faible
+135386;170051;DOXAT SOPHIE;Archive;Validé client;ticket_modification;Retour CQ traité;;2026-05-19;-1.0;0.0010320750900474091;Faible
+134696;625363;QUENTIN MULTISERVICES AVEYRON PRO;CQ Client;Retour CQ traité;production_standard;Validé;Retour CQ traité;2026-05-18;-2.0;0.0010228854002674631;Faible
+134797;620120;PETIT PAYSAGE;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0009897905297558854;Faible
+134698;626388;RADIO TAXIS VALENCE;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ traité;2026-05-18;-2.0;0.0009876132012768902;Faible
+134137;381431;MAISON MARCEL;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;2026-05-07;-13.0;0.0009767376439452217;Faible
+135064;628101;YM AUTO;CQ Interne;En instance;production_standard;Validé;Validé;2026-05-21;1.0;0.0009328477972782353;Faible
+135323;622287;YOHANN TESSARI;CQ Client;Retour CQ traité;ticket_modification;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.0008736213118616853;Faible
+134850;627531;JG MACONNERIE;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0008513259149838385;Faible
+135320;627422;DRIVER KA;Client;En instance;production_standard;Validé;En instance ;2026-05-26;6.0;0.0008466838258564403;Faible
+134801;624450;LES ATELIERS BOUTIN;CQ Client;Non Conforme;production_standard;Validé;Retour CQ traité;2026-05-19;-1.0;0.0008162720613048149;Faible
+134799;624765;A LA CONCIERGERIE;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-19;-1.0;0.0008124883939990309;Faible
+134955;626421;MACRÉATIF EVENTS;CQ Interne;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-20;0.0;0.0007885427831454869;Faible
+134852;627248;MONTEIRO MULTI SERVICES;CQ Client;Non Conforme;production_standard;Retour CQ;Validé;2026-05-19;-1.0;0.0007826302832262473;Faible
+134694;624772;JFC RENOV;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-18;-2.0;0.0007746566405430564;Faible
+134688;624315;CD BRILLANCE;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;2026-05-18;-2.0;0.0007316186552992323;Faible
+134928;615757;TOM'S ELEC;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-20;0.0;0.0007194659945999866;Faible
+135426;629906;TNG AUTOMOTIVE;Autre;En instance;production_standard;En instance ;En instance ;2026-05-28;8.0;0.0006918110229641308;Faible
+135188;572900;CS TRONIC FRANCE;CQ Client;Non Conforme;refonte_avec_redaction;Retour CQ;Retour CQ;2026-05-22;2.0;0.0006820541994510663;Faible
+134802;622787;STYLE B;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0006586615386596573;Faible
+134725;608729;AU SALON ENCHAN'THE;Client;En instance;production_standard;En instance ;En instance ;2026-05-18;-2.0;0.0006533939475867608;Faible
+134959;627366;DAVID STEPHAN DEBARRAS;CQ Client;Non Conforme;production_standard;Validé;Validé;2026-05-20;0.0;0.0006353286559239634;Faible
+134836;624777;AUVERG'NATURE;Archive;Validé client;refonte_avec_redaction;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0006201318934514322;Faible
+135213;622585;PHENIX ADAM;Client;En instance;production_standard;En instance ;En instance ;2026-05-22;2.0;0.0006095536136818667;Faible
+134755;621505;Y'A DU GOUT;CQ Client;Non Conforme;production_standard;En pause;Retour CQ;2026-05-18;-2.0;0.0005901649640901737;Faible
+134798;618781;HRB PLOMBERIE & PISCINE;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.0005756138949694731;Faible
+134751;621253;ZIO PIZZA;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-18;-2.0;0.0005704727686402053;Faible
+134637;451483;LA CHAPE;Archive;Validé client;production_standard;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.0005585230101539391;Faible
+134934;626066;SR INCENDIE;CQ Client;Non Conforme;production_standard;Retour CQ;Retour CQ;2026-05-20;0.0;0.0005318283344354591;Faible
+134804;601016;CT MENUISERIE;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-19;-1.0;0.0005207607951255472;Faible
+134951;624781;DB PEINTURE;CQ Client;Non Conforme;production_standard;Validé;Validé;2026-05-20;0.0;0.0004915857252078507;Faible
+134931;623360;DOMINGOS DEMOLITION;CQ Interne;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-20;0.0;0.0004621259094403499;Faible
+134585;624598;AU COEUR DES SAVEURS DU PAIN;CQ Client;Retour CQ traité;production_standard;Retour CQ traité;Retour CQ traité;2026-05-15;-5.0;0.0004551667124587415;Faible
+135335;430766;HERVE DELAVEAU CONSEIL;Client;En instance;refonte_avec_redaction;;;2026-05-27;7.0;0.0004244826160356736;Faible
+134905;517616;LEJEDUMOUVEMENT;CQ Interne;Non Conforme;refonte_avec_redaction;Retour CQ traité;En cours;2026-05-20;0.0;0.000406877306382628;Faible
+134547;622910;RESTO OPALE PIZZA;CQ Client;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-13;-7.0;0.0004057752080780677;Faible
+135479;628491;MENUISERIE VERNET;Client;En instance;production_standard;;;2026-05-28;8.0;0.00038973097181169614;Faible
+134800;625024;BESS NETTOYAGE;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.00035957093297829534;Faible
+134806;536922;2007;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-19;-1.0;0.00033378823707400426;Faible
+134947;626679;DJ FRED ANIMATION;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-20;0.0;0.0003176469625910952;Faible
+134952;620156;CP SECURITE;CQ Client;Non Conforme;production_standard;Validé;Retour CQ;2026-05-20;0.0;0.0002971491268634352;Faible
+134956;623450;LES ECRITS DURENT;CQ Interne;Non Conforme;production_standard;Retour CQ traité;Retour CQ;2026-05-20;0.0;0.00029668823262774647;Faible
+134929;617220;VICHY VTC;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-20;0.0;0.00027077389981070585;Faible
+134568;574012;BENSSON;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-13;-7.0;0.0002088503026063246;Faible
+134693;622429;SERRURERIE HARDY EURL;CQ Client;Livré;production_standard;Retour CQ traité;Retour CQ traité;2026-05-18;-2.0;0.000182929361111366;Faible

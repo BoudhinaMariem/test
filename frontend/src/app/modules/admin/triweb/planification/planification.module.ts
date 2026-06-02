@@ -13,6 +13,7 @@ import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { SharedModule } from 'app/shared/shared.module';
 import { TriwebPlanificationComponent } from './planification.component';
 import { triwebPlanificationRoutes } from './planification.routing';
+import { DxTreeMapModule } from 'devextreme-angular';
 
 @NgModule({
     declarations: [TriwebPlanificationComponent],
@@ -26,6 +27,7 @@ import { triwebPlanificationRoutes } from './planification.routing';
         MatIconModule,
         MatInputModule,
         SharedModule,
+        DxTreeMapModule,
         DxChartModule, DxPieChartModule, DxDataGridModule
     ]
 })

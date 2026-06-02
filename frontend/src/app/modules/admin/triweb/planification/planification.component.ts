@@ -1,345 +1,873 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TriwebApiService } from '../triweb-api.service';
 
-@Component({selector: 'triweb-planification', templateUrl: './planification.component.html', encapsulation: ViewEncapsulation.None})
+@Component({
+    selector: 'triweb-planification',
+    templateUrl: './planification.component.html',
+    encapsulation: ViewEncapsulation.None
+})
 export class TriwebPlanificationComponent implements OnInit {
     title = 'Planification';
-    subtitle = 'Interface dédiée à la charge, aux échéances et aux alertes de retard par équipe.';
-    readonly triwebPalette = ['#EA7862', '#9C0F48', '#737373', '#F4B183', '#4C7C9A', '#54B399', '#8E6C88'];
-    readonly teamOptions = ['Tous', 'Rédacteur', 'Graphiste', 'CQ interne', 'CQ client'];
+    subtitle = 'Analyse des dossiers à planifier, échéances client, moyennes de pages et retards opérationnels.';
 
-    planningLoad: any[] = [];
-    availabilityItems: any[] = [];
+    readonly triwebPalette = [
+        '#EA7862',
+        '#9C0F48',
+        '#737373',
+        '#F4B183',
+        '#4C7C9A',
+        '#54B399',
+        '#8E6C88'
+    ];
+
+    loading = false;
+    apiLoaded = false;
+    lastUpdate = new Date();
+
+    search = '';
+    dateFrom = '';
+    dateTo = '';
+
+    selectedStatut = 'Tous';
+    selectedPosition = 'Tous';
+    selectedLoiHamon = 'Tous';
+    selectedNature = 'Tous';
+    selectedTeam = 'Tous';
+
     allItems: any[] = [];
     filteredItems: any[] = [];
 
-    apiColumns: any[] = [];
-
-    loading = false; 
-    apiLoaded = false; 
-    search = '';
-    selectedStatut = 'Tous'; 
-    selectedPosition = 'Tous'; 
-    selectedLoiHamon = 'Tous'; 
-    selectedNature = 'Tous'; 
-    selectedTeam = 'Tous'; 
-    dateFrom = ''; 
-    dateTo = '';
-    statutOptions: string[] = ['Tous']; 
-    positionOptions: string[] = ['Tous']; 
-    loiHamonOptions: string[] = ['Tous']; 
+    statutOptions: string[] = ['Tous'];
+    positionOptions: string[] = ['Tous'];
+    loiHamonOptions: string[] = ['Tous'];
     natureOptions: string[] = ['Tous'];
-    projects: any[] = []; 
-    summaryCards: any[] = []; delayKpis: any[] = []; occupationEquipes: any[] = []; echeanceData: any[] = []; receptionPlanningData: any[] = []; deliveryPlanningData: any[] = []; lateItems: any[] = []; retourItems: any[] = []; chargeByActorData: any[] = [];
+    teamOptions: string[] = ['Tous', 'Rédacteur', 'Graphiste', 'CQ interne', 'CQ client'];
+
+    summaryCards: any[] = [];
+
+    todayPlanningByPosition: any[] = [];
+    avgPagesByDeliveryDate: any[] = [];
+    avgPagesByRole: any[] = [];
+    statusPieData: any[] = [];
+    lateItems: any[] = [];
+    avgWorkloadByRole: any[] = [];
 
     constructor(private _triwebApiService: TriwebApiService) {}
+
     ngOnInit(): void {
         this.refreshPlanification();
     }
 
     refreshPlanification(): void {
-    this.loading = true;
+        this.loading = true;
 
-    this._triwebApiService.getItems().subscribe({
-        next: (items) => {
-    this.allItems = Array.isArray(items) ? items : [];
+        this._triwebApiService.getItems().subscribe({
+            next: (items) => {
+                const source = Array.isArray(items) ? items : [];
 
-    console.log('[Planification] dossiers API reçus =', this.allItems.length);
+                this.allItems = source.map((item) => this._normalizeApiItem(item));
+                this.filteredItems = [...this.allItems];
 
-    this.apiLoaded = true;
-    this._buildOptions();
-    this.applyFilters();
+                console.log('[Planification] dossiers API reçus =', this.allItems.length);
+                console.log('[Planification] colonnes API =', Object.keys(source[0] || {}));
 
-    this.loading = false;
-},
-        error: (error) => {
-            console.error('[Planification] erreur API items', error);
+                this.apiLoaded = true;
+                this.lastUpdate = new Date();
 
-            this.apiLoaded = false;
-            this.allItems = [];
-            this.filteredItems = [];
-            this.projects = [];
-            this.apiColumns = [];
-            this.summaryCards = [];
-            this.delayKpis = [];
-            this.occupationEquipes = [];
-            this.echeanceData = [];
-            this.receptionPlanningData = [];
-            this.deliveryPlanningData = [];
-            this.lateItems = [];
-            this.retourItems = [];
-            this.chargeByActorData = [];
+                this._buildOptions();
+                this.applyFilters();
 
-            this.loading = false;
-        }
-    });
-}
+                this.loading = false;
+            },
+            error: (error) => {
+                console.error('[Planification] erreur API items', error);
 
-private _normalizeApiItems(items: any[]): any[] {
-    return Array.isArray(items)
-        ? items.map((item) => this._normalizeApiItem(item))
-        : [];
-}
+                this.apiLoaded = false;
+                this.loading = false;
 
-private _normalizeApiItem(item: any): any {
-    const position = this._apiValue(item, ['position', 'postion', 'planProd', 'livraison']);
-    const codeClient = this._apiValue(item, ['codeClient', 'code', 'id', 'dossier']);
-    const client = this._apiValue(item, ['client', 'rs', 'raisonSociale', 'name', 'nom']);
-    const dateLivraisonPrevue = this._apiValue(item, [
-        'dateLivraisonPrevue',
-        'dateLivraisonPrevueIso',
-        'dateLivraison',
-        'livraisonPrevue',
-        'dateLivraisonClient'
-    ]);
+                this.allItems = [];
+                this.filteredItems = [];
 
-    return {
-        ...item,
-
-        codeClient,
-        client,
-        position,
-        statut: this._apiValue(item, ['statut', 'status']),
-        loiHamon: this._apiValue(item, ['loiHamon', 'loihamon', 'loi_hamon']),
-        nature: this._apiValue(item, ['nature', 'typeNature']),
-        page: Number(this._apiValue(item, ['page', 'pages', 'nbrPage', 'nbPages']) || 0),
-
-        dateLivraisonPrevue,
-        dateLivraisonPrevueIso: this._toIsoDate(dateLivraisonPrevue),
-
-        dateLivraisonIso: this._toIsoDate(this._apiValue(item, [
-            'dateLivraisonIso',
-            'dateLivraison',
-            'dateLivraisonReelle'
-        ])),
-
-        dateReceptionIso: this._toIsoDate(this._apiValue(item, [
-            'dateReceptionIso',
-            'dateReception',
-            'reception'
-        ])),
-
-        redacteur: this._apiValue(item, ['redacteur', 'rédacteur', 'teamR', 'userR']),
-        graphiste: this._apiValue(item, ['graphiste', 'teamG', 'userG']),
-        cqinterne: this._apiValue(item, ['cqinterne', 'cqInterne', 'teamCqi', 'userCqi']),
-        cqclient: this._apiValue(item, ['cqclient', 'cqClient', 'teamCqc', 'userCqc']),
-
-        etatR: this._apiValue(item, ['etatR', 'planR']),
-        etatG: this._apiValue(item, ['etatG', 'planG']),
-        etatCqi: this._apiValue(item, ['etatCqi', 'planCqi']),
-        etatCqc: this._apiValue(item, ['etatCqc', 'planCqc']),
-
-        dureeRHours: Number(this._apiValue(item, ['dureeRHours', 'dureeR', 'chargeR']) || 16),
-        dureeGHours: Number(this._apiValue(item, ['dureeGHours', 'dureeG', 'chargeG']) || 8),
-        dureeCqiHours: Number(this._apiValue(item, ['dureeCqiHours', 'dureeCqi', 'chargeCqi']) || 0),
-        dureeCqcHours: Number(this._apiValue(item, ['dureeCqcHours', 'dureeCqc', 'chargeCqc']) || 0)
-    };
-}
-
-private _apiValue(item: any, fields: string[]): any {
-    for (const field of fields) {
-        if (item && item[field] !== null && item[field] !== undefined && String(item[field]).trim() !== '') {
-            return item[field];
-        }
+                this.summaryCards = [];
+                this.todayPlanningByPosition = [];
+                this.avgPagesByDeliveryDate = [];
+                this.avgPagesByRole = [];
+                this.statusPieData = [];
+                this.lateItems = [];
+            }
+        });
     }
 
-    return '';
-}
+    resetFilters(): void {
+        this.search = '';
+        this.dateFrom = '';
+        this.dateTo = '';
 
-private _toIsoDate(value: any): string {
-    if (!value) {
-        return '';
+        this.selectedStatut = 'Tous';
+        this.selectedPosition = 'Tous';
+        this.selectedLoiHamon = 'Tous';
+        this.selectedNature = 'Tous';
+        this.selectedTeam = 'Tous';
+
+        this.applyFilters();
     }
-
-    const date = new Date(value);
-
-    if (isNaN(date.getTime())) {
-        return String(value);
-    }
-
-    return date.toISOString().substring(0, 10);
-}
-
-private _buildApiColumns(items: any[]): any[] {
-    const keys = new Set<string>();
-
-    items.forEach((item) => {
-        Object.keys(item || {}).forEach((key) => keys.add(key));
-    });
-
-    const preferred = [
-        'id',
-        'code',
-        'codeClient',
-        'client',
-        'rs',
-        'loiHamon',
-        'nature',
-        'statut',
-        'position',
-        'postion',
-        'livraison',
-        'planProd',
-        'page',
-        'dateReception',
-        'dateLivraisonPrevue',
-        'redacteur',
-        'etatR',
-        'graphiste',
-        'etatG',
-        'cqinterne',
-        'etatCqi',
-        'cqclient',
-        'etatCqc'
-    ];
-
-    const orderedKeys = [
-        ...preferred.filter((key) => keys.has(key)),
-        ...Array.from(keys).filter((key) => !preferred.includes(key)).sort()
-    ];
-
-    return orderedKeys.map((key) => ({
-        dataField: key,
-        caption: this._caption(key)
-    }));
-}
-
-private _caption(key: string): string {
-    return key
-        .replace(/([A-Z])/g, ' $1')
-        .replace(/^./, (x) => x.toUpperCase());
-}
-
-
 
     applyFilters(): void {
-        const term = this.search.trim().toLowerCase();
-        const from = this.dateFrom ? new Date(this.dateFrom) : null;
-        const to = this.dateTo ? new Date(this.dateTo) : null;
+        const term = this._norm(this.search);
+        const from = this.dateFrom ? this._parseTriwebDate(this.dateFrom) : null;
+        const to = this.dateTo ? this._parseTriwebDate(this.dateTo) : null;
+
         this.filteredItems = this.allItems.filter((item) => {
-            const haystack = [item.id, item.codeClient, item.client, item.rs, item.loiHamon, item.nature, item.statut, item.position, item.postion, item.planProd, item.teamR, item.teamG, item.redacteur, item.graphiste, item.cqinterne, item.cqclient, item.etatR, item.etatG, item.etatCqi, item.etatCqc, item.detail].join(' ').toLowerCase();
-            const itemDate = this._getItemDate(item);
-            const dateOk = (!from || (itemDate && itemDate >= from)) && (!to || (itemDate && itemDate <= to));
-            return (!term || haystack.includes(term))
-                && (this.selectedStatut === 'Tous' || this._norm(item.statut) === this._norm(this.selectedStatut) || this._norm(item.planProd) === this._norm(this.selectedStatut))
-                && (this.selectedPosition === 'Tous' || this._norm(this._position(item)) === this._norm(this.selectedPosition))
-                && (this.selectedLoiHamon === 'Tous' || this._norm(item.loiHamon) === this._norm(this.selectedLoiHamon))
-                && (this.selectedNature === 'Tous' || this._norm(item.nature) === this._norm(this.selectedNature))
-                && (this.selectedTeam === 'Tous' || this._matchesRole(item, this.selectedTeam))
-                && dateOk;
+            const searchable = this._norm([
+                item.id,
+                item.codeClient,
+                item.client,
+                item.loiHamon,
+                item.nature,
+                item.statut,
+                item.position,
+                item.teamR,
+                item.teamG,
+                item.redacteur,
+                item.graphiste,
+                item.cqinterne,
+                item.cqclient,
+                item.etatR,
+                item.etatG,
+                item.etatCqi,
+                item.etatCqc
+            ].join(' '));
+
+            if (term && !searchable.includes(term)) {
+                return false;
+            }
+
+            if (this.selectedStatut !== 'Tous' && item.statut !== this.selectedStatut) {
+                return false;
+            }
+
+            if (this.selectedPosition !== 'Tous' && item.position !== this.selectedPosition) {
+                return false;
+            }
+
+            if (this.selectedLoiHamon !== 'Tous' && item.loiHamon !== this.selectedLoiHamon) {
+                return false;
+            }
+
+            if (this.selectedNature !== 'Tous' && item.nature !== this.selectedNature) {
+                return false;
+            }
+
+            if (this.selectedTeam !== 'Tous' && !this._matchesRole(item, this.selectedTeam)) {
+                return false;
+            }
+
+            const itemDate = this._getPlanningDate(item);
+
+            if (from && itemDate && itemDate < from) {
+                return false;
+            }
+
+            if (to && itemDate && itemDate > to) {
+                return false;
+            }
+
+            return true;
         });
-        this._recalculatePlanning();
+
+        this._recalculateVisuals();
     }
 
-    resetFilters(): void { this.search = ''; this.selectedStatut = 'Tous'; this.selectedPosition = 'Tous'; this.selectedLoiHamon = 'Tous'; this.selectedNature = 'Tous'; this.selectedTeam = 'Tous'; this.dateFrom = ''; this.dateTo = ''; this.applyFilters(); }
-    getDossierAlert(item: any): 'green' | 'orange' | 'red' { return this._getOperationalDelay(item).level; }
+    customizePieTooltip = (arg: any): any => {
+        const value = arg.value || 0;
+        const percent = arg.percent ? `${(arg.percent * 100).toFixed(1)}%` : '';
+
+        return {
+            text: `${arg.argumentText} : ${value} dossier(s)<br>${percent}`
+        };
+    };
+
+   
+    customizeAvgPagesTooltip = (arg: any): any => {
+        const data = arg.point?.data || {};
+
+        return {
+            text:
+                `${arg.argumentText}<br>` +
+                `Moyenne pages : ${arg.valueText}<br>` +
+                `Dossiers : ${data.dossiers || 0}`
+        };
+    };
+
+    customizeLateTooltip = (arg: any): any => {
+        const data = arg.point?.data || {};
+
+        return {
+            text:
+                `${arg.argumentText}<br>` +
+                `Dossiers : ${arg.valueText}<br>` +
+                `Moyenne pages : ${data.avgPages || 0}`
+        };
+    };
+
+    private _recalculateVisuals(): void {
+        const items = this.filteredItems;
+
+        this.summaryCards = this._buildSummaryCards(items);
+        this.todayPlanningByPosition = this._buildTodayPlanningByPosition(items);
+        this.avgPagesByDeliveryDate = this._buildAvgPagesByDeliveryDate(items);
+        this.avgWorkloadByRole = this._buildAvgWorkloadByRole(items);        this.statusPieData = this._buildStatusPie(items);
+        this.lateItems = this._buildLateItems(items);
+    }
+
+    private _buildAvgWorkloadByRole(items: any[]): any[] {
+        const activeItems = items.filter((item) => {
+            return !this._isFinalized(item) &&
+                this._norm(item.position) !== 'client';
+        });
+
+        const roles = [
+            {
+                role: 'Rédaction',
+                matcher: (item: any) => this._roleHasWork(item.redacteur, item.etatR, item.planR)
+            },
+            {
+                role: 'Graphisme',
+                matcher: (item: any) => this._roleHasWork(item.graphiste, item.etatG, item.planG)
+            },
+            {
+                role: 'CQ interne',
+                matcher: (item: any) => this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi)
+            }
+        ];
+
+        return roles.map((role) => {
+            const roleItems = activeItems.filter((item) => role.matcher(item));
+            const totalPages = roleItems.reduce((sum, item) => sum + Number(item.page || 0), 0);
+
+            return {
+                role: role.role,
+                dossiers: roleItems.length,
+                totalPages,
+                avgPages: roleItems.length ? this._round(totalPages / roleItems.length) : 0
+            };
+        });
+    }
+    customizeWorkloadTooltip = (arg: any): any => {
+        const data = arg.point?.data || {};
+
+        return {
+            text:
+                `${arg.argumentText}<br>` +
+                `Charge moyenne : ${arg.valueText} pages/dossier<br>` +
+                `Dossiers actifs : ${data.dossiers || 0}<br>` +
+                `Pages totales : ${data.totalPages || 0}`
+        };
+    };
+
+    private _buildSummaryCards(items: any[]): any[] {
+        const todayKey = this._dateKey(new Date());
+
+        const todayItems = items.filter((item) => {
+            return item.dateLivraisonPrevueIso === todayKey &&
+                !this._isFinalized(item) &&
+                this._norm(item.position) !== 'client';
+        });
+
+        const next7Days = items.filter((item) => {
+            const due = this._parseTriwebDate(item.dateLivraisonPrevueIso, item.annee);
+
+            if (!due || this._isFinalized(item)) {
+                return false;
+            }
+
+            if (this._norm(item.position) === 'client') {
+                return false;
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const maxDate = new Date(today);
+            maxDate.setDate(maxDate.getDate() + 7);
+
+            return due >= today && due <= maxDate;
+        });
+
+        const late = this._buildLateItems(items);
+
+        const productionItems = items.filter((item) => {
+            return this._norm(item.position) === 'production' &&
+                !this._isFinalized(item);
+        });
+
+        const retours = items.filter((item) => {
+            return this._hasRetourCq(item) &&
+                this._norm(item.position) !== 'client';
+        });
+
+        const avgPagesToday = this._avg(todayItems.map((x) => Number(x.page || 0)));
+        const avgPagesNext7 = this._avg(next7Days.map((x) => Number(x.page || 0)));
+
+        return [
+            {
+                title: 'À livrer aujourd’hui',
+                value: todayItems.length,
+                detail: `${avgPagesToday} pages moy.`,
+                trend: todayItems.length > 0 ? 'down' : 'up'
+            },
+            {
+                title: 'Échéances 7 jours',
+                value: next7Days.length,
+                detail: `${avgPagesNext7} pages moy.`,
+                trend: next7Days.length > 0 ? 'neutral' : 'up'
+            },
+            {
+                title: 'Retards internes',
+                value: late.length,
+                detail: 'Hors position Client',
+                trend: late.length > 0 ? 'down' : 'up'
+            },
+            {
+                title: 'En production',
+                value: productionItems.length,
+                detail: 'Dossiers non finalisés',
+                trend: 'neutral'
+            },
+            {
+                title: 'Moyenne pages',
+                value: this._avg(items.map((x) => Number(x.page || 0))),
+                detail: 'Périmètre filtré',
+                trend: 'neutral'
+            },
+            {
+                title: 'Retours CQ',
+                value: retours.length,
+                detail: 'Hors position Client',
+                trend: retours.length > 0 ? 'down' : 'up'
+            }
+        ];
+    }
+
+    customizePlanningRoleTooltip = (arg: any): any => {
+        const data = arg.point?.data || {};
+
+        return {
+            text:
+                `${arg.argumentText}<br>` +
+                `Dossiers : ${data.dossiers || 0}<br>` +
+                `Pages totales : ${data.pages || 0}<br>` +
+                `Moyenne pages : ${data.avgPages || 0}`
+        };
+    };
+
+    private _buildTodayPlanningByPosition(items: any[]): any[] {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const maxDate = new Date(today);
+        maxDate.setDate(maxDate.getDate() + 7);
+
+        const roles = [
+            {
+                role: 'Rédaction',
+                matcher: (item: any) => this._roleHasWork(item.redacteur, item.etatR, item.planR)
+            },
+            {
+                role: 'Graphisme',
+                matcher: (item: any) => this._roleHasWork(item.graphiste, item.etatG, item.planG)
+            },
+            {
+                role: 'CQ interne',
+                matcher: (item: any) => this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi)
+            }
+        ];
+
+        return roles.map((role) => {
+            const roleItems = items.filter((item) => {
+                const due = this._parseTriwebDate(item.dateLivraisonPrevueIso, item.annee);
+
+                if (!due) {
+                    return false;
+                }
+
+                due.setHours(0, 0, 0, 0);
+
+                return due >= today &&
+                    due <= maxDate &&
+                    !this._isFinalized(item) &&
+                    this._norm(item.position) !== 'client' &&
+                    role.matcher(item);
+            });
+
+            const pages = roleItems.reduce((sum, item) => sum + Number(item.page || 0), 0);
+
+            return {
+                position: role.role,
+                dossiers: roleItems.length,
+                pages,
+                avgPages: roleItems.length ? this._round(pages / roleItems.length) : 0
+            };
+        });
+    }
+
+    private _buildAvgPagesByDeliveryDate(items: any[]): any[] {
+        const map = new Map<string, {
+            label: string;
+            dossiers: number;
+            pages: number;
+            avgPages: number;
+        }>();
+
+        const minDate = this._getLastTwoMonthsStartDate();
+
+        items.forEach((item) => {
+            const date = this._parseTriwebDate(item.dateLivraisonPrevueIso, item.annee);
+
+            if (!date || date < minDate) {
+                return;
+            }
+
+            const label = this._dateKey(date);
+
+            const current = map.get(label) || {
+                label,
+                dossiers: 0,
+                pages: 0,
+                avgPages: 0
+            };
+
+            current.dossiers += 1;
+            current.pages += Number(item.page || 0);
+            current.avgPages = this._round(current.pages / current.dossiers);
+
+            map.set(label, current);
+        });
+
+        return Array.from(map.values())
+            .sort((a, b) => String(a.label).localeCompare(String(b.label)));
+    }
+
+    private _buildAvgPagesByRole(items: any[]): any[] {
+        const activeItems = items.filter((item) => {
+            return !this._isFinalized(item) &&
+                this._norm(item.position) !== 'client';
+        });
+
+        const roles = [
+            {
+                role: 'Rédaction',
+                matcher: (item: any) => this._roleHasWork(item.redacteur, item.etatR, item.planR)
+            },
+            {
+                role: 'Graphisme',
+                matcher: (item: any) => this._roleHasWork(item.graphiste, item.etatG, item.planG)
+            },
+            {
+                role: 'CQ interne',
+                matcher: (item: any) => this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi)
+            },
+            {
+                role: 'CQ client',
+                matcher: (item: any) => this._roleHasWork(item.cqclient, item.etatCqc, item.planCqc)
+            }
+        ];
+
+        return roles.map((role) => {
+            const roleItems = activeItems.filter((item) => role.matcher(item));
+            const pages = roleItems.reduce((sum, item) => sum + Number(item.page || 0), 0);
+
+            return {
+                role: role.role,
+                dossiers: roleItems.length,
+                avgPages: roleItems.length ? this._round(pages / roleItems.length) : 0
+            };
+        });
+    }
+
+    private _buildStatusPie(items: any[]): any[] {
+        const map = new Map<string, number>();
+
+        items.forEach((item) => {
+            const statut = item.statut || 'Non défini';
+            map.set(statut, (map.get(statut) || 0) + 1);
+        });
+
+        return Array.from(map.entries())
+            .map(([statut, value]) => ({
+                statut,
+                value
+            }))
+            .filter((x) => x.value > 0)
+            .sort((a, b) => b.value - a.value);
+    }
+
+    private _buildLateItems(items: any[]): any[] {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        return items
+            .filter((item) => {
+                const due = this._parseTriwebDate(item.dateLivraisonPrevueIso, item.annee);
+
+                if (!due || this._isFinalized(item)) {
+                    return false;
+                }
+
+                if (this._norm(item.position) === 'client') {
+                    return false;
+                }
+
+                due.setHours(0, 0, 0, 0);
+
+                return due < today;
+            })
+            .map((item) => ({
+                ...item,
+                alertReason: 'Date prévue dépassée'
+            }));
+    }
+
+    private _normalizeApiItem(item: any): any {
+        const annee = Number(item.annee || new Date().getFullYear());
+
+        const dateLivraisonPrevue = this._apiValue(item, [
+            'dateLivraisonPrevue',
+            'datePrevue',
+            'deadline',
+            'dateEcheance',
+            'dateLivraisonClient'
+        ]);
+
+        const dateLivraison = this._apiValue(item, [
+            'dateLivraison',
+            'dateLivraisonIso',
+            'dateLivraisonReelle'
+        ]);
+
+        const dateReception = this._apiValue(item, [
+            'dateReception',
+            'dateReceptionIso',
+            'reception'
+        ]);
+
+        return {
+            ...item,
+
+            id: this._apiValue(item, ['id', 'idDossier'], ''),
+            codeClient: this._apiValue(item, ['codeClient', 'code', 'dossier'], ''),
+            client: this._apiValue(item, ['client', 'rs', 'raisonSociale', 'name', 'nom'], 'Client non défini'),
+
+            position: this._cleanPositionLabel(this._apiValue(item, [
+                'position',
+                'postion',
+                'planProd',
+                'livraison'
+            ], 'Non définie')),
+
+            statut: this._apiValue(item, ['statut', 'status'], 'Non défini'),
+            loiHamon: this._apiValue(item, ['loiHamon', 'loihamon', 'loi_hamon'], 'Non défini'),
+            nature: this._apiValue(item, ['nature', 'typeNature'], 'Non défini'),
+
+            page: this._toNumber(this._apiValue(item, ['page', 'pages', 'nbrPage', 'nbPages'], 0)),
+            charge: this._toNumber(this._apiValue(item, ['charge', 'estimation'], 0)),
+
+            dateLivraisonPrevue,
+            dateLivraison,
+            dateReception,
+
+            dateLivraisonPrevueIso: this._toIsoDate(dateLivraisonPrevue, annee),
+            dateLivraisonIso: this._toIsoDate(dateLivraison, annee),
+            dateReceptionIso: this._toIsoDate(dateReception, annee),
+
+            redacteur: this._apiValue(item, ['redacteur', 'rédacteur', 'teamR', 'userR'], ''),
+            graphiste: this._apiValue(item, ['graphiste', 'teamG', 'userG'], ''),
+            cqinterne: this._apiValue(item, ['cqinterne', 'cqInterne', 'teamCqi', 'userCqi'], ''),
+            cqclient: this._apiValue(item, ['cqclient', 'cqClient', 'teamCqc', 'userCqc'], ''),
+
+            teamR: this._apiValue(item, ['teamR'], ''),
+            teamG: this._apiValue(item, ['teamG'], ''),
+
+            etatR: this._apiValue(item, ['etatR', 'planR'], ''),
+            etatG: this._apiValue(item, ['etatG', 'planG'], ''),
+            etatCqi: this._apiValue(item, ['etatCqi', 'planCqi'], ''),
+            etatCqc: this._apiValue(item, ['etatCqc', 'planCqc'], ''),
+
+            planR: this._apiValue(item, ['planR'], ''),
+            planG: this._apiValue(item, ['planG'], ''),
+            planCqi: this._apiValue(item, ['planCqi'], ''),
+            planCqc: this._apiValue(item, ['planCqc'], ''),
+
+            annee
+        };
+    }
 
     private _buildOptions(): void {
-        this.statutOptions = this._uniqueValuesFromApi((item) => item.statut);
-        this.positionOptions = this._uniqueValuesFromApi((item) => this._position(item));
-        this.loiHamonOptions = this._uniqueValuesFromApi((item) => item.loiHamon);
-        this.natureOptions = this._uniqueValuesFromApi((item) => item.nature);
+        this.statutOptions = this._buildOptionList(this.allItems.map((item) => item.statut));
+        this.positionOptions = this._buildOptionList(this.allItems.map((item) => item.position));
+        this.loiHamonOptions = this._buildOptionList(this.allItems.map((item) => item.loiHamon));
+        this.natureOptions = this._buildOptionList(this.allItems.map((item) => item.nature));
     }
 
-    private _uniqueValuesFromApi(selector: (item: any) => any): string[] {
-        const values = this.allItems
-            .map(selector)
-            .filter((value) => value !== null && value !== undefined && String(value).trim() !== '')
-            .map((value) => String(value).trim());
+    private _buildOptionList(values: any[]): string[] {
+        const clean = Array.from(
+            new Set(
+                values
+                    .map((x) => String(x || '').trim())
+                    .filter((x) => x)
+            )
+        ).sort((a, b) => a.localeCompare(b));
 
-        return ['Tous', ...Array.from(new Set(values)).sort()];
+        return ['Tous', ...clean];
     }
 
+    private _getPlanningDate(item: any): Date | null {
+        return (
+            this._parseTriwebDate(item.dateLivraisonPrevueIso, item.annee) ||
+            this._parseTriwebDate(item.dateReceptionIso, item.annee) ||
+            this._parseTriwebDate(item.dateLivraisonIso, item.annee)
+        );
+    }
 
-    private _recalculatePlanning(): void {
-        const items = this.filteredItems;
-        const totalPages = items.reduce((sum, item) => sum + Number(item.page || 0), 0);
-        const redactionHours = Math.round(items.reduce((sum, item) => sum + Number(item.dureeRHours || item.charge || 0), 0));
-        const graphismeHours = Math.round(items.reduce((sum, item) => sum + Number(item.dureeGHours || 0), 0));
-        const productionAffected = items.filter((item) => this._isProductionAffected(item)).length;
-        const notAffected = items.filter((item) => !this._hasAnyAffectedState(item)).length;
-        const urgent = items.filter((item) => Number(item.priorite || 0) >= 3 || ['Livraison J', 'Livraison J+1'].includes(item.livraison)).length;
-        this.summaryCards = [
-            { title: 'Dossiers à planifier', value: `${notAffected}`, detail: 'Aucun état R/G/CQ affecté', tone: notAffected > 0 ? 'orange' : 'green' },
-            { title: 'Dossiers production affectés', value: `${productionAffected}`, detail: 'Position Production + état affecté', tone: 'green' },
-            { title: 'Pages à livrer', value: `${totalPages}`, detail: 'Volume pages sur livraisons prévues', tone: 'neutral' },
-            { title: 'Urgences planning', value: `${urgent}`, detail: 'Priorité ou livraison courte', tone: urgent > 0 ? 'red' : 'green' },
-            { title: 'Charge rédaction', value: `${redactionHours} h`, detail: 'Base 2 jours / 16h par dossier', tone: 'neutral' },
-            { title: 'Charge graphisme', value: `${graphismeHours} h`, detail: 'Base 1 jour / 8h par dossier', tone: 'neutral' }
+    private _getLastTwoMonthsStartDate(): Date {
+        const today = new Date();
+
+        return new Date(today.getFullYear(), today.getMonth() - 1, 1);
+    }
+
+    private _matchesRole(item: any, role: string): boolean {
+        const n = this._norm(role);
+
+        if (n === 'redacteur' || n === 'rédacteur') {
+            return this._roleHasWork(item.redacteur, item.etatR, item.planR);
+        }
+
+        if (n === 'graphiste') {
+            return this._roleHasWork(item.graphiste, item.etatG, item.planG);
+        }
+
+        if (n === 'cq interne') {
+            return this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi);
+        }
+
+        if (n === 'cq client') {
+            return this._roleHasWork(item.cqclient, item.etatCqc, item.planCqc);
+        }
+
+        return false;
+    }
+
+    private _roleHasWork(actor: any, etat: any, plan: any): boolean {
+        const actorName = this._norm(actor);
+        const state = this._norm(etat || plan);
+
+        if (!actorName && !state) {
+            return false;
+        }
+
+        if (
+            actorName.includes('non affecte') ||
+            actorName.includes('non affecté') ||
+            actorName.includes('en instance')
+        ) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private _isFinalized(item: any): boolean {
+        const values = [
+            item.statut,
+            item.etatR,
+            item.etatG,
+            item.etatCqi,
+            item.etatCqc,
+            item.planProd,
+            item.livraison
         ];
-        this.planningLoad = this._groupByWeek(items); 
-        this.occupationEquipes = this._groupByRole(items); 
-        this.echeanceData = this._groupByDelivery(items); 
-        this.projects = items;
-        this._buildPlanningContent(items);
+
+        return values.some((value) => {
+            const n = this._norm(value);
+
+            return n.includes('finalise') ||
+                n.includes('finalisé') ||
+                n.includes('valide') ||
+                n.includes('validé') ||
+                n.includes('livre') ||
+                n.includes('livré');
+        });
     }
 
-    private _groupByWeek(items: any[]): any[] { const map = new Map<string, any>(); items.forEach((item) => { const date = this._getItemDate(item) || new Date(); const key = `S${this._weekNumber(date)}`; const current = map.get(key) || { semaine: key, redaction: 0, graphisme: 0, cqi: 0, cqc: 0, dossiers: 0 }; current.redaction += Number(item.dureeRHours || item.charge || 0); current.graphisme += Number(item.dureeGHours || 0); current.cqi += Number(item.dureeCqiHours || 0); current.cqc += Number(item.dureeCqcHours || 0); current.dossiers += 1; map.set(key, current); }); return Array.from(map.values()).sort((a, b) => a.semaine.localeCompare(b.semaine)).slice(0, 12); }
-    private _groupByRole(items: any[]): any[] { const roles = [{ equipe: 'Rédacteur', durationField: 'dureeRHours' }, { equipe: 'Graphiste', durationField: 'dureeGHours' }, { equipe: 'CQ interne', durationField: 'dureeCqiHours' }, { equipe: 'CQ client', durationField: 'dureeCqcHours' }]; return roles.map((role) => { const roleItems = items.filter((item) => this._matchesRole(item, role.equipe)); const charge = roleItems.reduce((sum, item) => sum + Number(item[role.durationField] || 0), 0); return { equipe: role.equipe, occupation: Math.min(100, Math.round((charge / Math.max(1, roleItems.length * 8)) * 100)), dossiers: roleItems.length, charge: Math.round(charge * 100) / 100 }; }); }
-    private _groupByDelivery(items: any[]): any[] { const map = new Map<string, any>(); items.forEach((item) => { const label = item.dateLivraisonPrevueIso || item.dateLivraisonPrevue || 'Sans date'; const current = map.get(label) || { label, pages: 0, charge: 0 }; current.pages += Number(item.page || 0); current.charge += Number(item.totalHours || item.charge || 0); map.set(label, current); }); return Array.from(map.values()).sort((a, b) => String(a.label).localeCompare(String(b.label))).slice(0, 20); }
-    private _groupByDate(items: any[], isoField: string, labelField: string): any[] { const map = new Map<string, any>(); items.forEach((item) => { const label = item[isoField] || item[labelField] || 'Sans date'; const current = map.get(label) || { label, charge: 0, pages: 0 }; current.charge += Number(item.charge || 0); current.pages += Number(item.page || 0); map.set(label, current); }); return Array.from(map.values()).sort((a, b) => String(a.label).localeCompare(String(b.label))).slice(0, 30); }
-
-    private _buildPlanningContent(items: any[]): void {
-        this.receptionPlanningData = this._groupByDate(items, 'dateReceptionIso', 'dateReception'); this.deliveryPlanningData = this._groupByDelivery(items);
-        this.lateItems = items.map((item) => ({...item, alertLevel: this.getDossierAlert(item), alertReason: this._getOperationalDelay(item).reason})).filter((item) => item.alertLevel === 'red').slice(0, 50);
-        this.retourItems = items.filter((item) => this._hasRetourCq(item)).slice(0, 50); this.chargeByActorData = this._buildChargeByActor(items); this.delayKpis = this._buildDelayKpis(items);
-    }
-
-    private _buildChargeByActor(items: any[]): any[] { const map = new Map<string, any>(); items.forEach((item) => { [{ role: 'Rédacteur', name: item.redacteur, hours: item.dureeRHours, state: item.etatR }, { role: 'Graphiste', name: item.graphiste, hours: item.dureeGHours, state: item.etatG }, { role: 'CQ interne', name: item.cqinterne, hours: item.dureeCqiHours, state: item.etatCqi }, { role: 'CQ client', name: item.cqclient, hours: item.dureeCqcHours, state: item.etatCqc }].forEach((actor) => { const name = String(actor.name || '').trim(); if (!name || name.toLowerCase().includes('en instance')) { return; } const key = `${actor.role} - ${name}`; const current = map.get(key) || { actor: name, role: actor.role, dossiers: 0, hours: 0, retours: 0 }; current.dossiers += 1; current.hours += Number(actor.hours || 0); current.retours += this._isRetourValue(actor.state) ? 1 : 0; map.set(key, current); }); }); return Array.from(map.values()).map((x) => ({...x, hours: Math.round(x.hours * 100) / 100})).sort((a, b) => b.hours - a.hours).slice(0, 20); }
-
-    private _buildDelayKpis(items: any[]): any[] {
-        const total = items.length || 1;
-        const redactionLate = items.filter((item) => this._getOperationalDelay(item).reason.includes('Rédacteur')).length;
-        const graphismeLate = items.filter((item) => this._getOperationalDelay(item).reason.includes('Graphiste')).length;
-        const late = items.filter((item) => this.getDossierAlert(item) === 'red').length;
-        const warning = items.filter((item) => this.getDossierAlert(item) === 'orange').length;
-        const onTime = items.filter((item) => this._isDeliveredOrValidatedOnTime(item)).length;
-        const respectRate = Math.round((onTime / total) * 1000) / 10;
-        const lateRate = Math.round((late / total) * 1000) / 10;
-        return [
-            { title: 'Respect date client', value: `${respectRate}%`, detail: `${onTime} livraisons validées ou livrées à temps`, status: respectRate >= 90 ? 'green' : respectRate >= 75 ? 'orange' : 'red' },
-            { title: 'Retards rédaction', value: `${redactionLate}`, detail: 'État R en cours/en pause à J-1', status: redactionLate === 0 ? 'green' : redactionLate <= 5 ? 'orange' : 'red' },
-            { title: 'Retards graphisme', value: `${graphismeLate}`, detail: 'État G en cours/en pause le jour J', status: graphismeLate === 0 ? 'green' : graphismeLate <= 5 ? 'orange' : 'red' },
-            { title: 'Taux retard global', value: `${lateRate}%`, detail: `${late} retards + ${warning} alertes proches`, status: lateRate <= 5 ? 'green' : lateRate <= 15 ? 'orange' : 'red' }
+    private _hasRetourCq(item: any): boolean {
+        const values = [
+            item.statut,
+            item.position,
+            item.planR,
+            item.planG,
+            item.planCqi,
+            item.planCqc,
+            item.etatR,
+            item.etatG,
+            item.etatCqi,
+            item.etatCqc
         ];
+
+        return values.some((value) => {
+            const n = this._norm(value);
+
+            return n.includes('retour cq') ||
+                n.includes('retour') ||
+                n.includes('non conforme');
+        });
     }
 
-    private _weekNumber(date: Date): number { const firstDay = new Date(date.getFullYear(), 0, 1); const days = Math.floor((date.getTime() - firstDay.getTime()) / 86400000); return Math.ceil((days + firstDay.getDay() + 1) / 7); }
-    private _getItemDate(item: any): Date | null { const value = item.dateLivraisonPrevueIso || item.dateLivraisonIso || item.dateReceptionIso || item.debutRIso; if (value) { const date = new Date(value); return isNaN(date.getTime()) ? null : date; } return null; }
-    private _position(item: any): string {
-        return String(
-            item.position ||
-            item.postion ||
-            item.planProd ||
-            item.livraison ||
-            ''
-        ).trim();
-    }
-    private _norm(value: any): string { return String(value || '').trim().toLowerCase(); }
-    private _isActiveState(value: any): boolean { const state = this._norm(value); return state === 'en cours' || state === 'en pause'; }
-    private _isAffectedState(value: any): boolean { return this._norm(value) === 'affecté'; }
-    private _hasAnyAffectedState(item: any): boolean { return ['etatR', 'etatG', 'etatCqi', 'etatCqc', 'planR', 'planG', 'planCqi', 'planCqc'].some((field) => this._isAffectedState(item[field])); }
-    private _isProductionAffected(item: any): boolean { return this._norm(this._position(item)) === 'production' && this._hasAnyAffectedState(item); }
-    private _isFinalized(item: any): boolean { return [item.statut, item.etatR, item.etatG, item.etatCqi, item.etatCqc, item.planProd, item.livraison].some((value) => { const n = this._norm(value); return n.includes('finalisé') || n.includes('finalise') || n.includes('validé') || n.includes('valide') || n.includes('livré') || n.includes('livre'); }); }
-    private _isDeliveredOrValidatedOnTime(item: any): boolean { if (!this._isFinalized(item) || !item.dateLivraisonPrevueIso) { return false; } const due = new Date(item.dateLivraisonPrevueIso); const delivered = item.dateLivraisonIso ? new Date(item.dateLivraisonIso) : due; if (isNaN(due.getTime()) || isNaN(delivered.getTime())) { return false; } due.setHours(23, 59, 59, 999); delivered.setHours(0, 0, 0, 0); return delivered <= due; }
-    private _hasRetourCq(item: any): boolean { return [item.statut, item.position, item.postion, item.planR, item.planG, item.planCqi, item.planCqc, item.etatR, item.etatG, item.etatCqi, item.etatCqc].some((value) => this._isRetourValue(value)); }
-    private _isRetourValue(value: any): boolean { const n = this._norm(value); return n.includes('retour cq') || n.includes('retour cq traité') || n.includes('non conforme'); }
-    private _matchesRole(item: any, role: string): boolean { const n = this._norm(role); if (n === 'rédacteur' || n === 'redacteur') { return this._roleHasWork(item.redacteur, item.etatR, item.planR); } if (n === 'graphiste') { return this._roleHasWork(item.graphiste, item.etatG, item.planG); } if (n === 'cq interne') { return this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi); } if (n === 'cq client') { return this._roleHasWork(item.cqclient, item.etatCqc, item.planCqc); } return false; }
-    private _roleHasWork(actor: any, etat: any, plan: any): boolean { const actorName = this._norm(actor); const states = [this._norm(etat), this._norm(plan)]; return (!!actorName && !actorName.includes('en instance')) || states.some((state) => state !== '' && !state.includes('en instance')); }
+    private _cleanPositionLabel(value: any): string {
+        const raw = String(value || '').trim();
 
-    private _getOperationalDelay(item: any): { level: 'green' | 'orange' | 'red'; reason: string } {
-        if (this._isDeliveredOrValidatedOnTime(item)) { return { level: 'green', reason: 'Livré / validé à temps' }; }
-        const due = item.dateLivraisonPrevueIso ? new Date(item.dateLivraisonPrevueIso) : null;
-        if (!due || isNaN(due.getTime())) { return { level: 'orange', reason: 'Date livraison prévue manquante' }; }
-        const today = new Date(); today.setHours(0, 0, 0, 0); due.setHours(0, 0, 0, 0);
-        const diffDays = Math.ceil((due.getTime() - today.getTime()) / 86400000);
-        if (this._isActiveState(item.etatR) && diffDays <= 1) { return { level: 'red', reason: 'Rédacteur en cours/en pause à J-1 de livraison' }; }
-        if (this._isActiveState(item.etatG) && diffDays <= 0) { return { level: 'red', reason: 'Graphiste en cours/en pause le jour J de livraison' }; }
-        if (!this._isFinalized(item) && diffDays < 0) { return { level: 'red', reason: 'Date livraison dépassée' }; }
-        if (this._isActiveState(item.etatR) && diffDays <= 2) { return { level: 'orange', reason: 'Rédaction proche de la limite 2 jours' }; }
-        if (this._isActiveState(item.etatG) && diffDays <= 1) { return { level: 'orange', reason: 'Graphisme proche de la limite 1 jour' }; }
-        if (diffDays <= 2) { return { level: 'orange', reason: 'Livraison proche' }; }
-        return { level: 'green', reason: 'Planning sous contrôle' };
+        if (!raw) {
+            return 'Non définie';
+        }
+
+        const n = this._norm(raw);
+
+        if (n.includes('production')) {
+            return 'Production';
+        }
+
+        if (n.includes('cq client')) {
+            return 'CQ Client';
+        }
+
+        if (n.includes('cq interne')) {
+            return 'CQ Interne';
+        }
+
+        if (n.includes('client')) {
+            return 'Client';
+        }
+
+        if (n.includes('ftp')) {
+            return 'FTP';
+        }
+
+        if (n.includes('archive')) {
+            return 'Archive';
+        }
+
+        return raw;
     }
 
+    private _toIsoDate(value: any, fallbackYear?: any): string {
+        const date = this._parseTriwebDate(value, fallbackYear);
+
+        if (!date) {
+            return '';
+        }
+
+        return this._dateKey(date);
+    }
+
+    private _parseTriwebDate(value: any, fallbackYear?: any): Date | null {
+        if (!value) {
+            return null;
+        }
+
+        const raw = String(value).trim();
+
+        if (!raw) {
+            return null;
+        }
+
+        const year = Number(fallbackYear || new Date().getFullYear());
+
+        const iso = raw.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+
+        if (iso) {
+            const y = Number(iso[1]);
+            const month = Number(iso[2]);
+            const day = Number(iso[3]);
+            const date = new Date(y, month - 1, day);
+
+            return isNaN(date.getTime()) ? null : date;
+        }
+
+        const ddmm = raw.match(/^(\d{1,2})[\/\-\.](\d{1,2})$/);
+
+        if (ddmm) {
+            const day = Number(ddmm[1]);
+            const month = Number(ddmm[2]);
+            const date = new Date(year, month - 1, day);
+
+            return isNaN(date.getTime()) ? null : date;
+        }
+
+        const ddmmyyyy = raw.match(/^(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](\d{2,4})$/);
+
+        if (ddmmyyyy) {
+            const day = Number(ddmmyyyy[1]);
+            const month = Number(ddmmyyyy[2]);
+            let y = Number(ddmmyyyy[3]);
+
+            if (y < 100) {
+                y += 2000;
+            }
+
+            const date = new Date(y, month - 1, day);
+
+            return isNaN(date.getTime()) ? null : date;
+        }
+
+        return null;
+    }
+
+    private _dateKey(date: Date): string {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+
+        return `${y}-${m}-${d}`;
+    }
+
+    private _avg(values: number[]): number {
+        const clean = values.filter((x) => !isNaN(x));
+
+        if (!clean.length) {
+            return 0;
+        }
+
+        return this._round(clean.reduce((sum, value) => sum + value, 0) / clean.length);
+    }
+
+    private _round(value: number): number {
+        return Math.round(value * 100) / 100;
+    }
+
+    private _toNumber(value: any): number {
+        if (value === null || value === undefined || value === '') {
+            return 0;
+        }
+
+        const parsed = Number(String(value).replace(',', '.'));
+
+        return isNaN(parsed) ? 0 : parsed;
+    }
+
+    private _apiValue(item: any, fields: string[], defaultValue: any = ''): any {
+        for (const field of fields) {
+            if (item && item[field] !== null && item[field] !== undefined && String(item[field]).trim() !== '') {
+                return item[field];
+            }
+        }
+
+        return defaultValue;
+    }
+
+    private _norm(value: any): string {
+        return String(value || '')
+            .trim()
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
 }

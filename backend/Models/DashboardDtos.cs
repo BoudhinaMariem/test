@@ -1,5 +1,7 @@
 namespace Triweb.Api.Models;
 
+//using Triweb.Api.Data.Models;
+
 public record MetaTableDto(string Name, int Rows, List<string> Columns);
 public record MetaDto(string Database, string? LatestFactDate, List<MetaTableDto> Tables);
 

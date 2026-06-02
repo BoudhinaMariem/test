@@ -1,32 +1,233 @@
+<div class="flex flex-col flex-auto min-w-0 p-6 sm:p-10 bg-gray-50 dark:bg-transparent">
 
-<div class="flex flex-col flex-auto min-w-0 p-6 sm:p-10 bg-gray-50">
-  <div>
-    <div class="text-3xl font-extrabold tracking-tight">{{ title }}</div>
-    <div class="text-secondary mt-1">{{ subtitle }}</div>
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
-    <div class="bg-card rounded-2xl shadow p-6"><div class="text-secondary text-sm">Modèles actifs</div><div class="mt-2 text-3xl font-bold">1</div></div>
-    <div class="bg-card rounded-2xl shadow p-6"><div class="text-secondary text-sm">Précision moyenne</div><div class="mt-2 text-3xl font-bold">84%</div></div>
-    <div class="bg-card rounded-2xl shadow p-6"><div class="text-secondary text-sm">Dernier run</div><div class="mt-2 text-3xl font-bold">Aujourd'hui</div></div>
-  </div>
-  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-8">
-    <div class="xl:col-span-2 bg-card rounded-2xl shadow p-6">
-      <div class="text-lg font-semibold mb-4">Catalogue des modèles</div>
-      <dx-data-grid [dataSource]="modelsItems" [showBorders]="false" [columnAutoWidth]="true">
-        <dxi-column dataField="modele" caption="Modèle"></dxi-column>
-        <dxi-column dataField="version"></dxi-column>
-        <dxi-column dataField="statut"></dxi-column>
-        <dxi-column dataField="usage"></dxi-column>
-        <dxi-column dataField="precision" caption="Précision"></dxi-column>
-      </dx-data-grid>
+    <div class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6">
+        <div>
+            <div class="flex items-center gap-3">
+                <div
+                    class="flex items-center justify-center w-12 h-12 rounded-2xl text-white shadow"
+                    style="background:#9C0F48"
+                >
+                    
+                </div><mat-icon [svgIcon]="'heroicons_outline:cog'"></mat-icon>
+
+                <div>
+                    <div class="text-3xl font-extrabold tracking-tight">
+                        Modèles ML opérationnels
+                    </div>
+                    <div class="text-secondary mt-1">
+                        Prédiction retard, charge restante et score d’affectation.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3 text-sm text-secondary">
+                Source :
+                <span
+                    class="font-medium"
+                    [ngClass]="{
+                        'text-green-600': apiStatus,
+                        'text-red-600': !apiStatus
+                    }"
+                >
+                    {{ apiStatus ? 'FastAPI ML connectée' : 'FastAPI ML non connectée' }}
+                </span>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button
+                mat-stroked-button
+                color="primary"
+                (click)="checkHealth()"
+            >
+                Tester API
+            </button>
+
+            <button
+                mat-flat-button
+                color="primary"
+                (click)="predict()"
+                [disabled]="loading"
+            >
+                {{ loading ? 'Prédiction...' : 'Prédire' }}
+            </button>
+        </div>
     </div>
-    <div class="bg-card rounded-2xl shadow p-6">
-      <div class="text-lg font-semibold mb-4">Roadmap</div>
-      <div class="space-y-4 text-sm">
-        <div><span class="font-semibold">Étape 1:</span> brancher les vraies APIs .NET.</div>
-        <div><span class="font-semibold">Étape 2:</span> exposer les endpoints Python.</div>
-        <div><span class="font-semibold">Étape 3:</span> afficher les scores en production.</div>
-      </div>
+
+    <div
+        *ngIf="errorMessage"
+        class="mt-6 rounded-xl border border-red-200 bg-red-50 text-red-700 px-4 py-3"
+    >
+        {{ errorMessage }}
     </div>
-  </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-8">
+
+        <div class="xl:col-span-2 bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">
+                Formulaire de prédiction
+            </div>
+            <div class="text-sm text-secondary mb-6">
+                Remplis les informations du dossier pour obtenir les résultats des meilleurs modèles.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Position</mat-label>
+                    <select matNativeControl [(ngModel)]="form.position">
+                        <option *ngFor="let item of positionOptions" [value]="item">
+                            {{ item }}
+                        </option>
+                    </select>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Statut</mat-label>
+                    <select matNativeControl [(ngModel)]="form.statut">
+                        <option *ngFor="let item of statutOptions" [value]="item">
+                            {{ item }}
+                        </option>
+                    </select>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Type projet</mat-label>
+                    <select matNativeControl [(ngModel)]="form.loiType">
+                        <option *ngFor="let item of loiTypeOptions" [value]="item.value">
+                            {{ item.label }}
+                        </option>
+                    </select>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Nature</mat-label>
+                    <input matInput [(ngModel)]="form.nature" />
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>État R</mat-label>
+                    <select matNativeControl [(ngModel)]="form.etatR">
+                        <option *ngFor="let item of etatOptions" [value]="item">
+                            {{ item || 'Vide' }}
+                        </option>
+                    </select>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>État G</mat-label>
+                    <select matNativeControl [(ngModel)]="form.etatG">
+                        <option *ngFor="let item of etatOptions" [value]="item">
+                            {{ item || 'Vide' }}
+                        </option>
+                    </select>
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Team R</mat-label>
+                    <input matInput [(ngModel)]="form.teamR" />
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Team G</mat-label>
+                    <input matInput [(ngModel)]="form.teamG" />
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Pages</mat-label>
+                    <input matInput type="number" [(ngModel)]="form.page" />
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Charge</mat-label>
+                    <input matInput type="number" [(ngModel)]="form.charge" />
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Total heures</mat-label>
+                    <input matInput type="number" [(ngModel)]="form.totalHours" />
+                </mat-form-field>
+
+                <mat-form-field class="fuse-mat-dense">
+                    <mat-label>Jours restants</mat-label>
+                    <input matInput type="number" [(ngModel)]="form.joursRestants" />
+                </mat-form-field>
+
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 mt-6">
+                <button
+                    mat-flat-button
+                    color="primary"
+                    (click)="predict()"
+                    [disabled]="loading"
+                >
+                    Lancer prédiction
+                </button>
+
+                <button
+                    mat-stroked-button
+                    color="primary"
+                    (click)="resetForm()"
+                >
+                    Réinitialiser
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">
+                Résultats ML
+            </div>
+            <div class="text-sm text-secondary mb-6">
+                Résultats retournés par FastAPI.
+            </div>
+
+            <ng-container *ngIf="result; else emptyResult">
+
+                <div class="rounded-2xl border p-5 mb-4">
+                    <div class="text-secondary text-sm">
+                        Risque retard
+                    </div>
+                    <div class="text-3xl font-bold mt-2" [ngClass]="getRiskClass()">
+                        {{ result.retard.niveau_risque_retard }}
+                    </div>
+                    <div class="text-sm text-secondary mt-2">
+                        Probabilité : {{ result.retard.prob_retard | percent:'1.1-1' }}
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border p-5 mb-4">
+                    <div class="text-secondary text-sm">
+                        Charge restante estimée
+                    </div>
+                    <div class="text-3xl font-bold mt-2">
+                        {{ result.charge.charge_estimee_heures }} h
+                    </div>
+                    <div class="text-sm text-secondary mt-2">
+                        {{ result.charge.charge_estimee_minutes }} minutes
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border p-5">
+                    <div class="text-secondary text-sm">
+                        Score affectation
+                    </div>
+                    <div class="text-3xl font-bold mt-2">
+                        {{ result.affectation.score_affectation }}
+                    </div>
+                    <div class="text-sm text-secondary mt-2">
+                        {{ result.affectation.avis }}
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <ng-template #emptyResult>
+                <div class="rounded-2xl border border-dashed p-6 text-center text-secondary">
+                    Aucun résultat pour le moment.
+                </div>
+            </ng-template>
+        </div>
+    </div>
 </div>

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { UserService } from 'app/core/user/user.service';
 
+const TRIWEB_DEV_ACCESS_TOKEN = 'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJleHAiOjQxMDI0NDQ4MDAsImlhdCI6MTcwNDA2NzIwMCwic3ViIjoidHJpd2ViLWRldi1hZG1pbiJ9.';
+
 @Injectable()
 export class AuthService
 {
@@ -51,7 +53,7 @@ export class AuthService
         if (credentials.email === 'admin@triweb.com' && credentials.password === 'admin')
         {
             const response = {
-                accessToken: 'fake-access-token',
+                accessToken: TRIWEB_DEV_ACCESS_TOKEN,
                 user: {
                     id: 1,
                     name: 'Admin Triweb',

@@ -1,4 +1,17 @@
-import { Route } from '@angular/router';
-import { TriwebModelsComponent } from './models.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-export const triwebModelsRoutes: Route[] = [{ path: '', component: TriwebModelsComponent }];
+import { ModelsComponent } from './models.component';
+
+const routes: Routes = [
+    {
+        path: '',
+        component: ModelsComponent
+    }
+];
+
+@NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+})
+export class ModelsRoutingModule {}

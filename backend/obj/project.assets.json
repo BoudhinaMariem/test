@@ -1692,11 +1692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marie\\Downloads\\triweb\\triweb\\backend\\Triweb.Api.csproj",
+      "projectUniqueName": "C:\\Users\\marie\\Downloads\\triweb1\\triweb\\backend\\Triweb.Api.csproj",
       "projectName": "Triweb.Api",
-      "projectPath": "C:\\Users\\marie\\Downloads\\triweb\\triweb\\backend\\Triweb.Api.csproj",
+      "projectPath": "C:\\Users\\marie\\Downloads\\triweb1\\triweb\\backend\\Triweb.Api.csproj",
       "packagesPath": "C:\\Users\\marie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marie\\Downloads\\triweb\\triweb\\backend\\obj\\",
+      "outputPath": "C:\\Users\\marie\\Downloads\\triweb1\\triweb\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\marie\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1752,7 +1752,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.420/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.421/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

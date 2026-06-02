@@ -54,7 +54,7 @@ export const appRoutes: Route[] = [
                     //{ path: 'performance', loadChildren: () => import('app/modules/admin/triweb/performance/performance.module').then(m => m.TriwebPerformanceModule) },
                     { path: 'planification', loadChildren: () => import('app/modules/admin/triweb/planification/planification.module').then(m => m.TriwebPlanificationModule) },
                     //{ path: 'disponibilite', loadChildren: () => import('app/modules/admin/triweb/disponibilite/disponibilite.module').then(m => m.TriwebDisponibiliteModule) },
-                    //{ path: 'models', loadChildren: () => import('app/modules/admin/triweb/models/models.module').then(m => m.TriwebModelsModule) },
+                    { path: 'models', loadChildren: () => import('app/modules/admin/triweb/models/models.module').then(m => m.TriwebModelsModule) },                    
                     { path: 'powerbi', loadChildren: () => import('app/modules/admin/triweb/powerbi/powerbi.module').then(m => m.TriwebPowerbiModule) }            
                 ]
             },

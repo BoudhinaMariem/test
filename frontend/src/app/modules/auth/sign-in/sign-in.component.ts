@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 
+const TRIWEB_DEV_ACCESS_TOKEN = 'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJleHAiOjQxMDI0NDQ4MDAsImlhdCI6MTcwNDA2NzIwMCwic3ViIjoidHJpd2ViLWRldi1hZG1pbiJ9.';
+
 @Component({
     selector     : 'auth-sign-in',
     templateUrl  : './sign-in.component.html',
@@ -51,7 +53,7 @@ export class AuthSignInComponent implements OnInit
 
         if (email === 'admin@triweb.com' && password === 'admin')
         {
-            localStorage.setItem('accessToken', 'fake-token');
+            localStorage.setItem('accessToken', TRIWEB_DEV_ACCESS_TOKEN);
             localStorage.setItem('user', JSON.stringify({
                 email: email,
                 name: 'Admin Triweb',
