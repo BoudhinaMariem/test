@@ -2,3 +2,92 @@
 /*  @ Import/write your custom styles here.
 /*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
 /* ----------------------------------------------------------------------------------------------------- */
+
+/* Triweb sidebar — navigation + logo décoratif */
+fuse-vertical-navigation {
+
+    .fuse-vertical-navigation-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .fuse-vertical-navigation-content-footer {
+        position: relative;
+        z-index: 1;
+    }
+
+    .sidebar-bottom-logo,
+    .sidebar-bottom-logo img {
+        pointer-events: none !important;
+        user-select: none;
+    }
+
+    .sidebar-bottom-logo {
+        width: 220px;
+        margin: 18px auto 1.5rem;
+        opacity: 0.18;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 100%;
+            max-height: 7rem;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+    }
+
+    fuse-vertical-navigation-basic-item {
+        margin-bottom: 0;
+
+        > .fuse-vertical-navigation-item-wrapper {
+            margin: 0 12px 4px;
+        }
+
+        .fuse-vertical-navigation-item {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            min-height: 44px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 0 16px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+
+            .fuse-vertical-navigation-item-icon {
+                width: 22px;
+                min-width: 22px;
+                height: 22px;
+                margin-right: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+
+                svg {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+
+            .fuse-vertical-navigation-item-label {
+                line-height: 1;
+                white-space: nowrap;
+            }
+        }
+
+        .fuse-vertical-navigation-item:not(.fuse-vertical-navigation-item-disabled) {
+
+            &.fuse-vertical-navigation-item-active,
+            &.fuse-vertical-navigation-item-active-forced {
+                font-weight: 600;
+            }
+        }
+    }
+}

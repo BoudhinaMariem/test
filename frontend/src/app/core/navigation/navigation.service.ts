@@ -37,7 +37,7 @@ export class NavigationService
     private _buildNavigation(items: any[]): Navigation
     {
         const children: FuseNavigationItem[] = (items || []).map((item) => ({
-            id   : `triweb.${item.id}`,
+            id   : item.id?.startsWith('triweb.') ? item.id : `triweb.${item.id}`,
             title: item.title,
             type : 'basic',
             icon : item.icon,

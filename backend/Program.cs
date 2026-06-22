@@ -96,7 +96,7 @@ app.MapGet("/api/menu", () => Results.Ok(new[]
     new { id = "dashboard", title = "Dashboard général", icon = "heroicons_outline:chart-square-bar", link = "/triweb/dashboard" },
     new { id = "planification", title = "Planification", icon = "heroicons_outline:calendar", link = "/triweb/planification" },
     new { id = "powerbi", title = "Power BI", icon = "heroicons_outline:presentation-chart-bar", link = "/triweb/powerbi" },
-    new { id = "triweb.models", title = "Modèles IA", icon = "heroicons_outline:chip", link = "/triweb/models" }
+    new { id = "models", title = "Modèles IA", icon = "heroicons_outline:chip", link = "/triweb/models" }
 }));
 
 // Dashboard endpoints
