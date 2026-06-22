@@ -39,6 +39,7 @@
         "devextreme": "22.1.12",
         "devextreme-angular": "22.1.12",
         "highlight.js": "11.2.0",
+        "keycloak-js": "^16.1.1",
         "lodash-es": "4.17.21",
         "moment": "2.29.1",
         "ng-apexcharts": "1.5.12",

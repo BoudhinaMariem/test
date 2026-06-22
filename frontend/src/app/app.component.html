@@ -52,12 +52,28 @@
         </div>
 
         <div class="triweb-chatbot-body">
-            <div
-                *ngFor="let message of chatbotMessages"
+            <div *ngFor="let message of chatbotMessages"
                 class="triweb-chatbot-message"
                 [class.triweb-chatbot-message-user]="message.from === 'user'">
-                {{ message.text }}
+
+            <div>{{ message.text }}</div>
+
+            <div *ngIf="message.from === 'bot' && message.suggestions?.length"
+                class="triweb-chatbot-suggestions">
+
+                <button
+                *ngFor="let suggestion of message.suggestions"
+                type="button"
+                class="triweb-chatbot-suggestion"
+                (click)="askSuggestedQuestion(suggestion)">
+                {{ suggestion }}
+                </button>
+
             </div>
+            </div>
+
+
+
         </div>
 
         <div class="triweb-chatbot-footer">

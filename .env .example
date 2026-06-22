@@ -1,0 +1,3 @@
+OPENAI_API_KEY=REMPLACER_PAR_CLE_GROQ
+OPENAI_MODEL=llama-3.1-8b-instant
+OPENAI_BASE_URL=https://api.groq.com/openai/v1

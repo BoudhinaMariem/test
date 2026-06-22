@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
+import { KeycloakService } from 'app/core/keycloak/keycloak.service';
 
 const TRIWEB_DEV_ACCESS_TOKEN = 'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJleHAiOjQxMDI0NDQ4MDAsImlhdCI6MTcwNDA2NzIwMCwic3ViIjoidHJpd2ViLWRldi1hZG1pbiJ9.';
 
@@ -12,8 +13,7 @@ const TRIWEB_DEV_ACCESS_TOKEN = 'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJleHAiOjQ
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class AuthSignInComponent implements OnInit
-{
+export class AuthSignInComponent implements OnInit {
     alert: { type: FuseAlertType; message: string } = {
         type   : 'success',
         message: ''
@@ -24,24 +24,32 @@ export class AuthSignInComponent implements OnInit
 
     constructor(
         private _router: Router,
-        private _formBuilder: FormBuilder
-    )
-    {
+        private _formBuilder: FormBuilder,
+        private _keycloakService: KeycloakService
+    ) {
     }
 
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         this.signInForm = this._formBuilder.group({
             email     : ['admin@triweb.com', [Validators.required, Validators.email]],
             password  : ['admin', [Validators.required]],
             rememberMe: [false]
         });
+
+        if (this._keycloakService.isAuthenticated()) {
+            localStorage.setItem('accessToken', 'keycloak');
+            localStorage.setItem('user', JSON.stringify({
+                email: this._keycloakService.getUsername(),
+                name: this._keycloakService.getUsername(),
+                role: this._keycloakService.getRoles().join(', ')
+            }));
+
+            this._router.navigateByUrl('/triweb/dashboard');
+        }
     }
 
-    signIn(): void
-    {
-        if (this.signInForm.invalid)
-        {
+    signIn(): void {
+        if (this.signInForm.invalid) {
             this.signInForm.markAllAsTouched();
             return;
         }
@@ -51,8 +59,7 @@ export class AuthSignInComponent implements OnInit
         const email = this.signInForm.get('email')?.value;
         const password = this.signInForm.get('password')?.value;
 
-        if (email === 'admin@triweb.com' && password === 'admin')
-        {
+        if (email === 'admin@triweb.com' && password === 'admin') {
             localStorage.setItem('accessToken', TRIWEB_DEV_ACCESS_TOKEN);
             localStorage.setItem('user', JSON.stringify({
                 email: email,
@@ -62,8 +69,7 @@ export class AuthSignInComponent implements OnInit
 
             this._router.navigateByUrl('/triweb/dashboard');
         }
-        else
-        {
+        else {
             this.alert = {
                 type   : 'error',
                 message: 'Wrong email or password'
@@ -75,5 +81,9 @@ export class AuthSignInComponent implements OnInit
                 password: 'admin'
             });
         }
+    }
+
+    signInWithKeycloak(): void {
+        this._keycloakService.login();
     }
 }

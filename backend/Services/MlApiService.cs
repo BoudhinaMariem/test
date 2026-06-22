@@ -76,5 +76,16 @@ namespace Triweb.Api.Services
 
             return content;
         }
+
+        public async Task<string> PostRawAsync(string endpoint, object payload)
+        {
+            var response = await _httpClient.PostAsJsonAsync(endpoint, payload);
+            var content = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new InvalidOperationException(content);
+
+            return content;
+        }
     }
 }

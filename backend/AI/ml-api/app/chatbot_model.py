@@ -1,590 +1,366 @@
-import sys
 import json
-import io
+import os
+import urllib.error
 import urllib.request
-import unicodedata
 from datetime import datetime
-from collections import Counter
+from typing import Any, Dict
 
 
-# Important pour .NET + Windows : sortie UTF-8 stable
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+DEFAULT_OPENAI_BASE_URL = "https://api.groq.com/openai/v1"
+DEFAULT_OPENAI_MODEL = "llama-3.1-8b-instant"
 
 
-def norm(value):
-    if value is None:
-        return ""
-
-    text = str(value).strip().lower()
-    text = unicodedata.normalize("NFD", text)
-    text = "".join(c for c in text if unicodedata.category(c) != "Mn")
-    text = " ".join(text.split())
-
-    return text
+class ChatbotException(Exception):
+    pass
 
 
-def safe_get(item, *keys, default=""):
-    if not isinstance(item, dict):
-        return default
+def _get_openai_settings() -> Dict[str, str]:
+    api_key = os.getenv("OPENAI_API_KEY", "").strip()
+    model = os.getenv("OPENAI_MODEL", DEFAULT_OPENAI_MODEL).strip()
+    base_url = os.getenv("OPENAI_BASE_URL", DEFAULT_OPENAI_BASE_URL).strip().rstrip("/")
 
-    for key in keys:
-        value = item.get(key)
-        if value not in [None, ""]:
-            return str(value).strip()
-
-    return default
-
-
-def parse_date(value):
-    if not value:
-        return None
-
-    raw = str(value).strip()
-
-    if not raw:
-        return None
-
-    # Date courte : 18/05
-    try:
-        if len(raw) == 5 and raw[2] in ["/", "-", "."]:
-            day = int(raw[0:2])
-            month = int(raw[3:5])
-
-            return datetime(
-                year=datetime.now().year,
-                month=month,
-                day=day
-            )
-    except Exception:
-        return None
-
-    formats = [
-        "%d/%m/%Y",
-        "%d-%m-%Y",
-        "%d.%m.%Y",
-        "%Y-%m-%d",
-        "%Y-%m-%dT%H:%M:%S",
-        "%Y-%m-%dT%H:%M:%S.%f"
-    ]
-
-    for fmt in formats:
-        try:
-            return datetime.strptime(raw, fmt)
-        except Exception:
-            pass
-
-    return None
-
-
-def extract_items(parsed):
-    if isinstance(parsed, list):
-        return parsed
-
-    if isinstance(parsed, dict):
-        for key in ["items", "data", "result", "results", "rows", "value"]:
-            value = parsed.get(key)
-            if isinstance(value, list):
-                return value
-
-    return []
-
-
-def load_items(payload):
-    if isinstance(payload.get("items"), list):
-        return payload["items"]
-
-    api_url = payload.get("apiUrl")
-
-    if api_url:
-        request = urllib.request.Request(
-            api_url,
-            headers={
-                "User-Agent": "TriwebChatbot/1.0",
-                "Accept": "application/json"
-            }
+    if not api_key:
+        raise ChatbotException(
+            "Cle OpenAI manquante. Configure OPENAI_API_KEY puis relance FastAPI."
         )
-
-        with urllib.request.urlopen(request, timeout=60) as response:
-            data = response.read().decode("utf-8")
-            parsed = json.loads(data)
-            return extract_items(parsed)
-
-    data_path = payload.get("dataPath")
-
-    if data_path:
-        with open(data_path, "r", encoding="utf-8") as file:
-            parsed = json.load(file)
-            return extract_items(parsed)
-
-    return []
-
-
-def normalize_items(items):
-    normalized = []
-
-    for item in items:
-        statut = safe_get(item, "statut", "status", default="Non défini")
-        position = safe_get(item, "postion", "position", "phase", "etape", default="Non défini")
-        nature = safe_get(item, "nature", "typeProjet", "produit", default="Non défini")
-
-        client = safe_get(
-            item,
-            "rs",
-            "client",
-            "raisonSociale",
-            "nomClient",
-            "name",
-            default="Client non défini"
-        )
-
-        code_client = safe_get(item, "codeClient", "code", "customerCode", default="")
-
-        team_r = safe_get(item, "teamR", "equipeR", "teamRedaction", "equipeRedaction", default="")
-        team_g = safe_get(item, "teamG", "equipeG", "teamGraphisme", "equipeGraphisme", default="")
-
-        redacteur = safe_get(item, "redacteur", "writer", default="")
-        graphiste = safe_get(item, "graphiste", "designer", default="")
-
-        etat_r = safe_get(item, "etatR", default="")
-        etat_g = safe_get(item, "etatG", default="")
-        etat_cqi = safe_get(item, "etatCqi", "etatCQI", default="")
-        etat_cqc = safe_get(item, "etatCqc", "etatCQC", default="")
-
-        livraison_prevue = safe_get(
-            item,
-            "dateLivraisonPrevue",
-            "datePrevue",
-            "deadline",
-            "dateEcheance",
-            default=""
-        )
-
-        livraison = safe_get(
-            item,
-            "dateLivraison",
-            "dateLivraisonReelle",
-            "deliveryDate",
-            default=""
-        )
-
-        date_reception = safe_get(item, "dateReception", "receptionDate", default="")
-
-        page = safe_get(item, "page", "pages", default="0")
-        charge = safe_get(item, "estimation", "charge", "estimatedTime", default="0")
-
-        try:
-            page = int(float(str(page).replace(",", ".")))
-        except Exception:
-            page = 0
-
-        try:
-            charge = float(str(charge).replace(",", "."))
-        except Exception:
-            charge = 0
-
-        normalized.append({
-            "statut": statut,
-            "statutNorm": norm(statut),
-
-            "position": position,
-            "positionNorm": norm(position),
-
-            "nature": nature,
-            "natureNorm": norm(nature),
-
-            "client": client,
-            "clientNorm": norm(client),
-
-            "codeClient": code_client,
-            "codeClientNorm": norm(code_client),
-
-            "teamR": team_r,
-            "teamG": team_g,
-
-            "redacteur": redacteur,
-            "graphiste": graphiste,
-
-            "etatR": etat_r,
-            "etatG": etat_g,
-            "etatCqi": etat_cqi,
-            "etatCqc": etat_cqc,
-
-            "etatRNorm": norm(etat_r),
-            "etatGNorm": norm(etat_g),
-            "etatCqiNorm": norm(etat_cqi),
-            "etatCqcNorm": norm(etat_cqc),
-
-            "dateLivraisonPrevue": livraison_prevue,
-            "dateLivraison": livraison,
-            "dateReception": date_reception,
-
-            "dateLivraisonPrevueParsed": parse_date(livraison_prevue),
-            "dateLivraisonParsed": parse_date(livraison),
-            "dateReceptionParsed": parse_date(date_reception),
-
-            "page": page,
-            "charge": charge
-        })
-
-    return normalized
-
-
-def is_delivered(item):
-    statut = item.get("statutNorm", "")
-    return "livre" in statut
-
-
-def is_validated(item):
-    statut = item.get("statutNorm", "")
-    return "valide" in statut
-
-
-def is_finished(item):
-    return is_delivered(item) or is_validated(item)
-
-
-def is_retour(item):
-    values = [
-        item.get("statutNorm", ""),
-        item.get("positionNorm", ""),
-        item.get("etatRNorm", ""),
-        item.get("etatGNorm", ""),
-        item.get("etatCqiNorm", ""),
-        item.get("etatCqcNorm", "")
-    ]
-
-    return any(
-        "retour cq" in value
-        or "retour" in value
-        or "non conforme" in value
-        or value == "ko"
-        for value in values
-    )
-
-
-def is_delivered_on_time(item):
-    if not is_delivered(item):
-        return False
-
-    due = item.get("dateLivraisonPrevueParsed")
-    delivered = item.get("dateLivraisonParsed")
-
-    if not due or not delivered:
-        return False
-
-    due = due.replace(hour=23, minute=59, second=59, microsecond=999999)
-    delivered = delivered.replace(hour=0, minute=0, second=0, microsecond=0)
-
-    return delivered <= due
-
-
-def is_delivered_late(item):
-    if not is_delivered(item):
-        return False
-
-    due = item.get("dateLivraisonPrevueParsed")
-    delivered = item.get("dateLivraisonParsed")
-
-    if not due or not delivered:
-        return False
-
-    due = due.replace(hour=23, minute=59, second=59, microsecond=999999)
-    delivered = delivered.replace(hour=0, minute=0, second=0, microsecond=0)
-
-    return delivered > due
-
-
-def is_operational_late(item):
-    due = item.get("dateLivraisonPrevueParsed")
-
-    if not due:
-        return False
-
-    if is_finished(item):
-        return False
-
-    today = datetime.now().date()
-    return due.date() < today
-
-
-def is_urgent(item):
-    due = item.get("dateLivraisonPrevueParsed")
-
-    if not due:
-        return False
-
-    if is_finished(item):
-        return False
-
-    today = datetime.now().date()
-    diff_days = (due.date() - today).days
-
-    return 0 <= diff_days <= 1
-
-
-def build_summary(items):
-    total = len(items)
-
-    statuts = Counter(item["statut"] for item in items)
-    positions = Counter(item["position"] for item in items)
-    natures = Counter(item["nature"] for item in items)
-
-    delivered = [item for item in items if is_delivered(item)]
-    delivered_on_time = [item for item in items if is_delivered_on_time(item)]
-    delivered_late = [item for item in items if is_delivered_late(item)]
-
-    retours = [item for item in items if is_retour(item)]
-    overdue = [item for item in items if is_operational_late(item)]
-    urgent = [item for item in items if is_urgent(item)]
-
-    upcoming = [
-        item for item in items
-        if item.get("dateLivraisonPrevueParsed")
-        and not is_finished(item)
-        and item["dateLivraisonPrevueParsed"].date() >= datetime.now().date()
-    ]
-
-    teams = Counter()
-    redacteurs = Counter()
-    graphistes = Counter()
-
-    for item in items:
-        if item["teamR"]:
-            teams[item["teamR"]] += 1
-
-        if item["teamG"]:
-            teams[item["teamG"]] += 1
-
-        if item["redacteur"]:
-            redacteurs[item["redacteur"]] += 1
-
-        if item["graphiste"]:
-            graphistes[item["graphiste"]] += 1
-
-    charge_total = sum(item["charge"] for item in items)
-    pages_total = sum(item["page"] for item in items)
 
     return {
-        "total": total,
-
-        "delivered": len(delivered),
-        "deliveredOnTime": len(delivered_on_time),
-        "deliveredLate": len(delivered_late),
-
-        "retours": len(retours),
-        "overdue": len(overdue),
-        "urgent": len(urgent),
-        "upcoming": len(upcoming),
-
-        "chargeTotal": charge_total,
-        "pagesTotal": pages_total,
-
-        "statuts": statuts,
-        "positions": positions,
-        "natures": natures,
-        "teams": teams,
-        "redacteurs": redacteurs,
-        "graphistes": graphistes,
-
-        "overdueItems": overdue,
-        "urgentItems": urgent,
-        "upcomingItems": upcoming,
-        "retourItems": retours,
-        "deliveredLateItems": delivered_late
+        "api_key": api_key,
+        "model": model,
+        "base_url": base_url
     }
 
 
-def format_counter(counter, limit=8):
-    if not counter:
-        return "Aucune donnée disponible."
+def _build_chat_completions_url(base_url: str) -> str:
+    base_url = base_url.rstrip("/")
 
-    lines = []
+    if base_url.endswith("/chat/completions"):
+        return base_url
 
-    for label, count in counter.most_common(limit):
-        lines.append(f"- {label} : {count}")
-
-    return "\n".join(lines)
+    return f"{base_url}/chat/completions"
 
 
-def format_items(items, limit=8, include_reason=False):
-    if not items:
-        return "Aucun dossier trouvé."
+def build_rag_context(
+    question: str,
+    business_context: Dict[str, Any] | None = None
+) -> Dict[str, Any]:
+    business_context = business_context or {}
 
-    lines = []
+    return {
+        "generatedAt": datetime.now().isoformat(timespec="seconds"),
+        "question": question,
+        "source": "triweb_business_context",
+        "businessContext": business_context,
+        "ragStatus": "RAG structure pret. Embeddings non actives pour le moment."
+    }
 
-    for item in items[:limit]:
-        line = (
-            f"- {item['client']} ({item['codeClient']}) : "
-            f"{item['nature']} - {item['position']} - {item['statut']}"
-        )
+def should_use_local_answer(question: str) -> bool:
+    q = (question or "").lower()
 
-        if item.get("dateLivraisonPrevue"):
-            line += f" - prévue le {item['dateLivraisonPrevue']}"
+    llm_keywords = [
+        "comment",
+        "pourquoi",
+        "recommande",
+        "recommandation",
+        "propose",
+        "améliorer",
+        "ameliorer",
+        "réduire",
+        "reduire",
+        "optimiser",
+        "analyse",
+        "analyser",
+        "risque",
+        "priorité",
+        "priorite",
+        "décision",
+        "decision",
+        "stratégie",
+        "strategie",
+        "plan d'action",
+        "solution"
+    ]
 
-        if include_reason:
-            if is_operational_late(item):
-                line += " - raison : date prévue dépassée et dossier non finalisé"
-            elif is_urgent(item):
-                line += " - raison : livraison prévue aujourd’hui ou demain"
-            elif is_retour(item):
-                line += " - raison : retour CQ / non conforme"
+    if any(keyword in q for keyword in llm_keywords):
+        return False
 
-        lines.append(line)
+    local_keywords = [
+        "résumé",
+        "resume",
+        "combien",
+        "nombre",
+        "total",
+        "non affect",
+        "retour cq",
+        "retours cq",
+        "cq",
+        "urgent",
+        "urgence",
+        "équipe la plus chargée",
+        "equipe la plus chargee",
+        "plus grande charge",
+        "finalisé",
+        "finalise",
+        "livré",
+        "livre"
+    ]
 
-    return "\n".join(lines)
+    if any(keyword in q for keyword in local_keywords):
+        return True
 
+    return False
 
-def answer_question(question, items):
-    q = norm(question)
-    summary = build_summary(items)
+def call_openai(question: str, rag_context: Dict[str, Any]) -> str:
+    settings = _get_openai_settings()
 
-    if not items:
-        return (
-            "Je n’ai pas réussi à charger les données du dashboard. "
-            "Vérifie le lien API configuré côté backend ou le payload envoyé au chatbot."
-        )
-
-    if any(word in q for word in ["bonjour", "salut", "hello", "hi"]):
-        return (
-            "Bonjour, je suis l’assistant Triweb. "
-            "Je peux répondre sur les dossiers, retards, statuts, équipes, retours CQ, "
-            "livraisons et charge de production."
-        )
-
-    if any(word in q for word in ["combien", "total", "nombre", "dossiers"]):
-        return (
-            f"Le périmètre actuel contient {summary['total']} dossiers.\n"
-            f"- Livrés : {summary['delivered']}\n"
-            f"- Livrés à temps : {summary['deliveredOnTime']}\n"
-            f"- Livrés en retard : {summary['deliveredLate']}\n"
-            f"- En retour CQ / non conformes : {summary['retours']}\n"
-            f"- Retards opérationnels : {summary['overdue']}\n"
-            f"- Urgences J/J+1 : {summary['urgent']}\n"
-            f"- Pages totales : {summary['pagesTotal']}\n"
-            f"- Charge totale estimée : {summary['chargeTotal']:.0f} h"
-        )
-
-    if any(word in q for word in ["retard", "depasse", "depassé", "dépassé", "urgence", "urgent"]):
-        if summary["overdue"] == 0 and summary["urgent"] == 0:
-            return "Aucun retard opérationnel ou urgence J/J+1 détecté sur le périmètre chargé."
-
-        lines = []
-
-        if summary["overdue"] > 0:
-            lines.append(f"{summary['overdue']} dossier(s) en retard opérationnel :")
-            lines.append(format_items(summary["overdueItems"], 8, include_reason=True))
-
-        if summary["urgent"] > 0:
-            lines.append("")
-            lines.append(f"{summary['urgent']} dossier(s) en urgence J/J+1 :")
-            lines.append(format_items(summary["urgentItems"], 8, include_reason=True))
-
-        return "\n".join(lines).strip()
-
-    if any(word in q for word in ["livre", "livré", "livraison", "date livraison"]):
-        return (
-            f"Livraisons :\n"
-            f"- Dossiers livrés : {summary['delivered']}\n"
-            f"- Livrés à temps : {summary['deliveredOnTime']}\n"
-            f"- Livrés en retard : {summary['deliveredLate']}\n\n"
-            f"Dossiers livrés en retard :\n"
-            f"{format_items(summary['deliveredLateItems'], 8)}"
-        )
-
-    if any(word in q for word in ["statut", "status", "repartition", "répartition"]):
-        return "Répartition des statuts :\n" + format_counter(summary["statuts"], 10)
-
-    if any(word in q for word in ["position", "phase", "etape", "étape"]):
-        return "Répartition par position / étape :\n" + format_counter(summary["positions"], 10)
-
-    if any(word in q for word in ["nature", "produit", "type"]):
-        return "Répartition par nature de projet :\n" + format_counter(summary["natures"], 10)
-
-    if any(word in q for word in ["equipe", "équipe", "team"]):
-        return "Répartition par équipe :\n" + format_counter(summary["teams"], 12)
-
-    if any(word in q for word in ["redacteur", "rédacteur", "redaction", "rédaction"]):
-        return "Répartition par rédacteur :\n" + format_counter(summary["redacteurs"], 12)
-
-    if any(word in q for word in ["graphiste", "graphisme"]):
-        return "Répartition par graphiste :\n" + format_counter(summary["graphistes"], 12)
-
-    if any(word in q for word in ["retour", "non conforme", "cq"]):
-        if summary["retours"] == 0:
-            return "Aucun dossier en retour CQ ou non conforme détecté."
-
-        return (
-            f"{summary['retours']} dossier(s) en retour CQ / non conforme :\n"
-            f"{format_items(summary['retourItems'], 10, include_reason=True)}"
-        )
-
-    if any(word in q for word in ["planning", "planification", "prochaine", "prochaines", "prevu", "prévu"]):
-        if summary["upcoming"] == 0:
-            return "Aucune livraison à venir détectée."
-
-        sorted_items = sorted(
-            summary["upcomingItems"],
-            key=lambda x: x["dateLivraisonPrevueParsed"] or datetime.max
-        )
-
-        return (
-            "Prochaines livraisons prévues :\n"
-            + format_items(sorted_items, 10)
-        )
-
-    matches = []
-
-    for item in items:
-        if q in item["clientNorm"] or q in item["codeClientNorm"]:
-            matches.append(item)
-
-    if matches:
-        return (
-            f"{len(matches)} dossier(s) trouvé(s) :\n"
-            + format_items(matches, 10)
-        )
-
-    return (
-        "Je peux répondre sur les dossiers, les retards, les statuts, les équipes, "
-        "la planification, les retours CQ, les livraisons, les rédacteurs et les graphistes.\n"
-        "Exemples :\n"
-        "- Combien de dossiers actifs ?\n"
-        "- Quels dossiers sont en retard ?\n"
-        "- Donne-moi la répartition par statut.\n"
-        "- Quelle est la charge par équipe ?\n"
-        "- Quels dossiers sont en retour CQ ?\n"
-        "- Quelles sont les prochaines livraisons ?"
+    system_prompt = (
+        "Tu es l'assistant opérationnel TRIWEB. "
+        "Tu réponds uniquement à partir du JSON businessContext fourni. "
+        "Ne donne jamais une définition générale. "
+        "Si la question concerne la planification, le dashboard, les retours CQ, les équipes, les dossiers urgents ou non affectés, "
+        "utilise d'abord businessContext.indicateursPrincipaux et businessContext.analyses. "
+        "Réponse courte, maximum 4 phrases. "
+        "Cite les chiffres disponibles. "
+        "Si une valeur est absente, dis seulement que cette valeur n'est pas disponible."
     )
 
+    user_prompt = {
+        "instruction": (
+            "Analyse uniquement les données TRIWEB ci-dessous. "
+            "Réponds avec une synthèse métier courte. "
+            "N'explique pas ce qu'est la planification en général."
+        ),
+        "question": question,
+        "businessContext": rag_context.get("businessContext", {})
+    }
 
-def main():
+    body = {
+        "model": settings["model"],
+        "temperature": 0.2,
+        "messages": [
+            {
+                "role": "system",
+                "content": system_prompt
+            },
+            {
+                "role": "user",
+                "content": json.dumps(user_prompt, ensure_ascii=False)
+            }
+        ]
+    }
+
+    headers = {
+        "Authorization": f"Bearer {settings['api_key']}",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "User-Agent": "TriwebChatbot/1.0"
+    }
+
+    request = urllib.request.Request(
+        _build_chat_completions_url(settings["base_url"]),
+        data=json.dumps(body).encode("utf-8"),
+        headers=headers,
+        method="POST"
+    )
+
     try:
-        raw_input = sys.stdin.read()
-        payload = json.loads(raw_input) if raw_input.strip() else {}
+        with urllib.request.urlopen(request, timeout=60) as response:
+            raw_response = response.read().decode("utf-8")
+            parsed = json.loads(raw_response)
 
-        question = payload.get("question", "")
-        items = load_items(payload)
-        normalized_items = normalize_items(items)
-        answer = answer_question(question, normalized_items)
-
-        result = {
-            "success": True,
-            "answer": answer,
-            "count": len(normalized_items)
-        }
-
-        print(json.dumps(result, ensure_ascii=False))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise ChatbotException(f"Erreur OpenAI HTTP {exc.code} : {detail}")
 
     except Exception as exc:
-        result = {
+        raise ChatbotException(f"Erreur appel OpenAI : {str(exc)}")
+
+    try:
+        return parsed["choices"][0]["message"]["content"].strip()
+    except Exception:
+        raise ChatbotException("Reponse OpenAI invalide ou vide.")
+
+def build_local_answer(question: str, business_context: Dict[str, Any] | None = None) -> str:
+    ctx = business_context or {}
+    q = (question or "").lower()
+
+    indicateurs = (
+        ctx.get("indicateursPrincipaux")
+        or ctx.get("indicateurs_principaux")
+        or {}
+    )
+
+    analyses = ctx.get("analyses") or {}
+
+    total = indicateurs.get("totalDossiers", "non disponible")
+    affectes = indicateurs.get("dossiersAffectesProduction", "non disponible")
+    non_affectes = indicateurs.get("dossiersNonAffectes", "non disponible")
+    finalises = indicateurs.get("dossiersFinalises", "non disponible")
+    pages = indicateurs.get("pagesLivreesAujourdhui", "non disponible")
+    retours = indicateurs.get("retoursCq", "non disponible")
+    urgents = indicateurs.get("dossiersUrgents", "non disponible")
+    equipe_plus_chargee = indicateurs.get("equipePlusChargee")
+
+    # 1. Question sur les dossiers non affectés
+    if "non affect" in q:
+        return (
+            f"Il y a {non_affectes} dossiers non affectés sur un total de {total} dossiers. "
+            "Ces dossiers doivent être priorisés pour l’affectation afin de réduire le risque de retard."
+        )
+
+    # 2. Question sur les retours CQ
+    if "retour" in q or "cq" in q or "cqi" in q or "cqc" in q:
+        return (
+            f"Il y a {retours} dossiers en retour CQ. "
+            "Cela indique des dossiers nécessitant une correction ou une reprise avant validation finale."
+        )
+
+    # 3. Question sur les dossiers urgents
+    if "urgent" in q or "urgence" in q:
+        raisons = analyses.get("raisonsUrgence") or []
+
+        if "pourquoi" in q or "raison" in q or "consid" in q:
+            if isinstance(raisons, list) and len(raisons) > 0:
+                details = []
+
+                for raison in raisons[:3]:
+                    libelle = raison.get("raison", "raison non précisée")
+                    count = raison.get("count", "non disponible")
+                    details.append(f"{count} dossiers : {libelle}")
+
+                return (
+                    f"Les {urgents} dossiers urgents sont identifiés selon les règles de priorité de la planification. "
+                    + "Répartition : "
+                    + "; ".join(details)
+                    + "."
+                )
+
+            return (
+                f"Il y a {urgents} dossiers urgents. "
+                "La raison détaillée n’est pas disponible dans les données chargées."
+            )
+
+        return (
+            f"Il y a {urgents} dossiers urgents dans la planification. "
+            "Ils doivent être traités en priorité pour limiter les retards de livraison."
+        )
+
+    # 4. Question sur l’équipe la plus chargée
+    if "équipe" in q or "equipe" in q or "charge" in q or "chargée" in q or "chargee" in q:
+        if isinstance(equipe_plus_chargee, dict):
+            equipe = equipe_plus_chargee.get("equipe", "non disponible")
+            nb_dossiers = equipe_plus_chargee.get("nbDossiers", "non disponible")
+            charge_totale = equipe_plus_chargee.get("chargeTotale", "non disponible")
+
+            return (
+                f"L’équipe la plus chargée est {equipe} avec {nb_dossiers} dossiers. "
+                f"La charge totale calculée est {charge_totale}."
+            )
+
+        return "L’équipe la plus chargée n’est pas disponible dans les données chargées."
+
+    # 5. Question sur les dossiers finalisés
+    if "finalis" in q or "livr" in q:
+        return (
+            f"{finalises} dossiers sont finalisés et {pages} pages ont été livrées aujourd’hui. "
+            "Ces indicateurs montrent l’avancement réel de la production."
+        )
+
+    # 6. Résumé général par défaut
+    equipe_text = ""
+
+    if isinstance(equipe_plus_chargee, dict):
+        equipe = equipe_plus_chargee.get("equipe")
+        nb_dossiers = equipe_plus_chargee.get("nbDossiers")
+        charge_totale = equipe_plus_chargee.get("chargeTotale")
+
+        if equipe:
+            equipe_text = f" L’équipe la plus chargée est {equipe}"
+            if nb_dossiers is not None:
+                equipe_text += f" avec {nb_dossiers} dossiers"
+            if charge_totale is not None:
+                equipe_text += f" et une charge totale de {charge_totale}"
+            equipe_text += "."
+
+    return (
+        f"Résumé de la planification : {total} dossiers au total, "
+        f"{affectes} affectés en production et {non_affectes} non affectés. "
+        f"{finalises} dossiers sont finalisés, {pages} pages ont été livrées aujourd’hui, "
+        f"{retours} dossiers sont en retour CQ et {urgents} dossiers sont urgents."
+        f"{equipe_text}"
+    )
+
+def build_suggested_questions(business_context: Dict[str, Any] | None = None) -> list[str]:
+    ctx = business_context or {}
+    indicateurs = ctx.get("indicateursPrincipaux") or {}
+
+    suggestions = [
+        "Quels sont les dossiers non affectés ?",
+        "Quelle équipe a la plus grande charge ?",
+        "Combien de dossiers sont en retour CQ ?",
+        "Quels sont les dossiers urgents ?"
+    ]
+
+    if indicateurs.get("dossiersUrgents", 0):
+        suggestions.append("Pourquoi ces dossiers sont considérés comme urgents ?")
+
+    if indicateurs.get("dossiersNonAffectes", 0):
+        suggestions.append("Comment réduire le nombre de dossiers non affectés ?")
+
+    return suggestions[:5]
+
+def ask_chatbot(
+    question: str,
+    business_context: Dict[str, Any] | None = None
+) -> Dict[str, Any]:
+    question = (question or "").strip()
+
+    if not question:
+        return {
             "success": False,
-            "answer": "Erreur Python chatbot : " + str(exc),
-            "count": 0
+            "answer": "Question vide.",
+            "suggestions": build_suggested_questions(business_context),
+            "provider": "none",
+            "model": "none",
+            "generatedAt": datetime.now().isoformat(timespec="seconds")
         }
 
-        print(json.dumps(result, ensure_ascii=False))
+    # Mode 1 : questions KPI simples -> réponse locale fiable
+    if should_use_local_answer(question):
+        return {
+            "success": True,
+            "answer": build_local_answer(question, business_context),
+            "suggestions": build_suggested_questions(business_context),
+            "provider": "local-analytics",
+            "model": "business-context",
+            "generatedAt": datetime.now().isoformat(timespec="seconds")
+        }
 
+    # Mode 2 : questions d'analyse / recommandation -> LLM Groq
+    try:
+        rag_context = build_rag_context(question, business_context)
+        answer = call_openai(question, rag_context)
 
-if __name__ == "__main__":
-    main()
+        return {
+            "success": True,
+            "answer": answer,
+            "suggestions": build_suggested_questions(business_context),
+            "provider": "llm",
+            "model": os.getenv("OPENAI_MODEL", DEFAULT_OPENAI_MODEL),
+            "generatedAt": rag_context["generatedAt"]
+        }
+
+    # Mode 3 : si Groq échoue -> fallback local
+    except Exception as exc:
+        return {
+            "success": True,
+            "answer": (
+                build_local_answer(question, business_context)
+                + "\n\nNote : le LLM n’a pas répondu, donc cette réponse utilise le fallback local."
+            ),
+            "suggestions": build_suggested_questions(business_context),
+            "provider": "local-fallback",
+            "model": "business-context",
+            "technicalError": str(exc),
+            "generatedAt": datetime.now().isoformat(timespec="seconds")
+        }

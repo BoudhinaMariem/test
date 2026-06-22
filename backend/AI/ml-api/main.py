@@ -1,11 +1,13 @@
 from pathlib import Path
-from typing import List
+from typing import Any, Dict, List
 
 import joblib
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+
+from app.chatbot_model import ask_chatbot
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -14,6 +16,25 @@ MODELS_DIR = APP_DIR / "models"
 RETARD_MODEL_PATH = MODELS_DIR / "best_retard_model.joblib"
 CHARGE_MODEL_PATH = MODELS_DIR / "best_charge_model.joblib"
 AFFECTATION_MODEL_PATH = MODELS_DIR / "best_affectation_model.joblib"
+
+app = FastAPI(
+    title="TriWeb ML API",
+    description="API ML pour prédiction retard, charge restante, score d’affectation et chatbot.",
+    version="1.0.0"
+)
+
+
+
+class ChatbotAskRequest(BaseModel):
+    question: str
+    businessContext: Dict[str, Any] = {}
+
+@app.post("/chatbot/ask")
+def chatbot_ask(payload: ChatbotAskRequest):
+    return ask_chatbot(
+        question=payload.question,
+        business_context=payload.businessContext
+    )
 
 FEATURES = [
     "position",
@@ -42,11 +63,6 @@ models = {
     "affectation": None
 }
 
-app = FastAPI(
-    title="TriWeb ML API",
-    description="API ML pour prédiction retard, charge restante et score d’affectation.",
-    version="1.0.0"
-)
 
 
 class DossierPredictionInput(BaseModel):
@@ -230,3 +246,99 @@ def predict_all(payload: DossierPredictionInput):
 @app.post("/predict/batch")
 def predict_batch(payloads: List[DossierPredictionInput]):
     return [predict_all(payload) for payload in payloads]
+
+
+@app.post("/predict/planning-risk")
+def predict_planning_risk(payload: DossierPredictionInput):
+    daily_capacity = 8
+    jours = max(payload.jours_restants, 1)
+    capacity = jours * daily_capacity
+
+    charge_ratio = float(payload.charge) / capacity if capacity > 0 else 0
+
+    risk_score = 0
+
+    if charge_ratio >= 1.2:
+        risk_score += 45
+    elif charge_ratio >= 0.9:
+        risk_score += 30
+    elif charge_ratio >= 0.6:
+        risk_score += 15
+
+    if payload.page >= 30:
+        risk_score += 25
+    elif payload.page >= 15:
+        risk_score += 15
+    elif payload.page >= 8:
+        risk_score += 8
+
+    if payload.jours_restants <= 1:
+        risk_score += 20
+    elif payload.jours_restants <= 3:
+        risk_score += 10
+
+    statut = payload.statut.lower()
+
+    if "urgent" in statut or "bloqué" in statut or "bloque" in statut:
+        risk_score += 20
+    elif "cours" in statut:
+        risk_score += 8
+
+    nature = payload.nature.lower()
+
+    if "site" in nature:
+        risk_score += 8
+
+    risk_score = min(risk_score, 100)
+
+    if risk_score >= 70:
+        niveau = "Eleve"
+    elif risk_score >= 40:
+        niveau = "Moyen"
+    else:
+        niveau = "Faible"
+
+    prob_retard = risk_score / 100
+
+    charge_estimee_heures = round(float(payload.charge) * (1 + risk_score / 200), 2)
+    charge_estimee_minutes = round(charge_estimee_heures * 60)
+
+    score_affectation = round(
+        max(
+            0,
+            min(
+                100,
+                100 - risk_score + min(payload.jours_restants * 5, 20)
+            )
+        )
+    )
+
+    if score_affectation >= 75:
+        avis = "Affectation recommandee"
+    elif score_affectation >= 50:
+        avis = "Affectation possible avec surveillance"
+    else:
+        avis = "Affectation risquee"
+
+    return {
+        "retard": {
+            "niveau_risque_retard": niveau,
+            "prob_retard": prob_retard,
+            "risk_score": risk_score
+        },
+        "charge": {
+            "charge_estimee_heures": charge_estimee_heures,
+            "charge_estimee_minutes": charge_estimee_minutes
+        },
+        "affectation": {
+            "score_affectation": score_affectation,
+            "avis": avis
+        },
+        "explication": [
+            f"Charge demandee : {payload.charge}",
+            f"Capacite estimee : {capacity}",
+            f"Ratio charge/capacite : {round(charge_ratio, 2)}",
+            f"Pages : {payload.page}",
+            f"Jours restants : {payload.jours_restants}"
+        ]
+    }

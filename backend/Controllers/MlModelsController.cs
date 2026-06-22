@@ -119,5 +119,25 @@ namespace Triweb.Api.Controllers
                 });
             }
         }
+
+        [HttpPost("predict/planning-risk")]
+        public async Task<IActionResult> PredictPlanningRisk([FromBody] MlPredictionRequestDto payload)
+        {
+            try
+            {
+                var json = await _mlApiService.PostRawAsync("predict/planning-risk", payload);
+                return Content(json, "application/json");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Erreur prédiction risque planning");
+
+                return StatusCode(500, new
+                {
+                    message = "Erreur prédiction risque planning",
+                    detail = ex.Message
+                });
+            }
+        }
     }
 }

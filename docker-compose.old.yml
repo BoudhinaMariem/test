@@ -1,0 +1,99 @@
+services:
+  keycloak-db:
+    image: postgres:16
+    container_name: triweb-keycloak-db
+    environment:
+      POSTGRES_DB: ${KEYCLOAK_DB}
+      POSTGRES_USER: ${KEYCLOAK_DB_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+    volumes:
+      - keycloak_db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - triweb-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: triweb-keycloak
+    command: start-dev
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+
+      KC_DB: postgres
+      KC_DB_URL_HOST: keycloak-db
+      KC_DB_URL_PORT: 5432
+      KC_DB_URL_DATABASE: ${KEYCLOAK_DB}
+      KC_DB_USERNAME: ${KEYCLOAK_DB_USER}
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+      KC_HOSTNAME_STRICT_HTTPS: "false"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - keycloak-db
+    networks:
+      - triweb-network
+
+  python-ai:
+    build:
+      context: ./backend/AI/ml-api
+      dockerfile: Dockerfile
+    container_name: triweb-python-ai
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: ${OPENAI_MODEL}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL}
+    ports:
+      - "8000:8000"
+    networks:
+      - triweb-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: triweb-backend
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      MlApi__BaseUrl: http://python-ai:8000
+
+      ConnectionStrings__DefaultConnection: Server=host.docker.internal;Database=TriwebSA;User Id=sa;Password=sa;TrustServerCertificate=True;Encrypt=False;
+      ConnectionStrings__StagingConnection: Server=host.docker.internal;Database=TriwebSA;User Id=sa;Password=sa;TrustServerCertificate=True;Encrypt=False;
+      ConnectionStrings__DataWarehouseConnection: Server=host.docker.internal;Database=TriwebDW;User Id=sa;Password=sa;TrustServerCertificate=True;Encrypt=False;
+
+      Keycloak__Enabled: "true"
+      Keycloak__Authority: http://keycloak:8080/realms/TRIWEB
+      Keycloak__ValidIssuer: http://localhost:8080/realms/TRIWEB
+      Keycloak__Audience: triweb-backend
+      Keycloak__RequireHttpsMetadata: "false"
+    ports:
+      - "5000:8080"
+    depends_on:
+      - python-ai
+      - keycloak
+    networks:
+      - triweb-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: triweb-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+      - keycloak
+    networks:
+      - triweb-network
+
+volumes:
+  keycloak_db_data:
+
+networks:
+  triweb-network:
+    driver: bridge

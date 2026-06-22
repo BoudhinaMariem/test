@@ -8,26 +8,51 @@ namespace Triweb.Api.Services;
 
 public class DashboardService
 {
-    private readonly string _connectionString;
+    private readonly string _stagingConnectionString;
+    private readonly string _dwConnectionString;
     private readonly IHttpClientFactory _httpClientFactory;
-    private readonly string? _sourceApiUrl;
-    private readonly bool _useLocalFallback;
 
     public DashboardService(IConfiguration configuration, IHttpClientFactory httpClientFactory)
     {
-        _connectionString = configuration.GetConnectionString("TriwebDW")
-            ?? "Server=localhost;Database=TriwebDW;User Id=sa;Password=sa;TrustServerCertificate=True;Encrypt=False;";
+        _stagingConnectionString = configuration.GetConnectionString("StagingConnection")
+            ?? "Server=MARIEM;Database=TriwebSA;User Id=sa;Password=sa;TrustServerCertificate=True;Encrypt=False;";
+
+        _dwConnectionString = configuration.GetConnectionString("DataWarehouseConnection")
+            ?? "Server=MARIEM;Database=TriwebDW;User Id=sa;Password=sa;TrustServerCertificate=True;Encrypt=False;";
 
         _httpClientFactory = httpClientFactory;
-        _sourceApiUrl = configuration["DashboardSource:ApiUrl"];
-        _useLocalFallback = configuration.GetValue<bool?>("DashboardSource:UseLocalFallback") ?? true;
     }
 
     private SqlConnection OpenConnection()
     {
-        var connection = new SqlConnection(_connectionString);
+        var connection = new SqlConnection(_dwConnectionString);
         connection.Open();
         return connection;
+    }
+
+    private async Task<List<Dictionary<string, object?>>> GetLatestPlanningRawItemsAsync()
+    {
+        await using var connection = new SqlConnection(_stagingConnectionString);
+        await connection.OpenAsync();
+
+        const string sql = """
+            SELECT TOP 1 Payload
+            FROM dbo.planification_api_rawSA
+            ORDER BY DateImport DESC;
+        """;
+
+        await using var cmd = new SqlCommand(sql, connection);
+        var payload = await cmd.ExecuteScalarAsync() as string;
+
+        if (string.IsNullOrWhiteSpace(payload))
+            return new List<Dictionary<string, object?>>();
+
+        var rows = JsonSerializer.Deserialize<List<Dictionary<string, object?>>>(payload, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+        return rows ?? new List<Dictionary<string, object?>>();
     }
 
     public async Task<MetaDto> GetMetaAsync()
@@ -285,93 +310,7 @@ ORDER BY t.name;";
 
     public async Task<List<Dictionary<string, object?>>> GetItemsAsync()
     {
-        var payload = await LoadDashboardPayloadAsync();
-        if (string.IsNullOrWhiteSpace(payload))
-        {
-            return new List<Dictionary<string, object?>>();
-        }
-
-        using var document = JsonDocument.Parse(payload);
-        var itemsRoot = ResolveItemsRoot(document.RootElement);
-        if (itemsRoot.ValueKind != JsonValueKind.Array)
-        {
-            return new List<Dictionary<string, object?>>();
-        }
-
-        var result = new List<Dictionary<string, object?>>();
-
-        foreach (var element in itemsRoot.EnumerateArray())
-        {
-            var annee = GetInt(element, "annee") ?? DateTime.Today.Year;
-            var estimationMinutes = GetDecimal(element, "estimation") ?? 0m;
-            var dureeR = ParseDurationHours(GetString(element, "dureeR"));
-            var dureeG = ParseDurationHours(GetString(element, "dureeG"));
-            var dureeCqi = ParseDurationHours(GetString(element, "dureeCqi"));
-            var dureeCqc = ParseDurationHours(GetString(element, "dureeCqc"));
-            var charge = estimationMinutes > 0 ? Math.Round(estimationMinutes / 60m, 2) : 0m;
-            var totalHours = Math.Round(dureeR + dureeG + dureeCqi + dureeCqc, 2);
-
-            var dateReception = ParseShortDate(GetString(element, "dateReception"), annee);
-            var dateLivraisonPrevue = ParseShortDate(GetString(element, "dateLivraisonPrevue"), annee);
-            var dateLivraison = ParseFrenchDate(GetString(element, "dateLivraison"), annee);
-
-            result.Add(new Dictionary<string, object?>
-            {
-                ["id"] = GetInt(element, "id"),
-                ["type"] = GetInt(element, "type"),
-["client"] = GetString(element, "rs", "client", "raisonSociale", "nomClient", "name"),
-["rs"] = GetString(element, "rs", "client", "raisonSociale", "nomClient", "name"),
-["position"] = GetString(element, "postion", "position", "poste", "phase", "etape"),
-["postion"] = GetString(element, "postion", "position", "poste", "phase", "etape"),
-                ["codeClient"] = GetInt(element, "codeClient"),
-                ["loiHamon"] = GetString(element, "loiHamon", "loi_hamon", "categorieProduction", "typeProduction"),
-                ["nature"] = GetString(element, "nature", "libelleNature", "activite", "typeDossier"),
-                ["livraison"] = GetString(element, "livraison"),
-                ["planProd"] = GetString(element, "planProd"),
-                ["planR"] = GetString(element, "planR"),
-                ["planG"] = GetString(element, "planG"),
-                ["planCqi"] = GetString(element, "planCqi"),
-                ["planCqc"] = GetString(element, "planCqc"),
-                ["statut"] = GetString(element, "statut"),
-                ["etatR"] = GetString(element, "etatR"),
-                ["etatG"] = GetString(element, "etatG"),
-                ["etatCqi"] = GetString(element, "etatCqi"),
-                ["etatCqc"] = GetString(element, "etatCqc"),
-
-["teamR"] = CleanTeam(GetString(element, "teamR", "equipeR", "teamRedaction", "equipeRedaction", "redactionTeam")),
-["teamG"] = CleanTeam(GetString(element, "teamG", "equipeG", "teamGraphisme", "equipeGraphisme", "graphismeTeam")),
-                ["redacteur"] = GetString(element, "redacteur"),
-                ["graphiste"] = GetString(element, "graphiste"),
-                ["cqinterne"] = GetString(element, "cqinterne"),
-                ["cqclient"] = GetString(element, "cqclient"),
-                ["mois"] = GetInt(element, "mois"),
-                ["annee"] = annee,
-                ["page"] = GetInt(element, "page") ?? 0,
-                ["dateReception"] = GetString(element, "dateReception"),
-                ["dateReceptionIso"] = dateReception?.ToString("yyyy-MM-dd"),
-
-["dateLivraisonPrevue"] = GetString(element, "dateLivraisonPrevue", "datePrevue", "deliveryDate", "dateEcheance", "deadline"),
-                ["dateLivraisonPrevueIso"] = dateLivraisonPrevue?.ToString("yyyy-MM-dd"),
-                ["dateLivraison"] = GetString(element, "dateLivraison"),
-                ["dateLivraisonIso"] = dateLivraison?.ToString("yyyy-MM-dd"),
-                ["debutRIso"] = ParseIso(GetString(element, "debutR"))?.ToString("yyyy-MM-ddTHH:mm:ss"),
-                ["dureeRHours"] = dureeR,
-                ["dureeGHours"] = dureeG,
-                ["dureeCqiHours"] = dureeCqi,
-                ["dureeCqcHours"] = dureeCqc,
-                ["charge"] = charge,
-                ["totalHours"] = totalHours > 0 ? totalHours : charge,
-                ["priorite"] = GetInt(element, "priorite"),
-                ["prioriteR"] = GetInt(element, "prioriteR"),
-                ["prioriteG"] = GetInt(element, "prioriteG"),
-                ["prioriteCqi"] = GetInt(element, "prioriteCqi"),
-                ["infirmerie"] = GetString(element, "infirmerie"),
-                ["sansCq"] = GetInt(element, "sansCq"),
-                ["detail"] = GetString(element, "detail")
-            });
-        }
-
-        return result;
+        return await GetLatestPlanningRawItemsAsync();
     }
 
     private static string? GetString(JsonElement element, params string[] properties)
@@ -412,42 +351,6 @@ private static decimal? GetDecimal(JsonElement element, params string[] properti
     return decimal.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result) ? result : null;
 }
 
-
-    private async Task<string?> LoadDashboardPayloadAsync()
-    {
-        if (!string.IsNullOrWhiteSpace(_sourceApiUrl))
-        {
-            try
-            {
-                var client = _httpClientFactory.CreateClient("DashboardSource");
-                client.Timeout = TimeSpan.FromSeconds(30);
-
-                using var response = await client.GetAsync(_sourceApiUrl);
-                response.EnsureSuccessStatusCode();
-                return await response.Content.ReadAsStringAsync();
-            }
-            catch
-            {
-                if (!_useLocalFallback)
-                {
-                    return null;
-                }
-            }
-        }
-
-        if (!_useLocalFallback)
-        {
-            return null;
-        }
-
-        var dataFile = Path.Combine(AppContext.BaseDirectory, "Data", "api.json");
-        if (!File.Exists(dataFile))
-        {
-            dataFile = Path.Combine(Directory.GetCurrentDirectory(), "Data", "api.json");
-        }
-
-        return File.Exists(dataFile) ? await File.ReadAllTextAsync(dataFile) : null;
-    }
 
     private static JsonElement ResolveItemsRoot(JsonElement root)
     {

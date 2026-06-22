@@ -106,34 +106,6 @@
                 </mat-form-field>
 
                 <mat-form-field class="fuse-mat-dense">
-                    <mat-label>État R</mat-label>
-                    <select matNativeControl [(ngModel)]="form.etatR">
-                        <option *ngFor="let item of etatOptions" [value]="item">
-                            {{ item || 'Vide' }}
-                        </option>
-                    </select>
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-dense">
-                    <mat-label>État G</mat-label>
-                    <select matNativeControl [(ngModel)]="form.etatG">
-                        <option *ngFor="let item of etatOptions" [value]="item">
-                            {{ item || 'Vide' }}
-                        </option>
-                    </select>
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-dense">
-                    <mat-label>Team R</mat-label>
-                    <input matInput [(ngModel)]="form.teamR" />
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-dense">
-                    <mat-label>Team G</mat-label>
-                    <input matInput [(ngModel)]="form.teamG" />
-                </mat-form-field>
-
-                <mat-form-field class="fuse-mat-dense">
                     <mat-label>Pages</mat-label>
                     <input matInput type="number" [(ngModel)]="form.page" />
                 </mat-form-field>
@@ -185,40 +157,74 @@
 
             <ng-container *ngIf="result; else emptyResult">
 
+                <!-- Classification : risque de retard -->
                 <div class="rounded-2xl border p-5 mb-4">
                     <div class="text-secondary text-sm">
-                        Risque retard
+                        Risque de retard
                     </div>
-                    <div class="text-3xl font-bold mt-2" [ngClass]="getRiskClass()">
-                        {{ result.retard.niveau_risque_retard }}
+
+                    <div
+                        class="text-3xl font-bold mt-2"
+                        [ngClass]="getRiskClass(result.retard?.niveau_risque_retard)"
+                    >
+                        {{ result.retard?.niveau_risque_retard }}
                     </div>
+
                     <div class="text-sm text-secondary mt-2">
-                        Probabilité : {{ result.retard.prob_retard | percent:'1.1-1' }}
+                        Probabilité :
+                        {{ result.retard?.prob_retard | percent:'1.1-1' }}
+                    </div>
+
+                    <div class="text-sm text-secondary mt-1">
+                        Score :
+                        {{ result.retard?.risk_score }}%
                     </div>
                 </div>
 
+                <!-- Régression : charge restante -->
                 <div class="rounded-2xl border p-5 mb-4">
                     <div class="text-secondary text-sm">
                         Charge restante estimée
                     </div>
+
                     <div class="text-3xl font-bold mt-2">
-                        {{ result.charge.charge_estimee_heures }} h
+                        {{ result.charge?.charge_estimee_heures }} h
                     </div>
+
                     <div class="text-sm text-secondary mt-2">
-                        {{ result.charge.charge_estimee_minutes }} minutes
+                        {{ result.charge?.charge_estimee_minutes }} minutes
                     </div>
                 </div>
 
-                <div class="rounded-2xl border p-5">
+                <!-- Score d'affectation -->
+                <div class="rounded-2xl border p-5 mb-4">
                     <div class="text-secondary text-sm">
-                        Score affectation
+                        Score d’affectation
                     </div>
-                    <div class="text-3xl font-bold mt-2">
-                        {{ result.affectation.score_affectation }}
+
+                    <div
+                        class="text-3xl font-bold mt-2"
+                        [ngClass]="getAssignmentClass(result.affectation?.score_affectation)"
+                    >
+                        {{ result.affectation?.score_affectation }}/100
                     </div>
+
                     <div class="text-sm text-secondary mt-2">
-                        {{ result.affectation.avis }}
+                        {{ result.affectation?.avis }}
                     </div>
+                </div>
+
+                <!-- Explication -->
+                <div class="rounded-2xl border p-5" *ngIf="result.explication?.length">
+                    <div class="text-secondary text-sm mb-2">
+                        Explication
+                    </div>
+
+                    <ul class="text-sm text-secondary list-disc list-inside">
+                        <li *ngFor="let item of result.explication">
+                            {{ item }}
+                        </li>
+                    </ul>
                 </div>
 
             </ng-container>
@@ -228,6 +234,7 @@
                     Aucun résultat pour le moment.
                 </div>
             </ng-template>
+
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@
                     class="font-medium"
                     [ngClass]="{'text-green-600': apiLoaded, 'text-amber-600': !apiLoaded}"
                 >
-                    {{ apiLoaded ? 'API .NET connectée' : 'données locales de secours' }}
+                    {{ apiLoaded ? 'TriwebSA synchronisée' : 'Aucune donnée TriwebSA' }}
                 </span>
                 · Dernière actualisation : {{ lastUpdate | date:'dd/MM/yyyy HH:mm' }}
             </div>

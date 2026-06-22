@@ -1,61 +1,42 @@
 using System.Text.Json.Serialization;
 
-namespace Triweb.Api.Models
+namespace Triweb.Api.Models;
+
+public sealed class MlPredictionRequestDto
 {
-    public class MlPredictionRequestDto
-    {
-        [JsonPropertyName("position")]
-        public string Position { get; set; } = "Production";
+    [JsonPropertyName("position")]
+    public string Position { get; set; } = string.Empty;
 
-        [JsonPropertyName("statut")]
-        public string Statut { get; set; } = "En cours";
+    [JsonPropertyName("statut")]
+    public string Statut { get; set; } = string.Empty;
 
-        [JsonPropertyName("loi_type")]
-        public string LoiType { get; set; } = "production_standard";
+    [JsonPropertyName("loi_type")]
+    public string LoiType { get; set; } = string.Empty;
 
-        [JsonPropertyName("nature")]
-        public string Nature { get; set; } = "";
+    [JsonPropertyName("nature")]
+    public string Nature { get; set; } = string.Empty;
 
-        [JsonPropertyName("etatR")]
-        public string EtatR { get; set; } = "";
+    [JsonPropertyName("etat_r")]
+    public string EtatR { get; set; } = string.Empty;
 
-        [JsonPropertyName("etatG")]
-        public string EtatG { get; set; } = "";
+    [JsonPropertyName("etat_g")]
+    public string EtatG { get; set; } = string.Empty;
 
-        [JsonPropertyName("etatCqi")]
-        public string EtatCqi { get; set; } = "";
+    [JsonPropertyName("team_r")]
+    public string TeamR { get; set; } = string.Empty;
 
-        [JsonPropertyName("etatCqc")]
-        public string EtatCqc { get; set; } = "";
+    [JsonPropertyName("team_g")]
+    public string TeamG { get; set; } = string.Empty;
 
-        [JsonPropertyName("teamR")]
-        public string TeamR { get; set; } = "";
+    [JsonPropertyName("page")]
+    public double Page { get; set; }
 
-        [JsonPropertyName("teamG")]
-        public string TeamG { get; set; } = "";
+    [JsonPropertyName("charge")]
+    public double Charge { get; set; }
 
-        [JsonPropertyName("page")]
-        public double Page { get; set; }
+    [JsonPropertyName("total_heures")]
+    public double TotalHeures { get; set; }
 
-        [JsonPropertyName("charge")]
-        public double Charge { get; set; }
-
-        [JsonPropertyName("totalHours")]
-        public double TotalHours { get; set; }
-
-        [JsonPropertyName("dureeR_min")]
-        public double DureeRMin { get; set; }
-
-        [JsonPropertyName("dureeG_min")]
-        public double DureeGMin { get; set; }
-
-        [JsonPropertyName("dureeCqi_min")]
-        public double DureeCqiMin { get; set; }
-
-        [JsonPropertyName("dureeCqc_min")]
-        public double DureeCqcMin { get; set; }
-
-        [JsonPropertyName("jours_restants")]
-        public double JoursRestants { get; set; } = 999;
-    }
+    [JsonPropertyName("jours_restants")]
+    public double JoursRestants { get; set; }
 }

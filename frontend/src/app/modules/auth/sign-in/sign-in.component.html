@@ -17,6 +17,15 @@
                 <button class="fuse-mat-button-large w-full mt-6" mat-flat-button [color]="'primary'" [disabled]="signInForm.invalid" (click)="signIn()">
                     <span>Se connecter</span>
                     <mat-progress-spinner *ngIf="signInForm.disabled" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+                </button> 
+                <button
+                    type="button"
+                    class="fuse-mat-button-large w-full mt-4"
+                    mat-stroked-button
+                    [color]="'primary'"
+                    (click)="signInWithKeycloak()">
+
+                    <span>Se connecter avec Keycloak</span>
                 </button>
             </form>
         </div>

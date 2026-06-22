@@ -175,4 +175,13 @@ export class TriwebApiService {
             originalError: error
         }));
     }
+
+    predictPlanningRisk(payload: MlPredictionRequest): Observable<any> {
+        return this.http
+            .post<any>(
+                `${this.mlBaseUrl}/predict/planning-risk`,
+                this.toMlBody(payload)
+            )
+            .pipe(catchError((error) => this.handleError(error)));
+    }
 }

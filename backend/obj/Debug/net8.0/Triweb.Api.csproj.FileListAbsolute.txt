@@ -129,18 +129,28 @@ C:\Users\seif eddine\Desktop\triweb\backend\obj\Debug\net8.0\refint\Triweb.Api.d
 C:\Users\seif eddine\Desktop\triweb\backend\obj\Debug\net8.0\Triweb.Api.pdb
 C:\Users\seif eddine\Desktop\triweb\backend\obj\Debug\net8.0\Triweb.Api.genruntimeconfig.cache
 C:\Users\seif eddine\Desktop\triweb\backend\obj\Debug\net8.0\ref\Triweb.Api.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.exe
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\fr\Microsoft.Data.SqlClient.resources.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\marie\Downloads\triweb1\triweb\build-output\appsettings.Development.json
+C:\Users\marie\Downloads\triweb1\triweb\build-output\appsettings.json
+C:\Users\marie\Downloads\triweb1\triweb\build-output\Triweb.Api.exe
+C:\Users\marie\Downloads\triweb1\triweb\build-output\Triweb.Api.deps.json
+C:\Users\marie\Downloads\triweb1\triweb\build-output\Triweb.Api.runtimeconfig.json
+C:\Users\marie\Downloads\triweb1\triweb\build-output\Triweb.Api.dll
+C:\Users\marie\Downloads\triweb1\triweb\build-output\Triweb.Api.pdb
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\appsettings.json
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.exe
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.deps.json
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.runtimeconfig.json
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.dll
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.pdb
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.Identity.Client.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
@@ -148,16 +158,17 @@ C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.Ident
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\System.ClientModel.dll
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\de\Microsoft.Data.SqlClient.resources.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\es\Microsoft.Data.SqlClient.resources.dll
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\fr\Microsoft.Data.SqlClient.resources.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\it\Microsoft.Data.SqlClient.resources.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\ja\Microsoft.Data.SqlClient.resources.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\ko\Microsoft.Data.SqlClient.resources.dll
@@ -166,10 +177,8 @@ C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\ru\Microsoft.Da
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\unix\lib\net8.0\Microsoft.Data.SqlClient.dll
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Data.SqlClient.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.csproj.AssemblyReference.cache
@@ -177,6 +186,7 @@ C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.Gene
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.AssemblyInfoInputs.cache
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.AssemblyInfo.cs
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.csproj.CoreCompileInputs.cache
+C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.sourcelink.json
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\staticwebassets.build.json
@@ -191,5 +201,8 @@ C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.cspr
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\refint\Triweb.Api.dll
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.pdb
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.deps.json
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.runtimeconfig.json
+C:\Users\marie\Downloads\triweb1\triweb\backend\bin\Debug\net8.0\Triweb.Api.pdb
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\Triweb.Api.genruntimeconfig.cache
 C:\Users\marie\Downloads\triweb1\triweb\backend\obj\Debug\net8.0\ref\Triweb.Api.dll

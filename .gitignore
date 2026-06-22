@@ -8,3 +8,6 @@ backend/dist/
 frontend/dist/
 backend/.env
 *.log
+.env
+.env.old
+*.env

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Triweb.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a4b7f8606cec76a9716d1d76f9268dda2e08253")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+878f5707546c487d7f72a8e6323ad43e07a306c9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Triweb.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Triweb.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

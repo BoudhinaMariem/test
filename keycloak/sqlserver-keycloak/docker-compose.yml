@@ -1,0 +1,43 @@
+services:
+  keycloak-sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: triweb-keycloak-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "TriwebKeycloak@2026!"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1434:1433"
+    volumes:
+      - keycloak_sqlserver_data:/var/opt/mssql
+    networks:
+      - triweb-keycloak-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: triweb-keycloak
+    command: start-dev
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+
+      KC_DB: mssql
+      KC_DB_URL: jdbc:sqlserver://keycloak-sqlserver:1433;databaseName=KeycloakTriweb;encrypt=false;trustServerCertificate=true
+      KC_DB_USERNAME: sa
+      KC_DB_PASSWORD: "TriwebKeycloak@2026!"
+
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - keycloak-sqlserver
+    networks:
+      - triweb-keycloak-network
+
+volumes:
+  keycloak_sqlserver_data:
+
+networks:
+  triweb-keycloak-network:
+    driver: bridge

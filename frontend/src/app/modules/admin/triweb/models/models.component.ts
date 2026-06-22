@@ -3,22 +3,45 @@ import { Component, OnInit } from '@angular/core';
 import {
     TriwebApiService,
     MlPredictionRequest,
-    MlPredictionResult
 } from '../triweb-api.service';
+
+export interface MLResultRetard {
+  niveau_risque_retard: string;
+  prob_retard: number;
+  risk_score: number;
+}
+
+export interface MLResultCharge {
+  charge_estimee_heures: number;
+  charge_estimee_minutes: number;
+}
+
+export interface MLResultAffectation {
+  score_affectation: number;
+  avis: string;
+}
+
+export interface MLResultFull {
+  retard: MLResultRetard;
+  charge: MLResultCharge;
+  affectation: MLResultAffectation;
+  explication: string[];
+}
 
 @Component({
     selector: 'app-models',
     templateUrl: './models.component.html'
 })
+
 export class ModelsComponent implements OnInit {
     loading = false;
     checkingApi = false;
 
     errorMessage = '';
     apiStatus: any = null;
-
-    result: MlPredictionResult | null = null;
-
+    planningRiskResult: any = null;
+    result: MLResultFull | null = null;
+    
     form: MlPredictionRequest = this.getDefaultForm();
 
     positionOptions = [
@@ -56,6 +79,7 @@ export class ModelsComponent implements OnInit {
         'Retour CQ traité'
     ];
 
+    
     constructor(private triwebApiService: TriwebApiService) {}
 
     ngOnInit(): void {
@@ -86,39 +110,71 @@ export class ModelsComponent implements OnInit {
         this.loading = true;
         this.errorMessage = '';
         this.result = null;
+        this.planningRiskResult = null;
 
-        this.triwebApiService.predictMlAll(this.form).subscribe({
+        this.triwebApiService.predictPlanningRisk(this.form).subscribe({
             next: (res) => {
                 this.result = res;
+                this.planningRiskResult = res;
                 this.loading = false;
             },
-            error: (err) => {
+            error: (error) => {
                 this.loading = false;
-                this.errorMessage =
-                    err?.message ||
-                    'Erreur pendant la prédiction ML.';
+                this.errorMessage = 'Erreur lors de la prédiction.';
+                console.error(error);
             }
         });
+    }
+
+    getRiskClass(level?: string): string {
+        const value = (level || '').toLowerCase();
+
+        if (
+            value.includes('élevé') ||
+            value.includes('eleve') ||
+            value.includes('high')
+        ) {
+            return 'text-red-600';
+        }
+
+        if (
+            value.includes('moyen') ||
+            value.includes('moyenne') ||
+            value.includes('medium')
+        ) {
+            return 'text-orange-500';
+        }
+
+        if (
+            value.includes('faible') ||
+            value.includes('low')
+        ) {
+            return 'text-green-600';
+        }
+
+        return 'text-secondary';
+    }
+
+    getAssignmentClass(score?: number): string {
+        if (score === undefined || score === null) {
+            return 'text-secondary';
+        }
+
+        if (score >= 75) {
+            return 'text-green-600';
+        }
+
+        if (score >= 50) {
+            return 'text-orange-500';
+        }
+
+        return 'text-red-600';
     }
 
     resetForm(): void {
         this.result = null;
         this.errorMessage = '';
         this.form = this.getDefaultForm();
-    }
-
-    getRiskClass(): string {
-        const risk = this.result?.retard?.niveau_risque_retard;
-
-        if (risk === 'Élevé') {
-            return 'text-red-600';
-        }
-
-        if (risk === 'Moyen') {
-            return 'text-orange-500';
-        }
-
-        return 'text-green-600';
     }
 
     getScoreClass(): string {
