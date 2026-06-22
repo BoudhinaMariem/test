@@ -8,12 +8,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { DxChartModule } from 'devextreme-angular/ui/chart';
-import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
 import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { SharedModule } from 'app/shared/shared.module';
+import { TranslocoModule } from '@ngneat/transloco';
+import { TriwebSharedModule } from '../shared/triweb-shared.module';
 import { TriwebPlanificationComponent } from './planification.component';
 import { triwebPlanificationRoutes } from './planification.routing';
-import { DxTreeMapModule } from 'devextreme-angular';
 
 @NgModule({
     declarations: [TriwebPlanificationComponent],
@@ -27,8 +27,9 @@ import { DxTreeMapModule } from 'devextreme-angular';
         MatIconModule,
         MatInputModule,
         SharedModule,
-        DxTreeMapModule,
-        DxChartModule, DxPieChartModule, DxDataGridModule
+        TranslocoModule,
+        TriwebSharedModule,
+        DxChartModule, DxDataGridModule
     ]
 })
 export class TriwebPlanificationModule {}

@@ -1,0 +1,49 @@
+@import '../shared/triweb-filters.scss';
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+@media (min-width: 1280px) {
+    .summary-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1279px) {
+    .summary-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 899px) {
+    .summary-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+
+.triweb-chart-hover-wrap {
+    width: 100%;
+}
+
+.triweb-chart-hover-wrap.chart-focus-mode {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98));
+    border-radius: 12px;
+    transition: background 0.2s ease;
+}
+
+.triweb-team-chart-card {
+    overflow: hidden;
+    min-height: 100%;
+
+    .dx-export-menu-button {
+        display: none !important;
+    }
+}
+
+.triweb-team-charts-grid {
+    align-items: stretch;
+}

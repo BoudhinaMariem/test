@@ -1,0 +1,25 @@
+<div class="gauge-kpi-card bg-card rounded-2xl shadow p-6 h-full flex flex-col border-l-4" [style.border-left-color]="gaugeColor">
+    <div class="text-secondary text-sm font-medium">
+        {{ title }}
+    </div>
+
+    <div class="flex flex-1 items-center justify-center py-4">
+        <div class="gauge-wrap">
+            <div class="gauge-track"></div>
+            <div class="gauge" [ngStyle]="gaugeStyle">
+                <div class="gauge-inner">
+                    <span class="gauge-value">{{ displayValue }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="status" class="text-center text-sm font-semibold" [style.color]="gaugeColor">
+        {{ status }}
+    </div>
+
+    <div *ngIf="subtitle" class="mt-2 text-xs text-secondary text-center leading-snug">
+        {{ subtitle }}
+    </div>
+</div>
+

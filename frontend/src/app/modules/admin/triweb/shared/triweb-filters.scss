@@ -1,0 +1,62 @@
+$triweb-filter-height: 48px;
+$triweb-filter-padding-y: 11px;
+
+.triweb-filters {
+    align-items: stretch;
+}
+
+.triweb-filters mat-form-field.triweb-filter-control.fuse-mat-dense,
+mat-form-field.triweb-filter-control.fuse-mat-dense {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+        margin-bottom: 16px;
+        padding-bottom: 0;
+    }
+
+    .mat-form-field-flex {
+        height: $triweb-filter-height;
+        min-height: $triweb-filter-height;
+        max-height: $triweb-filter-height;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .mat-form-field-infix {
+        display: flex;
+        align-items: center;
+        width: 100% !important;
+        min-height: $triweb-filter-height - 2px;
+        padding: 0 !important;
+        border-top: 0 !important;
+    }
+
+    input.mat-input-element {
+        height: auto;
+        min-height: $triweb-filter-height - 2px;
+        line-height: 1.25;
+        padding: $triweb-filter-padding-y 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box;
+    }
+
+    input[type='date'].mat-input-element {
+        &::-webkit-date-and-time-value {
+            line-height: 1.25;
+            min-height: 1.25em;
+        }
+
+        &::-webkit-calendar-picker-indicator {
+            margin: 0;
+        }
+    }
+
+    &.mat-form-field-type-mat-native-select .mat-form-field-infix select.mat-input-element {
+        height: auto;
+        min-height: $triweb-filter-height - 2px;
+        line-height: 1.25;
+        padding: $triweb-filter-padding-y 18px $triweb-filter-padding-y 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box;
+    }
+}

@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription } from 'rxjs';
 import { TriwebApiService } from '../triweb-api.service';
+import { TriwebChartHoverController } from '../shared/triweb-chart-hover.helper';
+import { TriwebSeriesFocusController } from '../shared/triweb-series-focus.helper';
+import {
+    buildDistinctTeamOptions,
+    TRIWEB_ROLE_LABEL_KEYS
+} from '../shared/triweb-role.helper';
 
 @Component({
     selector: 'app-triweb-dashboard',
-    templateUrl: './dashboard.component.html'
+    templateUrl: './dashboard.component.html',
+    styleUrls  : ['./dashboard.component.scss']
 })
-export class TriwebDashboardComponent implements OnInit {
-    title = 'Dashboard général';
-    subtitle = 'Vue consolidée des opérations Triweb avec recherche, filtres et graphiques dynamiques.';
-
+export class TriwebDashboardComponent implements OnInit, OnDestroy {
     loading = false;
     apiLoaded = false;
     lastUpdate = new Date();
@@ -31,8 +37,72 @@ export class TriwebDashboardComponent implements OnInit {
     loiHamonOptions: string[] = ['Tous'];
     natureOptions: string[] = ['Tous'];
     teamOptions: string[] = ['Tous'];
+    teamROptions: string[] = [];
+    teamGOptions: string[] = [];
 
     kpis: any[] = [];
+
+    performanceGauge = {
+        titleKey   : 'triweb.dashboard.kpi.performance',
+        value      : 0,
+        subtitleKey: 'triweb.dashboard.kpi.performanceSubtitle',
+        statusKey  : 'triweb.dashboard.kpi.performanceWeak'
+    };
+
+    private _langSub?: Subscription;
+    private _filteredItems: any[] = [];
+
+    private static readonly SERIES_FOCUS_CHART_KEYS = new Set(['dailyProduction', 'teamMetrics']);
+
+    chartHover = new TriwebChartHoverController();
+    seriesFocus = new TriwebSeriesFocusController();
+
+    onChartPointHoverChanged = (chartKey: string, event: any): void =>
+    {
+        if (TriwebDashboardComponent.SERIES_FOCUS_CHART_KEYS.has(chartKey))
+        {
+            this.seriesFocus.onPointHoverChanged(chartKey, event);
+            return;
+        }
+
+        this.chartHover.onPointHoverChanged(chartKey, event);
+    };
+
+    onSeriesFocusLegendClick = (chartKey: string, event: any): void =>
+    {
+        this.seriesFocus.onLegendClick(chartKey, event);
+    };
+
+    onChartMouseLeave = (chartKey: string, chartRef: any): void =>
+    {
+        const component = chartRef?.instance ?? chartRef;
+
+        if (TriwebDashboardComponent.SERIES_FOCUS_CHART_KEYS.has(chartKey))
+        {
+            this.seriesFocus.onMouseLeave(chartKey, component);
+            return;
+        }
+
+        this.chartHover.onChartMouseLeave(chartKey, component);
+    };
+
+    isSeriesFocusActive = (chartKey: string): boolean =>
+        this.seriesFocus.isFocused(chartKey);
+
+    customizePositionPiePoint = (pointInfo: any): any =>
+        this.chartHover.customizePoint('positionPie', pointInfo, 'argument');
+
+    customizeDeliveryPoint = (pointInfo: any): any =>
+        this.chartHover.customizePoint('deliveryData', pointInfo, 'argument');
+
+    customizeOperationalRatePoint = (pointInfo: any): any =>
+        this.chartHover.customizePoint('operationalRate', pointInfo, 'argument');
+
+    customizeRedacteurPiePoint = (pointInfo: any): any =>
+        this.chartHover.customizePoint('redacteurPie', pointInfo, 'argument', this.customizeWorkStatePoint);
+
+    customizeGraphistePiePoint = (pointInfo: any): any =>
+        this.chartHover.customizePoint('graphistePie', pointInfo, 'argument', this.customizeWorkStatePoint);
 
     dailyProduction: any[] = [];
     positionPieData: any[] = [];
@@ -53,10 +123,23 @@ export class TriwebDashboardComponent implements OnInit {
         '#5B4BEA'
     ];
 
-    constructor(private triwebApiService: TriwebApiService) {}
+    constructor(
+        private triwebApiService: TriwebApiService,
+        private _translocoService: TranslocoService
+    ) {}
 
-    ngOnInit(): void {
+    ngOnInit(): void
+    {
+        this._langSub = this._translocoService.langChanges$.subscribe(() => {
+            this._recalculateVisuals(this._filteredItems);
+        });
+
         this.refreshDashboard();
+    }
+
+    ngOnDestroy(): void
+    {
+        this._langSub?.unsubscribe();
     }
 
     refreshDashboard(): void {
@@ -222,6 +305,7 @@ export class TriwebDashboardComponent implements OnInit {
             return true;
         });
 
+        this._filteredItems = filtered;
         this._recalculateVisuals(filtered);
     }
 
@@ -232,6 +316,18 @@ export class TriwebDashboardComponent implements OnInit {
         return {
             text: `${arg.argumentText} : ${value} dossier(s)<br>${percent}`
         };
+    };
+
+    customizeDailyProductionTooltip = (arg: any): any => ({
+        text: `${arg.seriesName}<br>${arg.argumentText} : ${arg.valueText}`
+    });
+
+    customizeTeamMetricAxisLabel = (arg: any): string => {
+        const labelKey = TRIWEB_ROLE_LABEL_KEYS[arg.value];
+
+        return labelKey
+            ? this._translocoService.translate(labelKey)
+            : String(arg.value ?? '');
     };
 
     customizeNonAffectedTooltip = (arg: any): any => {
@@ -314,19 +410,10 @@ export class TriwebDashboardComponent implements OnInit {
         this.loiHamonOptions = this._buildOptionList(this.items.map((x) => x.loiHamon));
         this.natureOptions = this._buildOptionList(this.items.map((x) => x.nature));
 
-        const teams: string[] = [];
-
-        this.items.forEach((x) => {
-            if (x.teamR) {
-                teams.push(x.teamR);
-            }
-
-            if (x.teamG) {
-                teams.push(x.teamG);
-            }
-        });
-
-        this.teamOptions = this._buildOptionList(teams);
+        const teams = buildDistinctTeamOptions(this.items);
+        this.teamROptions = teams.teamR;
+        this.teamGOptions = teams.teamG;
+        this.teamOptions = ['Tous', ...teams.teamR, ...teams.teamG];
     }
 
     private _buildOptionList(values: any[]): string[] {
@@ -343,6 +430,7 @@ export class TriwebDashboardComponent implements OnInit {
 
     private _recalculateVisuals(items: any[]): void {
         this.kpis = this._buildKpis(items);
+        this._buildPerformanceGauge(items);
 
         this.dailyProduction = this._groupByDay(items);
         this.positionPieData = this._buildPositionPie(items);
@@ -426,59 +514,63 @@ export class TriwebDashboardComponent implements OnInit {
     private _buildKpis(items: any[]): any[] {
         const total = items.length;
         const finalized = items.filter((x) => this._isFinalized(x)).length;
-        const productionAffected = items.filter((x) => {
+        const inProduction = items.filter((x) => {
             return this._norm(x.position) === 'production' &&
-                (
-                    this._norm(x.etatR).includes('affect') ||
-                    this._norm(x.etatG).includes('affect') ||
-                    this._norm(x.etatCqi).includes('affect') ||
-                    this._norm(x.etatCqc).includes('affect')
-                );
+                !this._isFinalized(x);
         }).length;
-
-        const nonAffected = items.filter((x) => this._isNonAffectedByTeam(x)).length;
-        const pagesToday = this._pagesDeliveredToday(items);
 
         const returnCq = items.filter((x) => this._hasRetourCq(x)).length;
 
         return [
             {
-                title: 'Total dossiers',
-                value: total,
-                delta: 'Périmètre filtré',
-                trend: 'neutral'
+                titleKey : 'triweb.dashboard.kpi.total',
+                value    : total,
+                deltaKey : 'triweb.dashboard.kpi.totalDetail',
+                trend    : 'neutral'
             },
             {
-                title: 'Affectés production',
-                value: productionAffected,
-                delta: 'Position Production + état affecté',
-                trend: 'up'
+                titleKey : 'triweb.dashboard.kpi.inProduction',
+                value    : inProduction,
+                deltaKey : 'triweb.dashboard.kpi.inProductionDetail',
+                trend    : inProduction > 0 ? 'neutral' : 'up'
             },
             {
-                title: 'Non affectés',
-                value: nonAffected,
-                delta: 'teamR non affecté ou teamG CDC',
-                trend: nonAffected > 0 ? 'down' : 'up'
+                titleKey : 'triweb.dashboard.kpi.delivered',
+                value    : finalized,
+                deltaKey : 'triweb.dashboard.kpi.deliveredDetail',
+                trend    : 'up'
             },
             {
-                title: 'Dossiers finalisés',
-                value: finalized,
-                delta: 'Livré / validé',
-                trend: 'up'
-            },
-            {
-                title: 'Pages livrées aujourd’hui',
-                value: pagesToday,
-                delta: 'Selon dateLivraison du jour',
-                trend: 'neutral'
-            },
-            {
-                title: 'Retours CQ',
-                value: returnCq,
-                delta: 'Retour CQ',
-                trend: returnCq > 0 ? 'down' : 'up'
+                titleKey : 'triweb.dashboard.kpi.returnsCq',
+                value    : returnCq,
+                deltaKey : 'triweb.dashboard.kpi.returnsCqDetail',
+                trend    : returnCq > 0 ? 'down' : 'up'
             }
         ];
+    }
+
+    private _buildPerformanceGauge(items: any[]): void {
+        const total = items.length || 1;
+        const finalized = items.filter((x) => this._isFinalized(x)).length;
+        const value = this._round((finalized / total) * 100);
+
+        let statusKey = 'triweb.dashboard.kpi.performanceWeak';
+
+        if (value >= 75)
+        {
+            statusKey = 'triweb.dashboard.kpi.performanceGood';
+        }
+        else if (value >= 50)
+        {
+            statusKey = 'triweb.dashboard.kpi.performanceModerate';
+        }
+
+        this.performanceGauge = {
+            titleKey   : 'triweb.dashboard.kpi.performance',
+            value,
+            subtitleKey: 'triweb.dashboard.kpi.performanceSubtitle',
+            statusKey
+        };
     }
 
     private _getLastWeekStartDate(): Date {
@@ -596,10 +688,10 @@ export class TriwebDashboardComponent implements OnInit {
 
         items.forEach((item) => {
             const roles = [
-                { equipe: 'Rédaction', active: !!item.teamR || !!item.redacteur },
-                { equipe: 'Graphisme', active: !!item.teamG || !!item.graphiste },
-                { equipe: 'CQ interne', active: !!item.etatCqi },
-                { equipe: 'CQ client', active: !!item.etatCqc }
+                { equipeKey: 'redaction', active: !!item.teamR || !!item.redacteur },
+                { equipeKey: 'graphisme', active: !!item.teamG || !!item.graphiste },
+                { equipeKey: 'cqInterne', active: !!item.etatCqi },
+                { equipeKey: 'cqClient', active: !!item.etatCqc }
             ];
 
             roles.forEach((role) => {
@@ -607,8 +699,8 @@ export class TriwebDashboardComponent implements OnInit {
                     return;
                 }
 
-                const current = map.get(role.equipe) || {
-                    equipe: role.equipe,
+                const current = map.get(role.equipeKey) || {
+                    equipeKey: role.equipeKey,
                     dossiers: 0,
                     retours: 0
                 };
@@ -619,7 +711,7 @@ export class TriwebDashboardComponent implements OnInit {
                     current.retours += 1;
                 }
 
-                map.set(role.equipe, current);
+                map.set(role.equipeKey, current);
             });
         });
 

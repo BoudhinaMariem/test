@@ -11,34 +11,34 @@
 
                 <div>
                     <div class="text-3xl font-extrabold tracking-tight">
-                        {{ 'triweb.planification.title' | transloco }}
+                        {{ title }}
                     </div>
                     <div class="text-secondary mt-1">
-                        {{ 'triweb.planification.subtitle' | transloco }}
+                        {{ subtitle }}
                     </div>
                 </div>
             </div>
 
             <div class="mt-3 text-sm text-secondary">
-                {{ 'common.source' | transloco }} :
+                Source :
                 <span
                     class="font-medium"
                     [ngClass]="{'text-green-600': apiLoaded, 'text-amber-600': !apiLoaded}"
                 >
-                    {{ apiLoaded ? ('common.apiSynced' | transloco) : ('common.apiEmpty' | transloco) }}
+                    {{ apiLoaded ? 'TriwebSA synchronisée' : 'Aucune donnée TriwebSA' }}
                 </span>
-                · {{ 'common.lastUpdate' | transloco }} : {{ lastUpdate | date:'dd/MM/yyyy HH:mm' }}
+                · Dernière actualisation : {{ lastUpdate | date:'dd/MM/yyyy HH:mm' }}
             </div>
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
             <mat-form-field class="fuse-mat-dense triweb-filter-control w-72">
-                <mat-label>{{ 'triweb.planification.searchLabel' | transloco }}</mat-label>
+                <mat-label>Recherche planification</mat-label>
                 <input
                     matInput
                     [(ngModel)]="search"
                     (ngModelChange)="applyFilters()"
-                    [placeholder]="'common.searchPlaceholder' | transloco"
+                    placeholder="Client, code, équipe, statut"
                 />
                 <mat-icon matSuffix [svgIcon]="'heroicons_outline:search'"></mat-icon>
             </mat-form-field>
@@ -52,7 +52,7 @@
                     class="icon-size-5 mr-2"
                     [svgIcon]="'heroicons_outline:refresh'"
                 ></mat-icon>
-                {{ 'common.refresh' | transloco }}
+                Actualiser
             </button>
 
             <button
@@ -60,14 +60,14 @@
                 color="primary"
                 (click)="resetFilters()"
             >
-                {{ 'common.reset' | transloco }}
+                Réinitialiser
             </button>
         </div>
     </div>
 
     <div class="triweb-filters grid grid-cols-1 md:grid-cols-2 xl:grid-cols-7 gap-4 mt-8">
         <mat-form-field class="fuse-mat-dense triweb-filter-control">
-            <mat-label>{{ 'common.filters.dateFrom' | transloco }}</mat-label>
+            <mat-label>Date début</mat-label>
             <input
                 matInput
                 type="date"
@@ -77,7 +77,7 @@
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-dense triweb-filter-control">
-            <mat-label>{{ 'common.filters.dateTo' | transloco }}</mat-label>
+            <mat-label>Date fin</mat-label>
             <input
                 matInput
                 type="date"
@@ -87,7 +87,7 @@
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-dense triweb-filter-control">
-            <mat-label>{{ 'common.filters.status' | transloco }}</mat-label>
+            <mat-label>Statut</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedStatut"
@@ -100,7 +100,7 @@
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-dense triweb-filter-control">
-            <mat-label>{{ 'common.filters.position' | transloco }}</mat-label>
+            <mat-label>Position</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedPosition"
@@ -113,7 +113,7 @@
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-dense triweb-filter-control">
-            <mat-label>{{ 'common.filters.loiHamon' | transloco }}</mat-label>
+            <mat-label>Loi Hamon</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedLoiHamon"
@@ -126,7 +126,7 @@
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-dense triweb-filter-control">
-            <mat-label>{{ 'common.filters.nature' | transloco }}</mat-label>
+            <mat-label>Nature</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedNature"
@@ -139,14 +139,14 @@
         </mat-form-field>
 
         <mat-form-field class="fuse-mat-dense triweb-filter-control">
-            <mat-label>{{ 'common.filters.role' | transloco }}</mat-label>
+            <mat-label>Rôle métier</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedTeam"
                 (ngModelChange)="applyFilters()"
             >
-                <option *ngFor="let team of teamOptions" [value]="team.value">
-                    {{ team.labelKey | transloco }}
+                <option *ngFor="let team of teamOptions" [value]="team">
+                    {{ team }}
                 </option>
             </select>
         </mat-form-field>
@@ -159,7 +159,7 @@
             [style.border-left-color]="triwebPalette[i % triwebPalette.length]"
         >
             <div class="text-secondary text-sm">
-                {{ card.titleKey | transloco }}
+                {{ card.title }}
             </div>
             <div class="mt-2 text-3xl font-bold">
                 {{ card.value }}
@@ -172,7 +172,7 @@
                     'text-secondary': card.trend === 'neutral'
                 }"
             >
-                {{ card.detailKey | transloco: card.detailParams }}
+                {{ card.detail }}
             </div>
         </div>
     </div>
@@ -180,10 +180,10 @@
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                {{ 'triweb.planification.charts.planning7d' | transloco }}
+                Dossiers à planifier sur 7 jours
             </div>
             <div class="text-sm text-secondary mb-4">
-                {{ 'triweb.planification.charts.planning7dDesc' | transloco }}
+                Dossiers non finalisés à livrer dans les 7 prochains jours
             </div>
 
             <div
@@ -202,20 +202,16 @@
                     <dxi-series
                         argumentField="position"
                         valueField="dossiers"
-                        name="{{ 'triweb.planification.series.dossiers' | transloco }}"
+                        name="Dossiers"
                         type="bar"
                     ></dxi-series>
 
                     <dxi-series
                         argumentField="position"
                         valueField="avgPages"
-                        name="{{ 'triweb.planification.series.avgPages' | transloco }}"
+                        name="Moy. pages"
                         type="spline"
                     ></dxi-series>
-
-                    <dxo-argument-axis>
-                        <dxo-label [customizeText]="customizeRoleAxisLabel"></dxo-label>
-                    </dxo-argument-axis>
 
                     <dxo-tooltip
                         [enabled]="true"
@@ -232,10 +228,10 @@
 
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                {{ 'triweb.planification.charts.avgPagesDelivery' | transloco }}
+                Moyenne de pages par date de livraison
             </div>
             <div class="text-sm text-secondary mb-4">
-                {{ 'triweb.planification.charts.avgPagesDeliveryDesc' | transloco }}
+                Analyse sur les deux derniers mois, moyenne de pages et non somme
             </div>
 
             <div
@@ -253,7 +249,7 @@
                     <dxi-series
                         argumentField="label"
                         valueField="avgPages"
-                        name="{{ 'triweb.planification.series.avgPagesBar' | transloco }}"
+                        name="Moyenne pages"
                         type="bar"
                     ></dxi-series>
 
@@ -278,10 +274,10 @@
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                {{ 'triweb.planification.charts.avgWorkload' | transloco }}
+                Charge moyenne par dossier actif
             </div>
             <div class="text-sm text-secondary mb-4">
-                {{ 'triweb.planification.charts.avgWorkloadDesc' | transloco }}
+                Rédaction, graphisme et CQ interne uniquement
             </div>
 
             <div
@@ -299,13 +295,9 @@
                     <dxi-series
                         argumentField="role"
                         valueField="avgPages"
-                        name="{{ 'triweb.planification.series.pagesPerDossier' | transloco }}"
+                        name="Pages / dossier"
                         type="bar"
                     ></dxi-series>
-
-                    <dxo-argument-axis>
-                        <dxo-label [customizeText]="customizeRoleAxisLabel"></dxo-label>
-                    </dxo-argument-axis>
 
                     <dxo-tooltip
                         [enabled]="true"
@@ -319,10 +311,10 @@
 
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                {{ 'triweb.planification.charts.todayWorkload' | transloco }}
+                Charge du jour par position
             </div>
             <div class="text-sm text-secondary mb-4">
-                {{ 'triweb.planification.charts.todayWorkloadDesc' | transloco }}
+                Barres empilées : planifiés, en cours, livrés et retards sur le périmètre du jour
             </div>
 
             <div
@@ -340,28 +332,28 @@
                     <dxi-series
                         argumentField="position"
                         valueField="planifies"
-                        name="{{ 'triweb.planification.series.planned' | transloco }}"
+                        name="Planifiés"
                         type="stackedbar"
                     ></dxi-series>
 
                     <dxi-series
                         argumentField="position"
                         valueField="enCours"
-                        name="{{ 'triweb.planification.series.inProgress' | transloco }}"
+                        name="En cours"
                         type="stackedbar"
                     ></dxi-series>
 
                     <dxi-series
                         argumentField="position"
                         valueField="livres"
-                        name="{{ 'triweb.planification.series.delivered' | transloco }}"
+                        name="Livrés"
                         type="stackedbar"
                     ></dxi-series>
 
                     <dxi-series
                         argumentField="position"
                         valueField="retards"
-                        name="{{ 'triweb.planification.series.late' | transloco }}"
+                        name="Retards"
                         type="stackedbar"
                     ></dxi-series>
 
@@ -386,50 +378,34 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8 items-stretch triweb-team-charts-grid">
-        <div class="bg-card rounded-2xl shadow p-6 triweb-team-chart-card flex flex-col">
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                {{ 'triweb.planification.charts.teamR' | transloco }}
+                Sous-équipes rédaction — aujourd'hui
             </div>
             <div class="text-sm text-secondary mb-4">
-                {{ 'triweb.planification.charts.teamRDesc' | transloco }}
+                Valeurs TeamR sur les dossiers du jour (hors statuts techniques).
             </div>
 
-            <div class="triweb-chart-hover-wrap mt-auto">
-                <ng-container *ngFor="let renderKey of [teamChartsRenderKey]; trackBy: trackTeamChartRender">
-                    <dx-chart
-                        #teamRChart
-                        [dataSource]="teamRContentToday"
-                        [palette]="triwebPalette"
-                        [rotated]="true"
-                        [customizePoint]="customizeTeamRContentTodayPoint"
-                        (onPointHoverChanged)="onChartPointHoverChanged('teamRContentToday', $event)"
-                        (mouseleave)="onChartMouseLeave('teamRContentToday', teamRChart)"
-                        [style.height.px]="teamChartHeight()"
-                        style="width: 100%;"
-                    >
-                    <dxo-margin [left]="teamChartLeftMargin()"></dxo-margin>
-
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('teamRContentToday', teamRContentTodayChart)"
+            >
+                <dx-chart
+                    #teamRContentTodayChart
+                    [dataSource]="teamRContentToday"
+                    [palette]="triwebPalette"
+                    [rotated]="true"
+                    [customizePoint]="customizeTeamRContentTodayPoint"
+                    (onPointHoverChanged)="onChartPointHoverChanged('teamRContentToday', $event)"
+                    style="height: 360px; width: 100%;"
+                >
                     <dxi-series
                         argumentField="team"
                         valueField="count"
-                        [name]="'triweb.planification.series.dossiers' | transloco"
+                        name="Dossiers"
                         type="bar"
                     ></dxi-series>
-
-                    <dxo-argument-axis>
-                        <dxo-label overlappingBehavior="stagger"></dxo-label>
-                    </dxo-argument-axis>
-
-                    <dxo-value-axis
-                        [valueMarginsEnabled]="false"
-                        [visualRange]="teamChartVisualRange"
-                        [wholeRange]="teamChartVisualRange"
-                        [adjustOnZoom]="false"
-                        [tickInterval]="teamChartTickInterval"
-                    ></dxo-value-axis>
-
-                    <dxo-export [enabled]="false"></dxo-export>
 
                     <dxo-tooltip
                         [enabled]="true"
@@ -437,54 +413,37 @@
                     ></dxo-tooltip>
 
                     <dxo-legend [visible]="false"></dxo-legend>
-                    </dx-chart>
-                </ng-container>
+                </dx-chart>
             </div>
         </div>
 
-        <div class="bg-card rounded-2xl shadow p-6 triweb-team-chart-card flex flex-col">
+        <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                {{ 'triweb.planification.charts.teamG' | transloco }}
+                Sous-équipes graphisme — aujourd'hui
             </div>
             <div class="text-sm text-secondary mb-4">
-                {{ 'triweb.planification.charts.teamGDesc' | transloco }}
+                Valeurs TeamG sur les dossiers du jour (hors statuts techniques).
             </div>
 
-            <div class="triweb-chart-hover-wrap mt-auto">
-                <ng-container *ngFor="let renderKey of [teamChartsRenderKey]; trackBy: trackTeamChartRender">
-                    <dx-chart
-                        #teamGChart
-                        [dataSource]="teamGContentToday"
-                        [palette]="triwebPalette"
-                        [rotated]="true"
-                        [customizePoint]="customizeTeamGContentTodayPoint"
-                        (onPointHoverChanged)="onChartPointHoverChanged('teamGContentToday', $event)"
-                        (mouseleave)="onChartMouseLeave('teamGContentToday', teamGChart)"
-                        [style.height.px]="teamChartHeight()"
-                        style="width: 100%;"
-                    >
-                    <dxo-margin [left]="teamChartLeftMargin()"></dxo-margin>
-
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('teamGContentToday', teamGContentTodayChart)"
+            >
+                <dx-chart
+                    #teamGContentTodayChart
+                    [dataSource]="teamGContentToday"
+                    [palette]="triwebPalette"
+                    [rotated]="true"
+                    [customizePoint]="customizeTeamGContentTodayPoint"
+                    (onPointHoverChanged)="onChartPointHoverChanged('teamGContentToday', $event)"
+                    style="height: 360px; width: 100%;"
+                >
                     <dxi-series
                         argumentField="team"
                         valueField="count"
-                        [name]="'triweb.planification.series.dossiers' | transloco"
+                        name="Dossiers"
                         type="bar"
                     ></dxi-series>
-
-                    <dxo-argument-axis>
-                        <dxo-label overlappingBehavior="stagger"></dxo-label>
-                    </dxo-argument-axis>
-
-                    <dxo-value-axis
-                        [valueMarginsEnabled]="false"
-                        [visualRange]="teamChartVisualRange"
-                        [wholeRange]="teamChartVisualRange"
-                        [adjustOnZoom]="false"
-                        [tickInterval]="teamChartTickInterval"
-                    ></dxo-value-axis>
-
-                    <dxo-export [enabled]="false"></dxo-export>
 
                     <dxo-tooltip
                         [enabled]="true"
@@ -492,8 +451,7 @@
                     ></dxo-tooltip>
 
                     <dxo-legend [visible]="false"></dxo-legend>
-                    </dx-chart>
-                </ng-container>
+                </dx-chart>
             </div>
         </div>
     </div>
@@ -501,10 +459,10 @@
     <div class="grid grid-cols-1 gap-6 mt-8">
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                {{ 'triweb.planification.charts.lateTable' | transloco }}
+                Dossiers en retard ouverts
             </div>
             <div class="text-sm text-secondary mb-4">
-                {{ 'triweb.planification.charts.lateTableDesc' | transloco }}
+                Date prévue dépassée, non finalisés, hors position Client
             </div>
 
             <dx-data-grid
@@ -515,13 +473,13 @@
             >
                 <dxo-paging [pageSize]="10"></dxo-paging>
 
-                <dxi-column dataField="codeClient" [caption]="'triweb.planification.table.code' | transloco"></dxi-column>
-                <dxi-column dataField="client" [caption]="'triweb.planification.table.client' | transloco"></dxi-column>
-                <dxi-column dataField="position" [caption]="'triweb.planification.table.position' | transloco"></dxi-column>
-                <dxi-column dataField="statut" [caption]="'triweb.planification.table.status' | transloco"></dxi-column>
-                <dxi-column dataField="page" [caption]="'triweb.planification.table.pages' | transloco"></dxi-column>
-                <dxi-column dataField="dateLivraisonPrevue" [caption]="'triweb.planification.table.dueDate' | transloco"></dxi-column>
-                <dxi-column dataField="alertReason" [caption]="'triweb.planification.table.lateReason' | transloco"></dxi-column>
+                <dxi-column dataField="codeClient" caption="Code"></dxi-column>
+                <dxi-column dataField="client" caption="Client"></dxi-column>
+                <dxi-column dataField="position" caption="Position"></dxi-column>
+                <dxi-column dataField="statut" caption="Statut"></dxi-column>
+                <dxi-column dataField="page" caption="Pages"></dxi-column>
+                <dxi-column dataField="dateLivraisonPrevue" caption="Date prévue"></dxi-column>
+                <dxi-column dataField="alertReason" caption="Cause retard"></dxi-column>
             </dx-data-grid>
         </div>
     </div>

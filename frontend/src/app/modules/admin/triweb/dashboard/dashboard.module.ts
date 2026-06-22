@@ -11,6 +11,8 @@ import { DxDataGridModule } from 'devextreme-angular/ui/data-grid';
 import { DxChartModule } from 'devextreme-angular/ui/chart';
 import { DxPieChartModule } from 'devextreme-angular/ui/pie-chart';
 import { SharedModule } from 'app/shared/shared.module';
+import { TranslocoModule } from '@ngneat/transloco';
+import { TriwebSharedModule } from '../shared/triweb-shared.module';
 import { TriwebDashboardComponent } from './dashboard.component';
 import { triwebDashboardRoutes } from './dashboard.routing';
 
@@ -26,6 +28,8 @@ import { triwebDashboardRoutes } from './dashboard.routing';
         MatIconModule,
         MatInputModule,
         SharedModule,
+        TranslocoModule,
+        TriwebSharedModule,
         DxDataGridModule, DxChartModule, DxPieChartModule
     ]
 })

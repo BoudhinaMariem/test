@@ -1,36 +1,40 @@
-<!-- Button -->
-<button
-    mat-icon-button
-    [matMenuTriggerFor]="languages"
-    class="flex items-center justify-center">
-    <ng-container *ngTemplateOutlet="flagImage; context: {$implicit: activeLang}"></ng-container>
-</button>
+<div class="flex items-end flex-shrink-0 gap-1 lang-flags-row">
+    <button
+        mat-icon-button
+        type="button"
+        class="lang-flag-btn"
+        [class.lang-active]="activeLang === 'fr'"
+        [attr.aria-label]="'Français'"
+        [attr.aria-pressed]="activeLang === 'fr'"
+        (click)="setActiveLang('fr')"
+    >
+        <ng-container *ngTemplateOutlet="flagImage; context: {$implicit: 'fr'}"></ng-container>
+    </button>
 
-<!-- Language menu -->
-<mat-menu
-    [xPosition]="'before'"
-    #languages="matMenu">
-    <ng-container *ngFor="let lang of availableLangs; trackBy: trackByFn">
-        <button
-            mat-menu-item
-            (click)="setActiveLang(lang.id)">
-            <span class="flex items-center">
-                <ng-container *ngTemplateOutlet="flagImage; context: {$implicit: lang.id}"></ng-container>
-                <span class="ml-3">{{lang.label}}</span>
-            </span>
-        </button>
-    </ng-container>
-</mat-menu>
+    <button
+        mat-icon-button
+        type="button"
+        class="lang-flag-btn"
+        [class.lang-active]="activeLang === 'en'"
+        [attr.aria-label]="'English'"
+        [attr.aria-pressed]="activeLang === 'en'"
+        (click)="setActiveLang('en')"
+    >
+        <ng-container *ngTemplateOutlet="flagImage; context: {$implicit: 'en'}"></ng-container>
+    </button>
+</div>
 
 <!-- Flag image template -->
 <ng-template
     let-lang
-    #flagImage>
-    <span class="relative inline-flex w-7 h-5 shadow rounded-sm overflow-hidden bg-gray-100">
+    #flagImage
+>
+    <span class="lang-flag-wrap relative block shadow rounded-sm overflow-hidden bg-gray-100">
         <span class="absolute inset-0 ring-1 ring-inset ring-black ring-opacity-10"></span>
         <img
             class="w-full h-full object-cover"
             [src]="'assets/images/flags/' + flagCodes[lang] + '.svg'"
-            [alt]="'Flag image for ' + lang">
+            [alt]="lang === 'fr' ? 'Drapeau France' : 'Flag United States'"
+        />
     </span>
 </ng-template>

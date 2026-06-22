@@ -1,5 +1,149 @@
 {
     "welcome-back": "Welcome back",
     "Project": "Project",
-    "Analytics": "Analytics"
+    "Analytics": "Analytics",
+    "nav": {
+        "triweb": {
+            "group": "Triweb Operations",
+            "groupSubtitle": "Dashboard and planning",
+            "dashboard": "General dashboard",
+            "planification": "Planning",
+            "powerbi": "Power BI",
+            "models": "AI models"
+        }
+    },
+    "common": {
+        "refresh": "Refresh",
+        "reset": "Reset",
+        "source": "Source",
+        "lastUpdate": "Last update",
+        "apiConnected": ".NET API connected",
+        "apiFallback": "local fallback data",
+        "apiSynced": "TriwebSA synced",
+        "apiEmpty": "No TriwebSA data",
+        "searchPlaceholder": "Client, code, team, status",
+        "all": "All",
+        "filters": {
+            "dateFrom": "Start date",
+            "dateTo": "End date",
+            "status": "Status",
+            "position": "Position",
+            "loiHamon": "Hamon law",
+            "nature": "Nature",
+            "team": "Team",
+            "role": "Business role"
+        }
+    },
+    "triweb": {
+        "roles": {
+            "redaction": "Writing",
+            "graphisme": "Design",
+            "cqInterne": "Internal QC",
+            "cqClient": "Client QC",
+            "redacteur": "Writer",
+            "graphiste": "Designer",
+            "nonAffecte": "Unassigned"
+        },
+        "dashboard": {
+            "title": "General dashboard",
+            "subtitle": "Consolidated view of all dossiers available from the API.",
+            "searchLabel": "Dashboard search",
+            "kpi": {
+                "total": "Total dossiers",
+                "totalDetail": "Filtered .NET API scope",
+                "inProduction": "In production",
+                "inProductionDetail": "Production position, not finalized",
+                "delivered": "Delivered / validated",
+                "deliveredDetail": "Delivered or validated status",
+                "returnsCq": "QC returns",
+                "returnsCqDetail": "QC return detected",
+                "performance": "Overall performance",
+                "performanceSubtitle": "Delivered/validated vs total dossiers.",
+                "performanceWeak": "Low",
+                "performanceModerate": "Moderate",
+                "performanceGood": "Good"
+            },
+            "charts": {
+                "dailyProduction": "Daily production",
+                "dailyProductionDesc": "Production, deliveries/validations and QC returns by actual dossier dates",
+                "positionPie": "Operational breakdown by position",
+                "positionPieDesc": "Current dossier distribution by operational stage",
+                "teamMetrics": "Team workload",
+                "teamMetricsDesc": "Dossier volume and returns by business team",
+                "delivery": "Expected deliveries by page volume",
+                "deliveryDesc": "Page volume to deliver by client date (last 7 days)",
+                "operational": "Operational indicators",
+                "operationalDesc": "Key rates for the filtered scope",
+                "redacteur": "Writers occupancy in production",
+                "redacteurDesc": "Active states from etatR on Production position dossiers",
+                "graphiste": "Designers occupancy in production",
+                "graphisteDesc": "Active states from etatG on Production position dossiers"
+            },
+            "series": {
+                "production": "Production",
+                "delivered": "Delivered / validated",
+                "returnsCq": "QC returns",
+                "dossiers": "Dossiers",
+                "returns": "Returns",
+                "pages": "Pages",
+                "rate": "Rate"
+            }
+        },
+        "planification": {
+            "title": "Planning",
+            "subtitle": "Tracking dossiers planned, in progress and delivered today.",
+            "searchLabel": "Planning search",
+            "kpi": {
+                "plannedToday": "Planned today",
+                "plannedTodayDetail": "Dossiers planned for today",
+                "inProgressToday": "In progress today",
+                "inProgressTodayDetail": "Active processing today",
+                "deliveredToday": "Delivered today",
+                "deliveredTodayDetail": "Finalized dossiers delivered today",
+                "lateToday": "Late today",
+                "lateTodayDetail": "Excluding Client position",
+                "avgPagesToday": "Avg pages / planned dossier today",
+                "avgPagesTodayNone": "No planned dossier",
+                "avgPagesTodayDetail": "{{pages}} pages · {{count}} dossier(s)"
+            },
+            "charts": {
+                "planning7d": "Dossiers to plan over 7 days",
+                "planning7dDesc": "Non-finalized dossiers due within the next 7 days",
+                "avgPagesDelivery": "Average pages by delivery date",
+                "avgPagesDeliveryDesc": "Last two months analysis, average pages not sum",
+                "avgWorkload": "Average workload per active dossier",
+                "avgWorkloadDesc": "Writing, design and internal QC only",
+                "todayWorkload": "Today's workload by position",
+                "todayWorkloadDesc": "Stacked bars: planned, in progress, delivered and late for today's scope",
+                "teamR": "Writing sub-teams — today",
+                "teamRDesc": "Breakdown by writing sub-team for today's dossiers (excluding technical statuses).",
+                "teamG": "Design sub-teams — today",
+                "teamGDesc": "Breakdown by design sub-team for today's dossiers (excluding technical statuses).",
+                "lateTable": "Open late dossiers",
+                "lateTableDesc": "Due date passed, not finalized, excluding Client position"
+            },
+            "series": {
+                "dossiers": "Dossiers",
+                "avgPages": "Avg. pages",
+                "avgPagesBar": "Average pages",
+                "pagesPerDossier": "Pages / dossier",
+                "planned": "Planned",
+                "inProgress": "In progress",
+                "delivered": "Delivered",
+                "late": "Late"
+            },
+            "table": {
+                "code": "Code",
+                "client": "Client",
+                "position": "Position",
+                "status": "Status",
+                "pages": "Pages",
+                "dueDate": "Due date",
+                "lateReason": "Late reason"
+            },
+            "tooltips": {
+                "teamContent": "{{team}}<br>{{dossiersLabel}}: {{count}}"
+            }
+        }
+    }
 }

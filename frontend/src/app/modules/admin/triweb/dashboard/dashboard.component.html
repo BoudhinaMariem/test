@@ -11,34 +11,34 @@
 
                 <div>
                     <div class="text-3xl font-extrabold tracking-tight">
-                        {{ title }}
+                        {{ 'triweb.dashboard.title' | transloco }}
                     </div>
                     <div class="text-secondary mt-1">
-                        {{ subtitle }}
+                        {{ 'triweb.dashboard.subtitle' | transloco }}
                     </div>
                 </div>
             </div>
 
             <div class="mt-3 text-sm text-secondary">
-                Source :
+                {{ 'common.source' | transloco }} :
                 <span
                     class="font-medium"
                     [ngClass]="{'text-green-600': apiLoaded, 'text-amber-600': !apiLoaded}"
                 >
-                    {{ apiLoaded ? 'API .NET connectée' : 'données locales de secours' }}
+                    {{ apiLoaded ? ('common.apiConnected' | transloco) : ('common.apiFallback' | transloco) }}
                 </span>
-                · Dernière actualisation : {{ lastUpdate | date:'dd/MM/yyyy HH:mm' }}
+                · {{ 'common.lastUpdate' | transloco }} : {{ lastUpdate | date:'dd/MM/yyyy HH:mm' }}
             </div>
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
-            <mat-form-field class="fuse-mat-dense w-72">
-                <mat-label>Recherche dashboard</mat-label>
+            <mat-form-field class="fuse-mat-dense triweb-filter-control w-72">
+                <mat-label>{{ 'triweb.dashboard.searchLabel' | transloco }}</mat-label>
                 <input
                     matInput
                     [(ngModel)]="search"
                     (ngModelChange)="applyFilters()"
-                    placeholder="Client, code, équipe, statut"
+                    [placeholder]="'common.searchPlaceholder' | transloco"
                 />
                 <mat-icon matSuffix [svgIcon]="'heroicons_outline:search'"></mat-icon>
             </mat-form-field>
@@ -52,7 +52,7 @@
                     class="icon-size-5 mr-2"
                     [svgIcon]="'heroicons_outline:refresh'"
                 ></mat-icon>
-                Actualiser
+                {{ 'common.refresh' | transloco }}
             </button>
 
             <button
@@ -60,14 +60,14 @@
                 color="primary"
                 (click)="resetFilters()"
             >
-                Réinitialiser
+                {{ 'common.reset' | transloco }}
             </button>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-7 gap-4 mt-8">
-        <mat-form-field class="fuse-mat-dense">
-            <mat-label>Date début</mat-label>
+    <div class="triweb-filters grid grid-cols-1 md:grid-cols-2 xl:grid-cols-7 gap-4 mt-8">
+        <mat-form-field class="fuse-mat-dense triweb-filter-control">
+            <mat-label>{{ 'common.filters.dateFrom' | transloco }}</mat-label>
             <input
                 matInput
                 type="date"
@@ -76,8 +76,8 @@
             />
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-dense">
-            <mat-label>Date fin</mat-label>
+        <mat-form-field class="fuse-mat-dense triweb-filter-control">
+            <mat-label>{{ 'common.filters.dateTo' | transloco }}</mat-label>
             <input
                 matInput
                 type="date"
@@ -86,8 +86,8 @@
             />
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-dense">
-            <mat-label>Statut</mat-label>
+        <mat-form-field class="fuse-mat-dense triweb-filter-control">
+            <mat-label>{{ 'common.filters.status' | transloco }}</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedStatut"
@@ -99,8 +99,8 @@
             </select>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-dense">
-            <mat-label>Position</mat-label>
+        <mat-form-field class="fuse-mat-dense triweb-filter-control">
+            <mat-label>{{ 'common.filters.position' | transloco }}</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedPosition"
@@ -112,8 +112,8 @@
             </select>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-dense">
-            <mat-label>Loi Hamon</mat-label>
+        <mat-form-field class="fuse-mat-dense triweb-filter-control">
+            <mat-label>{{ 'common.filters.loiHamon' | transloco }}</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedLoiHamon"
@@ -125,8 +125,8 @@
             </select>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-dense">
-            <mat-label>Nature</mat-label>
+        <mat-form-field class="fuse-mat-dense triweb-filter-control">
+            <mat-label>{{ 'common.filters.nature' | transloco }}</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedNature"
@@ -138,21 +138,29 @@
             </select>
         </mat-form-field>
 
-        <mat-form-field class="fuse-mat-dense">
-            <mat-label>Équipe</mat-label>
+        <mat-form-field class="fuse-mat-dense triweb-filter-control">
+            <mat-label>{{ 'common.filters.team' | transloco }}</mat-label>
             <select
                 matNativeControl
                 [(ngModel)]="selectedTeam"
                 (ngModelChange)="applyFilters()"
             >
-                <option *ngFor="let team of teamOptions" [value]="team">
-                    {{ team }}
-                </option>
+                <option [value]="'Tous'">{{ 'common.all' | transloco }}</option>
+                <optgroup [label]="'triweb.roles.redaction' | transloco">
+                    <option *ngFor="let team of teamROptions" [value]="team">
+                        {{ team }}
+                    </option>
+                </optgroup>
+                <optgroup [label]="'triweb.roles.graphisme' | transloco">
+                    <option *ngFor="let team of teamGOptions" [value]="team">
+                        {{ team }}
+                    </option>
+                </optgroup>
             </select>
         </mat-form-field>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-6 gap-6 mt-6">
+    <div class="kpi-grid mt-6">
         <div
             *ngFor="let kpi of kpis; let i = index"
             class="bg-card rounded-2xl shadow p-6 border-l-4"
@@ -160,7 +168,7 @@
         >
             <div class="flex items-center justify-between">
                 <div class="text-secondary text-sm">
-                    {{ kpi.title }}
+                    {{ kpi.titleKey | transloco }}
                 </div>
 
                 <mat-icon
@@ -185,43 +193,61 @@
                     'text-red-600': kpi.trend === 'down'
                 }"
             >
-                {{ kpi.delta }}
+                {{ kpi.deltaKey | transloco }}
             </div>
         </div>
+
+        <triweb-gauge-kpi
+            [title]="performanceGauge.titleKey | transloco"
+            [value]="performanceGauge.value"
+            [subtitle]="performanceGauge.subtitleKey | transloco"
+            [status]="performanceGauge.statusKey | transloco"
+            [max]="100"
+            unit="%"
+            colorMode="threshold">
+        </triweb-gauge-kpi>
     </div>
 
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                Courbe production par jour
+                {{ 'triweb.dashboard.charts.dailyProduction' | transloco }}
             </div>
             <div class="text-sm text-secondary mb-4">
-                Production, livraisons/validations et retours CQ selon les dates réelles du dossier
+                {{ 'triweb.dashboard.charts.dailyProductionDesc' | transloco }}
             </div>
 
+            <div
+                class="triweb-chart-hover-wrap"
+                [class.chart-focus-mode]="isSeriesFocusActive('dailyProduction')"
+                (mouseleave)="onChartMouseLeave('dailyProduction', dailyProductionChart)"
+            >
             <dx-chart
+                #dailyProductionChart
                 [dataSource]="dailyProduction"
                 [palette]="triwebPalette"
+                (onPointHoverChanged)="onChartPointHoverChanged('dailyProduction', $event)"
+                (onLegendClick)="onSeriesFocusLegendClick('dailyProduction', $event)"
                 style="height: 340px; width: 100%;"
             >
                 <dxi-series
                     argumentField="periode"
                     valueField="production"
-                    name="Production"
+                    name="{{ 'triweb.dashboard.series.production' | transloco }}"
                     type="bar"
                 ></dxi-series>
 
                 <dxi-series
                     argumentField="periode"
                     valueField="livres"
-                    name="Livrés / validés"
+                    name="{{ 'triweb.dashboard.series.delivered' | transloco }}"
                     type="spline"
                 ></dxi-series>
 
                 <dxi-series
                     argumentField="periode"
                     valueField="retours"
-                    name="Retours CQ"
+                    name="{{ 'triweb.dashboard.series.returnsCq' | transloco }}"
                     type="line"
                 ></dxi-series>
 
@@ -232,22 +258,36 @@
                     ></dxo-label>
                 </dxo-argument-axis>
 
-                <dxo-tooltip [enabled]="true"></dxo-tooltip>
-                <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
+                <dxo-tooltip
+                    [enabled]="true"
+                    [customizeTooltip]="customizeDailyProductionTooltip"
+                ></dxo-tooltip>
+                <dxo-legend
+                    verticalAlignment="bottom"
+                    horizontalAlignment="center"
+                ></dxo-legend>
             </dx-chart>
+            </div>
         </div>
 
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                Répartition opérationnelle par position
+                {{ 'triweb.dashboard.charts.positionPie' | transloco }}
             </div>
             <div class="text-sm text-secondary mb-4">
-                Répartition actuelle des dossiers par étape opérationnelle
+                {{ 'triweb.dashboard.charts.positionPieDesc' | transloco }}
             </div>
 
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('positionPie', positionPieChart)"
+            >
             <dx-pie-chart
+                #positionPieChart
                 [dataSource]="positionPieData"
                 [palette]="triwebPalette"
+                [customizePoint]="customizePositionPiePoint"
+                (onPointHoverChanged)="onChartPointHoverChanged('positionPie', $event)"
                 type="doughnut"
                 style="height: 340px; width: 100%;"
             >
@@ -272,59 +312,83 @@
                     horizontalAlignment="center"
                 ></dxo-legend>
             </dx-pie-chart>
+            </div>
         </div>
     </div>
 
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                Charge par équipe
+                {{ 'triweb.dashboard.charts.teamMetrics' | transloco }}
             </div>
             <div class="text-sm text-secondary mb-4">
-                Volume de dossiers et retours par équipe métier
+                {{ 'triweb.dashboard.charts.teamMetricsDesc' | transloco }}
             </div>
 
+            <div
+                class="triweb-chart-hover-wrap"
+                [class.chart-focus-mode]="isSeriesFocusActive('teamMetrics')"
+                (mouseleave)="onChartMouseLeave('teamMetrics', teamMetricsChart)"
+            >
             <dx-chart
+                #teamMetricsChart
                 [dataSource]="teamMetrics"
                 [palette]="triwebPalette"
+                (onPointHoverChanged)="onChartPointHoverChanged('teamMetrics', $event)"
+                (onLegendClick)="onSeriesFocusLegendClick('teamMetrics', $event)"
                 style="height: 330px; width: 100%;"
             >
                 <dxi-series
-                    argumentField="equipe"
+                    argumentField="equipeKey"
                     valueField="dossiers"
-                    name="Dossiers"
+                    name="{{ 'triweb.dashboard.series.dossiers' | transloco }}"
                     type="bar"
                 ></dxi-series>
 
                 <dxi-series
-                    argumentField="equipe"
+                    argumentField="equipeKey"
                     valueField="retours"
-                    name="Retours"
+                    name="{{ 'triweb.dashboard.series.returns' | transloco }}"
                     type="spline"
                 ></dxi-series>
 
-                <dxo-tooltip [enabled]="true"></dxo-tooltip>
+                <dxo-argument-axis>
+                    <dxo-label [customizeText]="customizeTeamMetricAxisLabel"></dxo-label>
+                </dxo-argument-axis>
+
+                <dxo-tooltip
+                    [enabled]="true"
+                    [customizeTooltip]="customizeDailyProductionTooltip"
+                ></dxo-tooltip>
                 <dxo-legend verticalAlignment="bottom" horizontalAlignment="center"></dxo-legend>
             </dx-chart>
+            </div>
         </div>
 
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                Livraisons prévues par volume de pages
+                {{ 'triweb.dashboard.charts.delivery' | transloco }}
             </div>
             <div class="text-sm text-secondary mb-4">
-                Volume de pages à livrer par date client
+                {{ 'triweb.dashboard.charts.deliveryDesc' | transloco }}
             </div>
 
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('deliveryData', deliveryDataChart)"
+            >
             <dx-chart
+                #deliveryDataChart
                 [dataSource]="deliveryData"
                 [palette]="triwebPalette"
+                [customizePoint]="customizeDeliveryPoint"
+                (onPointHoverChanged)="onChartPointHoverChanged('deliveryData', $event)"
                 style="height: 330px; width: 100%;"
             >
                 <dxi-series
                     argumentField="label"
                     valueField="pages"
-                    name="Pages"
+                    name="{{ 'triweb.dashboard.series.pages' | transloco }}"
                     type="bar"
                 ></dxi-series>
 
@@ -338,28 +402,36 @@
                 <dxo-tooltip [enabled]="true"></dxo-tooltip>
                 <dxo-legend [visible]="false"></dxo-legend>
             </dx-chart>
+            </div>
         </div>
     </div>
 
     <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mt-8">
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                Synthèse opérationnelle globale
+                {{ 'triweb.dashboard.charts.operational' | transloco }}
             </div>
             <div class="text-sm text-secondary mb-4">
-                Taux clés du périmètre filtré
+                {{ 'triweb.dashboard.charts.operationalDesc' | transloco }}
             </div>
 
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('operationalRate', operationalRateChart)"
+            >
             <dx-chart
+                #operationalRateChart
                 [dataSource]="operationalRateData"
                 [palette]="triwebPalette"
                 [rotated]="true"
+                [customizePoint]="customizeOperationalRatePoint"
+                (onPointHoverChanged)="onChartPointHoverChanged('operationalRate', $event)"
                 style="height: 360px; width: 100%;"
             >
                 <dxi-series
                     argumentField="label"
                     valueField="value"
-                    name="Taux"
+                    name="{{ 'triweb.dashboard.series.rate' | transloco }}"
                     type="bar"
                 ></dxi-series>
 
@@ -374,56 +446,26 @@
 
                 <dxo-legend [visible]="false"></dxo-legend>
             </dx-chart>
-        </div> 
-
-        <div class="bg-card rounded-2xl shadow p-6">
-            <div class="text-lg font-semibold mb-1">
-                Occupation rédacteurs en production
             </div>
-            <div class="text-sm text-secondary mb-4">
-                États actifs selon etatR sur les dossiers en position Production
-            </div>
-
-            <dx-pie-chart
-                [dataSource]="redacteurAvailabilityData"
-                [customizePoint]="customizeWorkStatePoint"
-                type="doughnut"
-                style="height: 360px; width: 100%;"
-            >
-                <dxi-series
-                    argumentField="label"
-                    valueField="value"
-                >
-                    <dxo-label
-                        [visible]="true"
-                        format="fixedPoint"
-                        [connector]="{ visible: true }"
-                    ></dxo-label>
-                </dxi-series>
-
-                <dxo-tooltip
-                    [enabled]="true"
-                    [customizeTooltip]="customizePieTooltip"
-                ></dxo-tooltip>
-
-                <dxo-legend
-                    verticalAlignment="bottom"
-                    horizontalAlignment="center"
-                ></dxo-legend>
-            </dx-pie-chart>
         </div>
 
         <div class="bg-card rounded-2xl shadow p-6">
             <div class="text-lg font-semibold mb-1">
-                Occupation graphistes en production
+                {{ 'triweb.dashboard.charts.redacteur' | transloco }}
             </div>
             <div class="text-sm text-secondary mb-4">
-                États actifs selon etatG sur les dossiers en position Production
+                {{ 'triweb.dashboard.charts.redacteurDesc' | transloco }}
             </div>
 
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('redacteurPie', redacteurPieChart)"
+            >
             <dx-pie-chart
-                [dataSource]="graphisteAvailabilityData"
-                [customizePoint]="customizeWorkStatePoint"
+                #redacteurPieChart
+                [dataSource]="redacteurAvailabilityData"
+                [customizePoint]="customizeRedacteurPiePoint"
+                (onPointHoverChanged)="onChartPointHoverChanged('redacteurPie', $event)"
                 type="doughnut"
                 style="height: 360px; width: 100%;"
             >
@@ -448,6 +490,51 @@
                     horizontalAlignment="center"
                 ></dxo-legend>
             </dx-pie-chart>
+            </div>
+        </div>
+
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">
+                {{ 'triweb.dashboard.charts.graphiste' | transloco }}
+            </div>
+            <div class="text-sm text-secondary mb-4">
+                {{ 'triweb.dashboard.charts.graphisteDesc' | transloco }}
+            </div>
+
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('graphistePie', graphistePieChart)"
+            >
+            <dx-pie-chart
+                #graphistePieChart
+                [dataSource]="graphisteAvailabilityData"
+                [customizePoint]="customizeGraphistePiePoint"
+                (onPointHoverChanged)="onChartPointHoverChanged('graphistePie', $event)"
+                type="doughnut"
+                style="height: 360px; width: 100%;"
+            >
+                <dxi-series
+                    argumentField="label"
+                    valueField="value"
+                >
+                    <dxo-label
+                        [visible]="true"
+                        format="fixedPoint"
+                        [connector]="{ visible: true }"
+                    ></dxo-label>
+                </dxi-series>
+
+                <dxo-tooltip
+                    [enabled]="true"
+                    [customizeTooltip]="customizePieTooltip"
+                ></dxo-tooltip>
+
+                <dxo-legend
+                    verticalAlignment="bottom"
+                    horizontalAlignment="center"
+                ></dxo-legend>
+            </dx-pie-chart>
+            </div>
         </div>
     </div>
 </div>

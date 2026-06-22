@@ -1,17 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TriwebApiService } from '../triweb-api.service';
 import { TriwebChartHoverController } from '../shared/triweb-chart-hover.helper';
 import { TriwebSeriesFocusController } from '../shared/triweb-series-focus.helper';
 import {
-    buildTeamContentChart,
-    computeTeamChartsSharedMax
+    buildTeamContentChart
 } from '../shared/triweb-team-chart.helper';
-import {
-    TRIWEB_ROLE_FILTER_OPTIONS,
-    TRIWEB_ROLE_LABEL_KEYS
-} from '../shared/triweb-role.helper';
 
 @Component({
     selector: 'triweb-planification',
@@ -19,7 +12,10 @@ import {
     styleUrls  : ['./planification.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class TriwebPlanificationComponent implements OnInit, OnDestroy {
+export class TriwebPlanificationComponent implements OnInit {
+    title = 'Planification';
+    subtitle = 'Suivi des dossiers planifiés, en cours et livrés aujourd\'hui.';
+
     readonly triwebPalette = [
         '#EA7862',
         '#9C0F48',
@@ -51,7 +47,7 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
     positionOptions: string[] = ['Tous'];
     loiHamonOptions: string[] = ['Tous'];
     natureOptions: string[] = ['Tous'];
-    teamOptions = TRIWEB_ROLE_FILTER_OPTIONS;
+    teamOptions: string[] = ['Tous', 'Rédacteur', 'Graphiste', 'CQ interne', 'CQ client'];
 
     summaryCards: any[] = [];
 
@@ -114,29 +110,11 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
     teamRContentToday: any[] = [];
     teamGContentToday: any[] = [];
     lateItems: any[] = [];
-    teamChartsMaxValue = 10;
-    teamChartsRenderKey = 0;
 
-    private _langSub?: Subscription;
+    constructor(private _triwebApiService: TriwebApiService) {}
 
-    constructor(
-        private _triwebApiService: TriwebApiService,
-        private _translocoService: TranslocoService
-    ) {}
-
-    ngOnInit(): void
-    {
-        this._langSub = this._translocoService.langChanges$.subscribe(() => {
-            this.teamChartsRenderKey += 1;
-            this._recalculateVisuals();
-        });
-
+    ngOnInit(): void {
         this.refreshPlanification();
-    }
-
-    ngOnDestroy(): void
-    {
-        this._langSub?.unsubscribe();
     }
 
     refreshPlanification(): void {
@@ -275,69 +253,8 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
     };
 
     customizeTeamContentTooltip = (arg: any): any => ({
-        text: this._translocoService.translate('triweb.planification.tooltips.teamContent', {
-            team          : arg.argumentText,
-            dossiersLabel : this._translocoService.translate('triweb.planification.series.dossiers'),
-            count         : arg.valueText
-        })
+        text: `${arg.argumentText}<br>Dossiers : ${arg.valueText}`
     });
-
-    teamChartHeight(): number
-    {
-        const count = Math.max(
-            this.teamRContentToday?.length || 0,
-            this.teamGContentToday?.length || 0
-        );
-
-        return Math.max(280, Math.min(520, count * 44 + 72));
-    }
-
-    teamChartLeftMargin(): number
-    {
-        const labels = [
-            ...(this.teamRContentToday || []),
-            ...(this.teamGContentToday || [])
-        ].map((row) => String(row?.team || ''));
-
-        const longest = labels.reduce((max, label) => (
-            label.length > max ? label.length : max
-        ), 0);
-
-        return Math.max(110, Math.min(180, longest * 7 + 24));
-    }
-
-    get teamChartTickInterval(): number
-    {
-        if (this.teamChartsMaxValue <= 12)
-        {
-            return 2;
-        }
-
-        if (this.teamChartsMaxValue <= 50)
-        {
-            return 5;
-        }
-
-        return 10;
-    }
-
-    get teamChartVisualRange(): { startValue: number; endValue: number }
-    {
-        return {
-            startValue: 0,
-            endValue   : this.teamChartsMaxValue
-        };
-    }
-
-    trackTeamChartRender = (_index: number, value: number): number => value;
-
-    customizeRoleAxisLabel = (arg: any): string => {
-        const labelKey = TRIWEB_ROLE_LABEL_KEYS[arg.value];
-
-        return labelKey
-            ? this._translocoService.translate(labelKey)
-            : String(arg.value ?? '');
-    };
 
     customizePlanningRoleTooltip = (arg: any): any => {
         const data = arg.point?.data || {};
@@ -389,11 +306,6 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
         this.lateItems = this._buildLateItems(items);
         this.teamRContentToday = buildTeamContentChart(todayItems, 'teamR');
         this.teamGContentToday = buildTeamContentChart(todayItems, 'teamG');
-        this.teamChartsMaxValue = computeTeamChartsSharedMax([
-            this.teamRContentToday,
-            this.teamGContentToday
-        ]);
-        this.teamChartsRenderKey += 1;
     }
 
     private _buildSummaryCards(items: any[]): any[] {
@@ -408,38 +320,35 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
 
         return [
             {
-                titleKey: 'triweb.planification.kpi.plannedToday',
+                title: 'Planifiés aujourd\'hui',
                 value: todayPlanned.length,
-                detailKey: 'triweb.planification.kpi.plannedTodayDetail',
+                detail: 'Dossiers planifiés pour aujourd\'hui',
                 trend: todayPlanned.length > 0 ? 'neutral' : 'up'
             },
             {
-                titleKey: 'triweb.planification.kpi.inProgressToday',
+                title: 'En cours aujourd\'hui',
                 value: todayInProgress.length,
-                detailKey: 'triweb.planification.kpi.inProgressTodayDetail',
+                detail: 'Traitement actif du jour',
                 trend: 'neutral'
             },
             {
-                titleKey: 'triweb.planification.kpi.deliveredToday',
+                title: 'Livrés aujourd\'hui',
                 value: todayDelivered.length,
-                detailKey: 'triweb.planification.kpi.deliveredTodayDetail',
+                detail: 'Dossiers finalisés livrés aujourd\'hui',
                 trend: 'up'
             },
             {
-                titleKey: 'triweb.planification.kpi.lateToday',
+                title: 'Retards aujourd\'hui',
                 value: lateToday.length,
-                detailKey: 'triweb.planification.kpi.lateTodayDetail',
+                detail: 'Hors position Client',
                 trend: lateToday.length > 0 ? 'down' : 'up'
             },
             {
-                titleKey: 'triweb.planification.kpi.avgPagesToday',
+                title: 'Moyenne pages / dossier planifié aujourd\'hui',
                 value: avgPagesPlannedToday,
-                detailKey: todayPlanned.length
-                    ? 'triweb.planification.kpi.avgPagesTodayDetail'
-                    : 'triweb.planification.kpi.avgPagesTodayNone',
-                detailParams: todayPlanned.length
-                    ? { pages: totalPagesPlanned, count: todayPlanned.length }
-                    : undefined,
+                detail: todayPlanned.length
+                    ? `${totalPagesPlanned} pages · ${todayPlanned.length} dossier(s)`
+                    : 'Aucun dossier planifié',
                 trend: 'neutral'
             }
         ];
@@ -514,15 +423,15 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
 
         const roles = [
             {
-                roleKey: 'redaction',
+                role: 'Rédaction',
                 matcher: (item: any) => this._roleHasWork(item.redacteur, item.etatR, item.planR)
             },
             {
-                roleKey: 'graphisme',
+                role: 'Graphisme',
                 matcher: (item: any) => this._roleHasWork(item.graphiste, item.etatG, item.planG)
             },
             {
-                roleKey: 'cqInterne',
+                role: 'CQ interne',
                 matcher: (item: any) => this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi)
             }
         ];
@@ -548,7 +457,7 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
             const pages = roleItems.reduce((sum, item) => sum + Number(item.page || 0), 0);
 
             return {
-                position: role.roleKey,
+                position: role.role,
                 dossiers: roleItems.length,
                 pages,
                 avgPages: roleItems.length ? this._round(pages / roleItems.length) : 0
@@ -602,15 +511,15 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
 
         const roles = [
             {
-                roleKey: 'redaction',
+                role: 'Rédaction',
                 matcher: (item: any) => this._roleHasWork(item.redacteur, item.etatR, item.planR)
             },
             {
-                roleKey: 'graphisme',
+                role: 'Graphisme',
                 matcher: (item: any) => this._roleHasWork(item.graphiste, item.etatG, item.planG)
             },
             {
-                roleKey: 'cqInterne',
+                role: 'CQ interne',
                 matcher: (item: any) => this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi)
             }
         ];
@@ -620,7 +529,7 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
             const totalPages = roleItems.reduce((sum, item) => sum + Number(item.page || 0), 0);
 
             return {
-                role: role.roleKey,
+                role: role.role,
                 dossiers: roleItems.length,
                 totalPages,
                 avgPages: roleItems.length ? this._round(totalPages / roleItems.length) : 0
@@ -791,8 +700,8 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
             cqinterne: this._apiValue(item, ['cqinterne', 'cqInterne', 'teamCqi', 'userCqi'], ''),
             cqclient: this._apiValue(item, ['cqclient', 'cqClient', 'teamCqc', 'userCqc'], ''),
 
-            teamR: this._apiValue(item, ['teamR', 'TeamR', 'team_r', 'equipeR'], ''),
-            teamG: this._apiValue(item, ['teamG', 'TeamG', 'team_g', 'equipeG'], ''),
+            teamR: this._apiValue(item, ['teamR'], ''),
+            teamG: this._apiValue(item, ['teamG'], ''),
 
             etatR: this._apiValue(item, ['etatR', 'planR'], ''),
             etatG: this._apiValue(item, ['etatG', 'planG'], ''),
@@ -844,19 +753,19 @@ export class TriwebPlanificationComponent implements OnInit, OnDestroy {
     private _matchesRole(item: any, role: string): boolean {
         const n = this._norm(role);
 
-        if (n === 'redacteur' || n === 'rédacteur' || n === 'redaction') {
+        if (n === 'redacteur' || n === 'rédacteur') {
             return this._roleHasWork(item.redacteur, item.etatR, item.planR);
         }
 
-        if (n === 'graphiste' || n === 'graphisme') {
+        if (n === 'graphiste') {
             return this._roleHasWork(item.graphiste, item.etatG, item.planG);
         }
 
-        if (n === 'cqinterne' || n === 'cq interne') {
+        if (n === 'cq interne') {
             return this._roleHasWork(item.cqinterne, item.etatCqi, item.planCqi);
         }
 
-        if (n === 'cqclient' || n === 'cq client') {
+        if (n === 'cq client') {
             return this._roleHasWork(item.cqclient, item.etatCqc, item.planCqc);
         }
 

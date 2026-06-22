@@ -1,0 +1,68 @@
+.gauge-kpi-card {
+    min-height: 240px;
+}
+
+.gauge-wrap {
+    position: relative;
+    width: 148px;
+    height: 148px;
+}
+
+.gauge {
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--gauge-color) calc(var(--gauge-value) * 1%),
+        #e5e7eb 0
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.9);
+}
+
+:host-context(.dark) .gauge {
+    background: conic-gradient(
+        var(--gauge-color) calc(var(--gauge-value) * 1%),
+        rgba(255, 255, 255, 0.12) 0
+    );
+    box-shadow: inset 0 0 0 6px rgba(31, 41, 55, 0.9);
+}
+
+.gauge-inner {
+    width: 104px;
+    height: 104px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+:host-context(.dark) .gauge-inner {
+    background: #1f2937;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.gauge-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--gauge-color);
+}
+
+.gauge-track {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid #e5e7eb;
+    pointer-events: none;
+}
+
+:host-context(.dark) .gauge-track {
+    border-color: rgba(255, 255, 255, 0.12);
+}
+

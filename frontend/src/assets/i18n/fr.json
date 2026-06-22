@@ -1,8 +1,148 @@
 {
     "Project": "Projet",
     "Analytics": "Analytique",
-    "Dashboard": "Dashboard",
-    "Planification": "Planification",
-    "Power BI": "Power BI",
-    "Modèles IA": "Modèles IA"
+    "nav": {
+        "triweb": {
+            "group": "Triweb Pilotage",
+            "groupSubtitle": "Dashboard et planification",
+            "dashboard": "Dashboard général",
+            "planification": "Planification",
+            "powerbi": "Power BI",
+            "models": "Modèles IA"
+        }
+    },
+    "common": {
+        "refresh": "Actualiser",
+        "reset": "Réinitialiser",
+        "source": "Source",
+        "lastUpdate": "Dernière actualisation",
+        "apiConnected": "API .NET connectée",
+        "apiFallback": "données locales de secours",
+        "apiSynced": "TriwebSA synchronisée",
+        "apiEmpty": "Aucune donnée TriwebSA",
+        "searchPlaceholder": "Client, code, équipe, statut",
+        "all": "Tous",
+        "filters": {
+            "dateFrom": "Date début",
+            "dateTo": "Date fin",
+            "status": "Statut",
+            "position": "Position",
+            "loiHamon": "Loi Hamon",
+            "nature": "Nature",
+            "team": "Équipe",
+            "role": "Rôle métier"
+        }
+    },
+    "triweb": {
+        "roles": {
+            "redaction": "Rédaction",
+            "graphisme": "Graphisme",
+            "cqInterne": "CQ interne",
+            "cqClient": "CQ client",
+            "redacteur": "Rédacteur",
+            "graphiste": "Graphiste",
+            "nonAffecte": "Non affecté"
+        },
+        "dashboard": {
+            "title": "Dashboard général",
+            "subtitle": "Vue consolidée sur tous les dossiers disponibles dans l'API.",
+            "searchLabel": "Recherche dashboard",
+            "kpi": {
+                "total": "Total dossiers",
+                "totalDetail": "Périmètre filtré API .NET",
+                "inProduction": "En production",
+                "inProductionDetail": "Position Production, non finalisés",
+                "delivered": "Livrés / validés",
+                "deliveredDetail": "Statut livré ou validé",
+                "returnsCq": "Retours CQ",
+                "returnsCqDetail": "Retour CQ détecté",
+                "performance": "Performance globale",
+                "performanceSubtitle": "Livrés/validés par rapport au total des dossiers.",
+                "performanceWeak": "Faible",
+                "performanceModerate": "Modéré",
+                "performanceGood": "Bon"
+            },
+            "charts": {
+                "dailyProduction": "Production par jour",
+                "dailyProductionDesc": "Production, livraisons/validations et retours CQ selon les dates réelles du dossier",
+                "positionPie": "Répartition opérationnelle par position",
+                "positionPieDesc": "Répartition actuelle des dossiers par étape opérationnelle",
+                "teamMetrics": "Charge par équipe",
+                "teamMetricsDesc": "Volume de dossiers et retours par équipe métier",
+                "delivery": "Livraisons prévues par volume de pages",
+                "deliveryDesc": "Volume de pages à livrer par date client (7 derniers jours)",
+                "operational": "Indicateurs opérationnels",
+                "operationalDesc": "Taux clés du périmètre filtré",
+                "redacteur": "Occupation rédacteurs en production",
+                "redacteurDesc": "États actifs selon etatR sur les dossiers en position Production",
+                "graphiste": "Occupation graphistes en production",
+                "graphisteDesc": "États actifs selon etatG sur les dossiers en position Production"
+            },
+            "series": {
+                "production": "Production",
+                "delivered": "Livrés / validés",
+                "returnsCq": "Retours CQ",
+                "dossiers": "Dossiers",
+                "returns": "Retours",
+                "pages": "Pages",
+                "rate": "Taux"
+            }
+        },
+        "planification": {
+            "title": "Planification",
+            "subtitle": "Suivi des dossiers planifiés, en cours et livrés aujourd'hui.",
+            "searchLabel": "Recherche planification",
+            "kpi": {
+                "plannedToday": "Planifiés aujourd'hui",
+                "plannedTodayDetail": "Dossiers planifiés pour aujourd'hui",
+                "inProgressToday": "En cours aujourd'hui",
+                "inProgressTodayDetail": "Traitement actif du jour",
+                "deliveredToday": "Livrés aujourd'hui",
+                "deliveredTodayDetail": "Dossiers finalisés livrés aujourd'hui",
+                "lateToday": "Retards aujourd'hui",
+                "lateTodayDetail": "Hors position Client",
+                "avgPagesToday": "Moyenne pages / dossier planifié aujourd'hui",
+                "avgPagesTodayNone": "Aucun dossier planifié",
+                "avgPagesTodayDetail": "{{pages}} pages · {{count}} dossier(s)"
+            },
+            "charts": {
+                "planning7d": "Dossiers à planifier sur 7 jours",
+                "planning7dDesc": "Dossiers non finalisés à livrer dans les 7 prochains jours",
+                "avgPagesDelivery": "Moyenne de pages par date de livraison",
+                "avgPagesDeliveryDesc": "Analyse sur les deux derniers mois, moyenne de pages et non somme",
+                "avgWorkload": "Charge moyenne par dossier actif",
+                "avgWorkloadDesc": "Rédaction, graphisme et CQ interne uniquement",
+                "todayWorkload": "Charge du jour par position",
+                "todayWorkloadDesc": "Barres empilées : planifiés, en cours, livrés et retards sur le périmètre du jour",
+                "teamR": "Sous-équipes rédaction — aujourd'hui",
+                "teamRDesc": "Répartition par sous-équipe rédaction sur les dossiers du jour (hors statuts techniques).",
+                "teamG": "Sous-équipes graphisme — aujourd'hui",
+                "teamGDesc": "Répartition par sous-équipe graphisme sur les dossiers du jour (hors statuts techniques).",
+                "lateTable": "Dossiers en retard ouverts",
+                "lateTableDesc": "Date prévue dépassée, non finalisés, hors position Client"
+            },
+            "series": {
+                "dossiers": "Dossiers",
+                "avgPages": "Moy. pages",
+                "avgPagesBar": "Moyenne pages",
+                "pagesPerDossier": "Pages / dossier",
+                "planned": "Planifiés",
+                "inProgress": "En cours",
+                "delivered": "Livrés",
+                "late": "Retards"
+            },
+            "table": {
+                "code": "Code",
+                "client": "Client",
+                "position": "Position",
+                "status": "Statut",
+                "pages": "Pages",
+                "dueDate": "Date prévue",
+                "lateReason": "Cause retard"
+            },
+            "tooltips": {
+                "teamContent": "{{team}}<br>{{dossiersLabel}} : {{count}}"
+            }
+        }
+    }
 }

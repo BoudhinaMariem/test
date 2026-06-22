@@ -1,0 +1,149 @@
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">
+                Répartition TeamR / TeamG aujourd'hui
+            </div>
+            <div class="text-sm text-secondary mb-4">
+                Dossiers planifiés ou en cours aujourd'hui par équipe.
+            </div>
+
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('teamRGPie', teamRGPieChart)"
+            >
+                <dx-pie-chart
+                    #teamRGPieChart
+                    [dataSource]="teamRGPieToday"
+                    [palette]="triwebPalette"
+                    type="doughnut"
+                    [customizePoint]="customizeTeamRGPiePoint"
+                    (onPointHoverChanged)="onChartPointHoverChanged('teamRGPie', $event)"
+                    style="height: 340px; width: 100%;"
+                >
+                    <dxi-series
+                        argumentField="equipe"
+                        valueField="value"
+                    >
+                        <dxo-label
+                            [visible]="true"
+                            format="fixedPoint"
+                            [connector]="{ visible: true }"
+                        ></dxo-label>
+                    </dxi-series>
+
+                    <dxo-tooltip
+                        [enabled]="true"
+                        [customizeTooltip]="customizeTeamRGTooltip"
+                    ></dxo-tooltip>
+
+                    <dxo-legend
+                        verticalAlignment="bottom"
+                        horizontalAlignment="center"
+                    ></dxo-legend>
+                </dx-pie-chart>
+            </div>
+        </div>
+
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">
+                Charge TeamR / TeamG aujourd'hui
+            </div>
+            <div class="text-sm text-secondary mb-4">
+                Volume planifié aujourd'hui par équipe.
+            </div>
+
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('teamRGCharge', teamRGChargeChart)"
+            >
+                <dx-chart
+                    #teamRGChargeChart
+                    [dataSource]="teamRGChargeToday"
+                    [palette]="triwebPalette"
+                    [customizePoint]="customizeTeamRGChargePoint"
+                    (onPointHoverChanged)="onChartPointHoverChanged('teamRGCharge', $event)"
+                    style="height: 340px; width: 100%;"
+                >
+                    <dxi-series
+                        argumentField="equipe"
+                        valueField="pages"
+                        name="Pages planifiées"
+                        type="bar"
+                    ></dxi-series>
+
+                    <dxo-tooltip
+                        [enabled]="true"
+                        [customizeTooltip]="customizeTeamRGChargeTooltip"
+                    ></dxo-tooltip>
+
+                    <dxo-legend [visible]="false"></dxo-legend>
+                </dx-chart>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-8">
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">
+                Dossiers en cours par équipe
+            </div>
+            <div class="text-sm text-secondary mb-4">
+                Uniquement les dossiers en cours à la date d'aujourd'hui.
+            </div>
+
+            <div
+                class="triweb-chart-hover-wrap"
+                (mouseleave)="onChartMouseLeave('teamRGInProgress', teamRGInProgressChart)"
+            >
+                <dx-chart
+                    #teamRGInProgressChart
+                    [dataSource]="teamRGInProgressToday"
+                    [palette]="triwebPalette"
+                    [customizePoint]="customizeTeamRGInProgressPoint"
+                    (onPointHoverChanged)="onChartPointHoverChanged('teamRGInProgress', $event)"
+                    style="height: 340px; width: 100%;"
+                >
+                    <dxi-series
+                        argumentField="equipe"
+                        valueField="dossiers"
+                        name="Dossiers en cours"
+                        type="bar"
+                    ></dxi-series>
+
+                    <dxo-tooltip
+                        [enabled]="true"
+                        [customizeTooltip]="customizeTeamRGTooltip"
+                    ></dxo-tooltip>
+
+                    <dxo-legend [visible]="false"></dxo-legend>
+                </dx-chart>
+            </div>
+        </div>
+
+        <div class="bg-card rounded-2xl shadow p-6">
+            <div class="text-lg font-semibold mb-1">
+                Dossiers en retard ouverts
+            </div>
+            <div class="text-sm text-secondary mb-4">
+                Date prévue dépassée, non finalisés, hors position Client
+            </div>
+
+            <dx-data-grid
+                [dataSource]="lateItems"
+                [showBorders]="false"
+                [rowAlternationEnabled]="true"
+                [columnAutoWidth]="true"
+            >
+                <dxo-paging [pageSize]="10"></dxo-paging>
+
+                <dxi-column dataField="codeClient" caption="Code"></dxi-column>
+                <dxi-column dataField="client" caption="Client"></dxi-column>
+                <dxi-column dataField="position" caption="Position"></dxi-column>
+                <dxi-column dataField="statut" caption="Statut"></dxi-column>
+                <dxi-column dataField="page" caption="Pages"></dxi-column>
+                <dxi-column dataField="dateLivraisonPrevue" caption="Date prévue"></dxi-column>
+                <dxi-column dataField="alertReason" caption="Cause retard"></dxi-column>
+            </dx-data-grid>
+        </div>
+    </div>
+</div>
