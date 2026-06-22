@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import * as Keycloak from 'keycloak-js';
 
+const KEYCLOAK_REDIRECT_PATH = '/triweb/dashboard';
+const KEYCLOAK_LOGOUT_REDIRECT_PATH = '/sign-in';
+
 @Injectable({
     providedIn: 'root'
 })
 export class KeycloakService {
     private _keycloak: any;
+    private _initPromise: Promise<boolean> | null = null;
+    private _initialized = false;
 
     constructor() {
         const keycloakFactory = (Keycloak as any).default || Keycloak;
@@ -17,33 +22,38 @@ export class KeycloakService {
         });
     }
 
-    init(): Promise<boolean> {
-        return this._keycloak.init({
-            onLoad: 'check-sso',
-            checkLoginIframe: false,
-            flow: 'standard',
-            pkceMethod: 'S256',
-            enableLogging: true
-        } as any)
-        .then((authenticated: boolean) => {
-            console.log('Keycloak authenticated:', authenticated);
-            return authenticated;
-        })
-        .catch((error: any) => {
-            console.error('Keycloak init error:', error);
-            return false;
-        });
+    /**
+     * Initialise keycloak-js une seule fois par chargement de page.
+     * - Sans check-sso (évite init error / Invalid nonce)
+     * - responseMode query (Keycloak 26 renvoie ?code=&state=)
+     * - useNonce false (compatible "Exclude Issuer From Authentication Response")
+     */
+    ensureReady(): Promise<boolean> {
+        if (this._initialized) {
+            return Promise.resolve(this.isAuthenticated());
+        }
+
+        if (this._initPromise) {
+            return this._initPromise;
+        }
+
+        this._initPromise = this._initOnce();
+        return this._initPromise;
     }
 
-    login(): Promise<void> {
+    async login(): Promise<void> {
+        await this.ensureReady();
+
         return this._keycloak.login({
-            redirectUri: 'http://localhost:4200/triweb/dashboard'
+            redirectUri: `${window.location.origin}${KEYCLOAK_REDIRECT_PATH}`
         });
     }
 
-    logout(): Promise<void> {
+    async logout(): Promise<void> {
+        await this.ensureReady();
+
         return this._keycloak.logout({
-            redirectUri: 'http://localhost:4200/sign-in'
+            redirectUri: `${window.location.origin}${KEYCLOAK_LOGOUT_REDIRECT_PATH}`
         });
     }
 
@@ -64,6 +74,25 @@ export class KeycloakService {
         return this.getRoles().includes(role);
     }
 
+    syncLocalSession(): void {
+        if (!this.isAuthenticated()) {
+            return;
+        }
+
+        localStorage.setItem('accessToken', 'keycloak');
+        localStorage.setItem('user', JSON.stringify({
+            email: this.getUsername(),
+            name: this.getUsername(),
+            role: this.getRoles().join(', ')
+        }));
+    }
+
+    isOAuthCallback(): boolean {
+        const search = new URLSearchParams(window.location.search);
+
+        return search.has('code') && search.has('state');
+    }
+
     async getToken(): Promise<string | undefined> {
         if (!this._keycloak.authenticated) {
             return undefined;
@@ -77,8 +106,41 @@ export class KeycloakService {
             return undefined;
         }
     }
-}
 
-export function initializeKeycloak(keycloakService: KeycloakService): () => Promise<boolean> {
-    return () => keycloakService.init();
+    private _initOnce(): Promise<boolean> {
+        return this._keycloak.init({
+            checkLoginIframe: false,
+            pkceMethod: 'S256',
+            flow: 'standard',
+            responseMode: 'query',
+            useNonce: false
+        } as any)
+            .then((authenticated: boolean) => {
+                this._initialized = true;
+
+                if (authenticated) {
+                    this.syncLocalSession();
+                    this._cleanOAuthUrl();
+                }
+
+                return authenticated;
+            })
+            .catch((error: unknown) => {
+                this._initPromise = null;
+                console.error('Keycloak init error:', error ?? 'callback OAuth invalide');
+                return false;
+            });
+    }
+
+    private _cleanOAuthUrl(): void {
+        if (!this.isOAuthCallback()) {
+            return;
+        }
+
+        window.history.replaceState(
+            {},
+            document.title,
+            `${window.location.origin}${KEYCLOAK_REDIRECT_PATH}`
+        );
+    }
 }

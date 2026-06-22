@@ -10,7 +10,7 @@ import {
     UrlSegment,
     UrlTree
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { AuthService } from 'app/core/auth/auth.service';
@@ -51,21 +51,19 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     private _check(redirectURL: string): Observable<boolean> {
-        return this._authService.check().pipe(
+        const oauthCallback$ = this._keycloakService.isOAuthCallback()
+            ? from(this._keycloakService.ensureReady())
+            : of(false);
+
+        return oauthCallback$.pipe(
+            switchMap(() => this._authService.check()),
             switchMap((authenticated) => {
                 if (authenticated) {
                     return of(true);
                 }
 
                 if (this._keycloakService.isAuthenticated()) {
-                    localStorage.setItem('accessToken', 'keycloak');
-
-                    localStorage.setItem('user', JSON.stringify({
-                        email: this._keycloakService.getUsername(),
-                        name: this._keycloakService.getUsername(),
-                        role: this._keycloakService.getRoles().join(', ')
-                    }));
-
+                    this._keycloakService.syncLocalSession();
                     return of(true);
                 }
 

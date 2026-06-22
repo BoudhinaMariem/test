@@ -15,12 +15,7 @@ import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { HttpClientModule } from '@angular/common/http';
 
-import { APP_INITIALIZER } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {
-    initializeKeycloak,
-    KeycloakService
-} from './core/keycloak/keycloak.service';
 import { KeycloakAuthInterceptor } from './core/keycloak/keycloak.interceptor';
 
 const routerConfig: ExtraOptions = {
@@ -49,12 +44,6 @@ const routerConfig: ExtraOptions = {
         MarkdownModule.forRoot({})
     ],
     providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeKeycloak,
-            multi: true,
-            deps: [KeycloakService]
-        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: KeycloakAuthInterceptor,

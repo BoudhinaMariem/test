@@ -21,6 +21,7 @@ export class AuthSignInComponent implements OnInit {
 
     signInForm!: FormGroup;
     showAlert = false;
+    keycloakLoading = false;
 
     constructor(
         private _router: Router,
@@ -36,16 +37,6 @@ export class AuthSignInComponent implements OnInit {
             rememberMe: [false]
         });
 
-        if (this._keycloakService.isAuthenticated()) {
-            localStorage.setItem('accessToken', 'keycloak');
-            localStorage.setItem('user', JSON.stringify({
-                email: this._keycloakService.getUsername(),
-                name: this._keycloakService.getUsername(),
-                role: this._keycloakService.getRoles().join(', ')
-            }));
-
-            this._router.navigateByUrl('/triweb/dashboard');
-        }
     }
 
     signIn(): void {
@@ -84,6 +75,11 @@ export class AuthSignInComponent implements OnInit {
     }
 
     signInWithKeycloak(): void {
-        this._keycloakService.login();
+        this.keycloakLoading = true;
+
+        this._keycloakService.login().catch((error: unknown) => {
+            console.error('Keycloak login error:', error);
+            this.keycloakLoading = false;
+        });
     }
 }
